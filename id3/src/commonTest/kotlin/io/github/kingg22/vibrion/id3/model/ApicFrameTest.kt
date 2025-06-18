@@ -1,11 +1,19 @@
-package io.github.kingg22.vibrion.id3
+package io.github.kingg22.vibrion.id3.model
 
+import io.github.kingg22.vibrion.id3.Id3AudioWriter
+import io.github.kingg22.vibrion.id3.Id3v2FrameType
+import io.github.kingg22.vibrion.id3.getEmptyBuffer
+import io.github.kingg22.vibrion.id3.id3Header
+import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
+import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
+import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
+import io.github.kingg22.vibrion.id3.internal.uint32ToUint8Array
 import kotlin.jvm.JvmStatic
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertFailsWith
 
-class ApiFrameTest {
+class ApicFrameTest {
     companion object {
         @JvmStatic
         val imageContent = byteArrayOf(4, 8, 15, 16, 23, 42)
@@ -45,7 +53,7 @@ class ApiFrameTest {
 
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
-        writer[ID3FrameType.APIC] = FrameValue.AttachedPicture(
+        writer[Id3v2FrameType.APIC] = AttachedPicture(
             type = 3,
             data = fullImage,
             description = "yo",
@@ -64,7 +72,7 @@ class ApiFrameTest {
             add(1) // encoding = UTF-16
             addAll(encodeWindows1252("image/jpeg").toMutableList())
             add(0) // MIME null separator
-            add(3) // Picture type
+            add(3) // PictureFrame type
             add(0xFF.toByte())
             add(0xFE.toByte()) // BOM for UTF-16LE
             addAll(encodeUtf16LE("yo").toMutableList())
@@ -81,7 +89,7 @@ class ApiFrameTest {
         val signature = buildImage(0, 0, 1, 0)
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
-        writer[ID3FrameType.APIC] = FrameValue.AttachedPicture(
+        writer[Id3v2FrameType.APIC] = AttachedPicture(
             type = 3,
             data = signature,
             description = "",
@@ -96,7 +104,7 @@ class ApiFrameTest {
     @Test
     fun throwsWhenPictureTypeIsInvalid() {
         assertFailsWith<IllegalArgumentException> {
-            FrameValue.AttachedPicture(type = 43, data = ByteArray(0))
+            AttachedPicture(type = 43, data = ByteArray(0))
         }
     }
 
@@ -105,7 +113,7 @@ class ApiFrameTest {
         val empty = ByteArray(0)
         val writer = Id3AudioWriter(getEmptyBuffer())
         assertFailsWith<IllegalArgumentException> {
-            writer[ID3FrameType.APIC] = FrameValue.AttachedPicture(
+            writer[Id3v2FrameType.APIC] = AttachedPicture(
                 type = 0,
                 data = empty,
                 description = "",
@@ -147,7 +155,7 @@ class ApiFrameTest {
     private fun testApic(mime: String, signature: ByteArray, unicode: Boolean = false) {
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
-        writer[ID3FrameType.APIC] = FrameValue.AttachedPicture(
+        writer[Id3v2FrameType.APIC] = AttachedPicture(
             type = 3,
             data = signature + imageContent,
             description = "yo",

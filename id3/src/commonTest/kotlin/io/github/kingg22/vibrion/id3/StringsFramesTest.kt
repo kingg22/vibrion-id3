@@ -1,5 +1,10 @@
 package io.github.kingg22.vibrion.id3
 
+import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
+import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
+import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
+import io.github.kingg22.vibrion.id3.internal.uint32ToUint8Array
+import io.github.kingg22.vibrion.id3.model.TextFrame
 import kotlin.jvm.JvmStatic
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
@@ -78,7 +83,7 @@ class StringsFramesTest {
         urlLinkFrames.forEachIndexed { index, frame ->
             val writer = Id3AudioWriter(getEmptyBuffer())
             writer.padding = 0
-            writer[frame] = FrameValue.TextFrame("https://google.com")
+            writer[frame] = TextFrame("https://google.com")
             writer.addTag()
             val actual = writer.arrayBuffer
             val expected = byteArrayOf(
@@ -118,7 +123,7 @@ class StringsFramesTest {
         oneByteEncodedFrames.forEachIndexed { index, frame ->
             val writer = Id3AudioWriter(getEmptyBuffer())
             writer.padding = 0
-            writer[frame] = FrameValue.TextFrame("Lyricist/Text writer")
+            writer[frame] = TextFrame("Lyricist/Text writer")
             val actual = writer.addTag()
             val preComputedExpected = preComputedExpectedList[index]
             val expected = byteArrayOf(
@@ -287,7 +292,7 @@ class StringsFramesTest {
         twoByteEncodedFrames.forEachIndexed { index, frame ->
             val writer = Id3AudioWriter(getEmptyBuffer())
             writer.padding = 0
-            writer[frame] = FrameValue.TextFrame("Lyricist/Text writer")
+            writer[frame] = TextFrame("Lyricist/Text writer")
             writer.addTag()
             val actual = writer.arrayBuffer
             val expected = byteArrayOf(

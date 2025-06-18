@@ -1,5 +1,13 @@
-package io.github.kingg22.vibrion.id3
+package io.github.kingg22.vibrion.id3.model
 
+import io.github.kingg22.vibrion.id3.Id3AudioWriter
+import io.github.kingg22.vibrion.id3.Id3v2FrameType
+import io.github.kingg22.vibrion.id3.getEmptyBuffer
+import io.github.kingg22.vibrion.id3.id3Header
+import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
+import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
+import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
+import io.github.kingg22.vibrion.id3.internal.uint32ToUint8Array
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
@@ -9,7 +17,7 @@ class CommFrameTest {
     fun testDefaultCommFrame() {
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
-        writer[ID3FrameType.COMM] = FrameValue.CommentFrame(
+        writer[Id3v2FrameType.COMM] = CommentFrame(
             description = "advert",
             text = "free hugs",
         )
@@ -40,7 +48,7 @@ class CommFrameTest {
     fun testCustomLangCommFrame() {
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
-        writer["COMM"] = FrameValue.CommentFrame(
+        writer["COMM"] = CommentFrame(
             description = "この世界",
             text = "俺の名前",
             language = "jpn",

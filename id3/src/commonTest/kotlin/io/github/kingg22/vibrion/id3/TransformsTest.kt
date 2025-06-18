@@ -1,5 +1,8 @@
 package io.github.kingg22.vibrion.id3
 
+import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
+import io.github.kingg22.vibrion.id3.internal.uint32ToUint8Array
+import io.github.kingg22.vibrion.id3.internal.uint7ArrayToUint28
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals

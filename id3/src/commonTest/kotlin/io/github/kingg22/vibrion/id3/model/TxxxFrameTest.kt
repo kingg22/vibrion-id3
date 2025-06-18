@@ -1,5 +1,7 @@
-package io.github.kingg22.vibrion.id3
+package io.github.kingg22.vibrion.id3.model
 
+import io.github.kingg22.vibrion.id3.Id3AudioWriter
+import io.github.kingg22.vibrion.id3.getEmptyBuffer
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertFailsWith
@@ -10,7 +12,7 @@ class TxxxFrameTest {
     fun `test TXXX Frame Encoding`() {
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
-        writer["TXXX"] = FrameValue.UserDefinedText(description = "foo", value = "bar")
+        writer["TXXX"] = UserDefinedText(description = "foo", value = "bar")
         val actual = writer.addTag()
 
         val preComputedExpected = byteArrayOf(
@@ -44,7 +46,7 @@ class TxxxFrameTest {
     fun testTXXXWithSimpleStringThrows() {
         val writer = Id3AudioWriter(getEmptyBuffer())
         assertFailsWith<IllegalArgumentException> {
-            writer["TXXX"] = FrameValue.TextFrame("foobar")
+            writer["TXXX"] = TextFrame("foobar")
         }
     }
 
@@ -52,7 +54,7 @@ class TxxxFrameTest {
     fun testTXXXWithNoDescriptionThrows() {
         val writer = Id3AudioWriter(getEmptyBuffer())
         assertFailsWith<IllegalArgumentException> {
-            writer["TXXX"] = FrameValue.UserDefinedText(description = "", value = "foobar")
+            writer["TXXX"] = UserDefinedText(description = "", value = "foobar")
         }
     }
 
@@ -60,7 +62,7 @@ class TxxxFrameTest {
     fun testTXXXWithNoValueThrows() {
         val writer = Id3AudioWriter(getEmptyBuffer())
         assertFailsWith<IllegalArgumentException> {
-            writer["TXXX"] = FrameValue.UserDefinedText(description = "foobar", value = "")
+            writer["TXXX"] = UserDefinedText(description = "foobar", value = "")
         }
     }
 }

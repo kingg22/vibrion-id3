@@ -1,5 +1,11 @@
-package io.github.kingg22.vibrion.id3
+package io.github.kingg22.vibrion.id3.model
 
+import io.github.kingg22.vibrion.id3.Id3AudioWriter
+import io.github.kingg22.vibrion.id3.getEmptyBuffer
+import io.github.kingg22.vibrion.id3.id3Header
+import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
+import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
+import io.github.kingg22.vibrion.id3.internal.uint32ToUint8Array
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
@@ -12,10 +18,10 @@ class PrivFrameTest {
         // 2. Instantiate and configure the ID3Writer
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
-        writer["PRIV"] = FrameValue.PrivateFrame(id = ownerId, data = data)
+        writer["PRIV"] = PrivateFrame(id = ownerId, data = data)
         val actual = writer.addTag()
 
-        // Content of the PRIV frame: Owner ID (Windows-1252) + Null terminator + Private Data
+        // Content of the PRIV frame: Owner ID (Windows-1252) + Null terminator + PrivateFrame Data
         val ownerIdBytes = encodeWindows1252(ownerId)
         val frameContent = ownerIdBytes + 0 + data // 8 bytes + 1 byte + 9 bytes = 18 bytes
         val frameContentSize = frameContent.size // 18 bytes

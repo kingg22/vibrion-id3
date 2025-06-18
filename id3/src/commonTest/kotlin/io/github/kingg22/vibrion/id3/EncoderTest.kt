@@ -1,5 +1,8 @@
 package io.github.kingg22.vibrion.id3
 
+import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
+import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
+import io.github.kingg22.vibrion.id3.internal.strToCodePoints
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

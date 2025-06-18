@@ -11,7 +11,7 @@ import kotlin.jvm.JvmStatic
  *
  * @see <a href="https://id3.org/id3v2.3.0#Declared_ID3v2_frames">ID3v2.3.0 Declared ID3v2 frames</a>
  */
-enum class ID3FrameType {
+enum class Id3v2FrameType {
     // -- lists --
 
     /** Song artists */
@@ -106,7 +106,7 @@ enum class ID3FrameType {
     /** Comments */
     COMM,
 
-    /** Private frame */
+    /** PrivateFrame frame */
     PRIV,
     // -- Urls --
 

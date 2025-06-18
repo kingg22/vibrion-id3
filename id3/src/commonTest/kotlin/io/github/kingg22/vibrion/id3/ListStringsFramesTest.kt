@@ -1,5 +1,10 @@
 package io.github.kingg22.vibrion.id3
 
+import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
+import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
+import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
+import io.github.kingg22.vibrion.id3.internal.uint32ToUint8Array
+import io.github.kingg22.vibrion.id3.model.StringListFrame
 import kotlin.jvm.JvmStatic
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
@@ -44,7 +49,7 @@ class ListStringsFramesTest {
             val delemiter = if (frameName == "TCON") ';' else '/'
             val writer = Id3AudioWriter(getEmptyBuffer())
             writer.padding = 0
-            writer[frameName] = FrameValue.StringListFrame("Eminem", "50 Cent")
+            writer[frameName] = StringListFrame("Eminem", "50 Cent")
             val actual = writer.addTag()
             val expected = byteArrayOf(
                 *id3Header,

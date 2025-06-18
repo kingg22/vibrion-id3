@@ -1,7 +1,7 @@
 @file:JvmSynthetic
 @file:JvmName("-Transforms")
 
-package io.github.kingg22.vibrion.id3
+package io.github.kingg22.vibrion.id3.internal
 
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic

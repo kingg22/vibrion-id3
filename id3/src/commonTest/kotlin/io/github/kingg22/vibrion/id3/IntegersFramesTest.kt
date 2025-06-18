@@ -1,5 +1,9 @@
 package io.github.kingg22.vibrion.id3
 
+import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
+import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
+import io.github.kingg22.vibrion.id3.internal.uint32ToUint8Array
+import io.github.kingg22.vibrion.id3.model.IntegerFrame
 import kotlin.jvm.JvmStatic
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
@@ -38,7 +42,7 @@ class IntegersFramesTest {
         integerFrames.forEachIndexed { index, frameName ->
             val writer = Id3AudioWriter(getEmptyBuffer())
             writer.padding = 0
-            writer[frameName] = FrameValue.IntegerFrame(2023)
+            writer[frameName] = IntegerFrame(2023)
             val actual = writer.addTag()
             val expected = byteArrayOf(
                 *id3Header,

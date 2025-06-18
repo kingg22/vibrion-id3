@@ -1,33 +1,34 @@
 @file:JvmSynthetic
 @file:JvmName("-FrameMapper")
 
-package io.github.kingg22.vibrion.id3
+package io.github.kingg22.vibrion.id3.internal
 
+import io.github.kingg22.vibrion.id3.internal.frames.*
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 // Inspired on https://github.com/egoroof/browser-id3-writer
 
 @JvmSynthetic
-internal fun setIntegerFrame(name: String, value: Int) = Frame.Numeric(
+internal fun setIntegerFrame(name: String, value: Int) = NumericFrame(
     name = name,
     value = value,
-    size = Sizes.getNumericFrameSize(value.toString().length),
+    size = getNumericFrameSize(value.toString().length),
 )
 
-/** Only for TDAT, special string trat as Numeric to write */
+/** Only for TDAT, special string trat as NumericFrame to write */
 @JvmSynthetic
-internal fun setIntegerFrame(name: String, value: String) = Frame.Numeric(
+internal fun setIntegerFrame(name: String, value: String) = NumericFrame(
     name = name,
     value = value,
-    size = Sizes.getNumericFrameSize(value.length),
+    size = getNumericFrameSize(value.length),
 )
 
 @JvmSynthetic
-internal fun setStringFrame(name: String, value: String) = Frame.Text(
+internal fun setStringFrame(name: String, value: String) = TextFrame(
     name,
     value,
-    Sizes.getStringFrameSize(value.length),
+    getStringFrameSize(value.length),
 )
 
 @JvmSynthetic
@@ -36,18 +37,18 @@ internal fun setPictureFrame(
     data: ByteArray,
     description: String,
     useUnicodeEncoding: Boolean,
-): Frame.Picture {
+): PictureFrame {
     val mimeType = requireNotNull(getMimeType(data)) { "Unknown picture MIME type" }
     val actualUseUnicode = description.isNotEmpty() && useUnicodeEncoding
 
-    return Frame.Picture(
+    return PictureFrame(
         name = "APIC",
         value = data,
         pictureType = pictureType,
         mimeType = mimeType,
         description = description,
         useUnicode = actualUseUnicode,
-        size = Sizes.getPictureFrameSize(
+        size = getPictureFrameSize(
             pictureSize = data.size,
             mimeTypeSize = mimeType.length,
             descriptionSize = description.length,
@@ -57,51 +58,51 @@ internal fun setPictureFrame(
 }
 
 @JvmSynthetic
-internal fun setLyricsFrame(language: String, description: String, lyrics: String) = Frame.UnsynchronisedLyrics(
+internal fun setLyricsFrame(language: String, description: String, lyrics: String) = UnsynchronisedLyricsFrame(
     name = "USLT",
     language = strToCodePointsByte(language),
     description = description,
     value = lyrics,
-    size = Sizes.getLyricsFrameSize(description.length, lyrics.length),
+    size = getLyricsFrameSize(description.length, lyrics.length),
 )
 
 @JvmSynthetic
-internal fun setCommentFrame(language: String, description: String, text: String) = Frame.Comment(
+internal fun setCommentFrame(language: String, description: String, text: String) = CommentFrame(
     name = "COMM",
     language = strToCodePointsByte(language),
     description = description,
     value = text,
-    size = Sizes.getCommentFrameSize(description.length, text.length),
+    size = getCommentFrameSize(description.length, text.length),
 )
 
 @JvmSynthetic
-internal fun setPrivateFrame(id: String, data: ByteArray) = Frame.Private(
+internal fun setPrivateFrame(id: String, data: ByteArray) = PrivateFrame(
     name = "PRIV",
     id = id,
     value = data,
-    size = Sizes.getPrivateFrameSize(id.length, data.size),
+    size = getPrivateFrameSize(id.length, data.size),
 )
 
 @JvmSynthetic
-internal fun setUserStringFrame(description: String, value: String) = Frame.UserText(
+internal fun setUserStringFrame(description: String, value: String) = UserTextFrame(
     name = "TXXX",
     description = description,
     value = value,
-    size = Sizes.getUserStringFrameSize(description.length, value.length),
+    size = getUserStringFrameSize(description.length, value.length),
 )
 
 @JvmSynthetic
-internal fun setUrlLinkFrame(name: String, url: String) = Frame.Url(
+internal fun setUrlLinkFrame(name: String, url: String) = UrlFrame(
     name = name,
     value = url,
-    size = Sizes.getUrlLinkFrameSize(url.length),
+    size = getUrlLinkFrameSize(url.length),
 )
 
 @JvmSynthetic
-internal fun setPairedTextFrame(name: String, list: List<Pair<String, String>>) = Frame.PairedText(
+internal fun setPairedTextFrame(name: String, list: List<Pair<String, String>>) = PairedTextFrame(
     name = name,
     value = list,
-    size = Sizes.getPairedTextFrameSize(list),
+    size = getPairedTextFrameSize(list),
 )
 
 @JvmSynthetic
@@ -111,12 +112,12 @@ internal fun setSynchronisedLyricsFrame(
     timestampFormat: Int,
     language: String,
     description: String,
-) = Frame.SynchronisedLyrics(
+) = SynchronisedLyricsFrame(
     name = "SYLT",
     value = text,
     language = strToCodePointsByte(language),
     description = description,
     type = type,
     timestampFormat = timestampFormat,
-    size = Sizes.getSynchronisedLyricsFrameSize(text, description.length),
+    size = getSynchronisedLyricsFrameSize(text, description.length),
 )

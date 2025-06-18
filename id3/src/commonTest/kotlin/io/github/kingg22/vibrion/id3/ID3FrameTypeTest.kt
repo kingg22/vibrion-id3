@@ -6,6 +6,6 @@ import kotlin.test.assertEquals
 class ID3FrameTypeTest {
     @Test
     fun nameEqualsString() {
-        assertEquals("TDAT", ID3FrameType.TDAT.name)
+        assertEquals("TDAT", Id3v2FrameType.TDAT.name)
     }
 }

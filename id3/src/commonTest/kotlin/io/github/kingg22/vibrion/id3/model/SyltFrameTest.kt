@@ -1,5 +1,12 @@
-package io.github.kingg22.vibrion.id3
+package io.github.kingg22.vibrion.id3.model
 
+import io.github.kingg22.vibrion.id3.Id3AudioWriter
+import io.github.kingg22.vibrion.id3.getEmptyBuffer
+import io.github.kingg22.vibrion.id3.id3Header
+import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
+import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
+import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
+import io.github.kingg22.vibrion.id3.internal.uint32ToUint8Array
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
@@ -10,7 +17,7 @@ class SyltFrameTest {
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
 
-        writer["SYLT"] = FrameValue.SynchronisedLyrics(
+        writer["SYLT"] = SynchronizedLyrics(
             type = 1,
             timestampFormat = 2,
             text = listOf(
