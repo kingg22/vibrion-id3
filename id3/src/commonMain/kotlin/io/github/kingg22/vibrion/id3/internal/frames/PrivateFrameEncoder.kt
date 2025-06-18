@@ -1,5 +1,5 @@
 @file:JvmSynthetic
-@file:JvmName("-PrivateFrame")
+@file:JvmName("-PrivateFrameEncoder")
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
@@ -8,12 +8,12 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class PrivateFrame internal constructor(
+internal data class PrivateFrameEncoder internal constructor(
     @JvmSynthetic override val name: String,
     @JvmSynthetic val id: String,
     @JvmSynthetic val value: ByteArray,
     @JvmSynthetic override val size: Int,
-) : Frame(name, size) {
+) : FrameEncoder(name, size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         val idBytes = encodeWindows1252(id)
@@ -37,7 +37,7 @@ internal data class PrivateFrame internal constructor(
         if (this === other) return true
         if (other == null || this::class != other::class) return false
 
-        other as PrivateFrame
+        other as PrivateFrameEncoder
 
         if (size != other.size) return false
         if (name != other.name) return false

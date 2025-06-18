@@ -1,5 +1,5 @@
 @file:JvmSynthetic
-@file:JvmName("-UnsynchronisedLyricsFrame")
+@file:JvmName("-CommentFrameEncoder")
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
@@ -8,13 +8,13 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class UnsynchronisedLyricsFrame internal constructor(
+internal data class CommentFrameEncoder internal constructor(
     @JvmSynthetic override val name: String,
     @JvmSynthetic val language: List<Byte>,
     @JvmSynthetic val description: String,
     @JvmSynthetic val value: String,
     @JvmSynthetic override val size: Int,
-) : Frame(name, size) {
+) : FrameEncoder(name, size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         val descriptionBytes = encodeUtf16LE(description)

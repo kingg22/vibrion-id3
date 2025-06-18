@@ -1,6 +1,6 @@
 package io.github.kingg22.vibrion.id3.model
 
-/** @see io.github.kingg22.vibrion.id3.Id3v2FrameType.PRIV */
+/** @see io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.PRIV */
 data class PrivateFrame(val id: String, val data: ByteArray) : FrameValue() {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

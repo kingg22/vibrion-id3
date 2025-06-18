@@ -1,7 +1,7 @@
 package io.github.kingg22.vibrion.id3.model
 
 import io.github.kingg22.vibrion.id3.Id3AudioWriter
-import io.github.kingg22.vibrion.id3.Id3v2FrameType
+import io.github.kingg22.vibrion.id3.Id3v2v3TagFrame
 import io.github.kingg22.vibrion.id3.getEmptyBuffer
 import io.github.kingg22.vibrion.id3.id3Header
 import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
@@ -53,8 +53,8 @@ class ApicFrameTest {
 
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
-        writer[Id3v2FrameType.APIC] = AttachedPicture(
-            type = 3,
+        writer[Id3v2v3TagFrame.APIC] = AttachedPicture(
+            type = AttachedPictureType.CoverFront,
             data = fullImage,
             description = "yo",
             useUnicodeEncoding = true,
@@ -89,7 +89,7 @@ class ApicFrameTest {
         val signature = buildImage(0, 0, 1, 0)
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
-        writer[Id3v2FrameType.APIC] = AttachedPicture(
+        writer[Id3v2v3TagFrame.APIC] = AttachedPicture(
             type = 3,
             data = signature,
             description = "",
@@ -113,7 +113,7 @@ class ApicFrameTest {
         val empty = ByteArray(0)
         val writer = Id3AudioWriter(getEmptyBuffer())
         assertFailsWith<IllegalArgumentException> {
-            writer[Id3v2FrameType.APIC] = AttachedPicture(
+            writer[Id3v2v3TagFrame.APIC] = AttachedPicture(
                 type = 0,
                 data = empty,
                 description = "",
@@ -155,7 +155,7 @@ class ApicFrameTest {
     private fun testApic(mime: String, signature: ByteArray, unicode: Boolean = false) {
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
-        writer[Id3v2FrameType.APIC] = AttachedPicture(
+        writer[Id3v2v3TagFrame.APIC] = AttachedPicture(
             type = 3,
             data = signature + imageContent,
             description = "yo",

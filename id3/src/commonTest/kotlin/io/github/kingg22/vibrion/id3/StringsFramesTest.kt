@@ -99,12 +99,12 @@ class StringsFramesTest {
             assertContentEquals(
                 actual,
                 preComputedExpected,
-                "URL Frame $frame failed. Actual: '${actual.contentToString()}' Pre computed expected: '${preComputedExpected.contentToString()}'",
+                "URL Frame $frame failed pre-computed",
             )
             assertContentEquals(
                 actual,
                 expected,
-                "URL Frame $frame failed. Actual: '${actual.contentToString()}' Expected: '${expected.contentToString()}'",
+                "URL Frame $frame failed build",
             )
         }
     }
@@ -139,12 +139,12 @@ class StringsFramesTest {
             assertContentEquals(
                 actual,
                 expected,
-                "One-byte encoded frame $frame failed. Actual: '${actual.contentToString()}' Expected: '${expected.contentToString()}'",
+                "One-byte encoded frame $frame failed.",
             )
             assertContentEquals(
                 actual,
                 preComputedExpected,
-                "One-byte encoded frame $frame failed. Actual: '${actual.contentToString()}' Pre computed expected: '${preComputedExpected.contentToString()}'",
+                "One-byte encoded frame $frame failed.",
             )
         }
     }
@@ -309,12 +309,12 @@ class StringsFramesTest {
             assertContentEquals(
                 actual,
                 preComputedExpected,
-                "Two-byte encoded frame $frame failed. Actual: '${actual.contentToString()}' Pre computed expected: '${preComputedExpected.contentToString()}'",
+                "Two-byte encoded frame $frame failed.",
             )
             assertContentEquals(
                 actual,
                 expected,
-                "Two-byte encoded frame $frame failed. Actual: '${actual.contentToString()}' Expected: '${expected.contentToString()}'",
+                "Two-byte encoded frame $frame failed.",
             )
         }
     }

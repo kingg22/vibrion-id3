@@ -1,7 +1,7 @@
 package io.github.kingg22.vibrion.id3.model
 
 import io.github.kingg22.vibrion.id3.Id3AudioWriter
-import io.github.kingg22.vibrion.id3.Id3v2FrameType
+import io.github.kingg22.vibrion.id3.Id3v2v3TagFrame
 import io.github.kingg22.vibrion.id3.getEmptyBuffer
 import io.github.kingg22.vibrion.id3.id3Header
 import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
@@ -17,7 +17,7 @@ class CommFrameTest {
     fun testDefaultCommFrame() {
         val writer = Id3AudioWriter(getEmptyBuffer())
         writer.padding = 0
-        writer[Id3v2FrameType.COMM] = CommentFrame(
+        writer[Id3v2v3TagFrame.COMM] = CommentFrame(
             description = "advert",
             text = "free hugs",
         )

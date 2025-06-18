@@ -1,5 +1,5 @@
 @file:JvmSynthetic
-@file:JvmName("-Frame")
+@file:JvmName("-FrameEncoder")
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
@@ -9,12 +9,12 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 import kotlin.jvm.JvmSynthetic
 
-internal sealed class Frame(@JvmSynthetic open val name: String, @JvmSynthetic open val size: Int) {
+internal sealed class FrameEncoder(@JvmSynthetic open val name: String, @JvmSynthetic open val size: Int) {
     @JvmSynthetic
     internal abstract fun writeTo(buffer: ByteArray, offset: Int): Int
 
     protected fun writeFrameHeader(buffer: ByteArray, offset: Int): Int {
-        // Frame ID (4 bytes)
+        // FrameEncoder ID (4 bytes)
         val nameBytes = encodeWindows1252(name)
         nameBytes.copyInto(buffer, offset)
 

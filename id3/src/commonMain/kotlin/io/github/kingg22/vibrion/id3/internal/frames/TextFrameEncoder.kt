@@ -1,5 +1,5 @@
 @file:JvmSynthetic
-@file:JvmName("-TextFrame")
+@file:JvmName("-TextFrameEncoder")
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
@@ -8,11 +8,11 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class TextFrame internal constructor(
+internal data class TextFrameEncoder internal constructor(
     @JvmSynthetic override val name: String,
     @JvmSynthetic val value: String,
     @JvmSynthetic override val size: Int,
-) : Frame(name, size) {
+) : FrameEncoder(name, size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         var currentOffset = writeFrameHeader(buffer, offset)

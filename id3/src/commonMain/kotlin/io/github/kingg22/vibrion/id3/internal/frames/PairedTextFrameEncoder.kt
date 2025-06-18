@@ -1,5 +1,5 @@
 @file:JvmSynthetic
-@file:JvmName("-PairedTextFrame")
+@file:JvmName("-PairedTextFrameEncoder")
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
@@ -8,11 +8,11 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class PairedTextFrame internal constructor(
+internal data class PairedTextFrameEncoder internal constructor(
     @JvmSynthetic override val name: String,
     @JvmSynthetic val value: List<Pair<String, String>>,
     @JvmSynthetic override val size: Int,
-) : Frame(name, size) {
+) : FrameEncoder(name, size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         val pairsSize = value.sumOf { (first, second) ->

@@ -2,7 +2,7 @@ package io.github.kingg22.vibrion.id3.model
 
 import kotlin.jvm.JvmOverloads
 
-/** @see io.github.kingg22.vibrion.id3.Id3v2FrameType.SYLT */
+/** @see io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.SYLT */
 data class SynchronizedLyrics @JvmOverloads constructor(
     val type: Int,
     val text: List<Pair<String, Int>>,

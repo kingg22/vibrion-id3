@@ -1,5 +1,5 @@
 @file:JvmSynthetic
-@file:JvmName("-PictureFrame")
+@file:JvmName("-PictureFrameEncoder")
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
@@ -9,7 +9,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class PictureFrame internal constructor(
+internal data class PictureFrameEncoder internal constructor(
     @JvmSynthetic override val name: String,
     @JvmSynthetic val value: ByteArray,
     @JvmSynthetic val pictureType: Int,
@@ -17,7 +17,7 @@ internal data class PictureFrame internal constructor(
     @JvmSynthetic val description: String,
     @JvmSynthetic val useUnicode: Boolean,
     @JvmSynthetic override val size: Int,
-) : Frame(name, size) {
+) : FrameEncoder(name, size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         val descriptionBytes = if (useUnicode) {
@@ -39,7 +39,7 @@ internal data class PictureFrame internal constructor(
         encodeWindows1252(mimeType).copyInto(buffer, currentOffset)
         currentOffset += mimeType.length
 
-        // PictureFrame type and null separator
+        // PictureFrameEncoder type and null separator
         buffer[currentOffset++] = 0
         buffer[currentOffset++] = pictureType.toByte()
 
@@ -55,7 +55,7 @@ internal data class PictureFrame internal constructor(
         buffer[currentOffset++] = 0
         if (useUnicode) buffer[currentOffset++] = 0
 
-        // PictureFrame data
+        // PictureFrameEncoder data
         value.copyInto(buffer, currentOffset)
 
         return offset + contentSize
@@ -66,7 +66,7 @@ internal data class PictureFrame internal constructor(
         if (this === other) return true
         if (other == null || this::class != other::class) return false
 
-        other as PictureFrame
+        other as PictureFrameEncoder
 
         if (pictureType != other.pictureType) return false
         if (useUnicode != other.useUnicode) return false

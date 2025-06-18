@@ -1,11 +1,12 @@
 package io.github.kingg22.vibrion.id3
 
-import io.github.kingg22.vibrion.id3.Id3v2FrameType.*
+import io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.*
 import io.github.kingg22.vibrion.id3.internal.*
-import io.github.kingg22.vibrion.id3.internal.frames.Frame
+import io.github.kingg22.vibrion.id3.internal.frames.FrameEncoder
 import io.github.kingg22.vibrion.id3.model.*
 import kotlin.js.JsName
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmSynthetic
 
 /**
  * Builder for ID3 tags.
@@ -15,36 +16,60 @@ import kotlin.jvm.JvmName
  *
  * @see io.github.kingg22.vibrion.id3.Id3AudioWriter.set
  * @see io.github.kingg22.vibrion.id3.Id3AudioWriter.addTag
- * @see Id3v2FrameType
+ * @see Id3v2v3TagFrame
  * @see FrameValue
  * @see <a href="https://github.com/egoroof/browser-id3-writer">Inspired on 'egoroof/browser-id3-writer' on JavaScript / Typescript</a>
  */
 data class Id3AudioWriter(var arrayBuffer: ByteArray) {
     var padding = 4096
-    private val frames = mutableListOf<Frame>()
+    private val frames = mutableListOf<FrameEncoder>()
 
     companion object {
         private const val HEADER_SIZE = 10
     }
 
+    /** Special method to builders outside this data class */
+    @JvmSynthetic
+    internal fun setFrames(frames: List<FrameEncoder>) = apply { this.frames.addAll(frames) }
+
     /**
-     * Set Frame [Id3v2FrameType] to [value]
+     * Set various frames of varios type [Id3v2v3TagFrame] to [values]
      *
-     * @see Id3v2FrameType
+     * @see Id3v2v3TagFrame
+     * @see FrameValue
+     * @throws IllegalArgumentException [types] and [values] must be the same size or
+     * if [values] is not compatible with [types]
+     * or [types] is not supported.
+     */
+    operator fun set(types: List<Id3v2v3TagFrame>, values: List<FrameValue>) {
+        require(types.size == values.size)
+        types.zip(values).forEach { (type, value) ->
+            set(type, value)
+        }
+    }
+
+    /**
+     * Set Frames of type [Id3v2v3TagFrame] to [value]
+     *
+     * @see Id3v2v3TagFrame
      * @see FrameValue
      * @throws IllegalArgumentException if [value] is not compatible with [type] or [type] is not supported.
      */
-    operator fun set(type: Id3v2FrameType, value: FrameValue) {
+    private operator fun set(type: Id3v2v3TagFrame, value: FrameValue) {
         when (type) {
-            in Id3v2FrameType.listFrames, TPE1, TCOM, TCON -> {
+            is ListStringTagFrame -> {
                 require(value is StringListFrame)
                 val joined = value.values.joinToString(if (type == TCON) ";" else "/")
-                frames += setStringFrame(type.name, joined)
+                frames += setStringFrame(type::class.simpleName!!, joined)
             }
 
-            in Id3v2FrameType.stringFrames, TLAN, TIT1, TIT2, TIT3, TALB, TPE2, TPE3, TPE4, TRCK, TPOS, TMED,
-            TPUB, TCOP, TKEY, TEXT, TDAT, TCMP, TSRC,
-            -> {
+            // First evaluate url, after TextTagFrame because UrlTagFrame is a TextTagFrame but encode different
+            is UrlTagFrame -> {
+                require(value is TextFrame)
+                frames += setUrlLinkFrame(type.name, value.value)
+            }
+
+            is TextTagFrame -> {
                 require(value is TextFrame)
                 if (type == TDAT) {
                     frames += setIntegerFrame(type.name, value.value)
@@ -53,52 +78,42 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
                 frames += setStringFrame(type.name, value.value)
             }
 
-            in Id3v2FrameType.numericFrames, TBPM, TLEN, TYER -> {
+            is IntegerTagFrame -> {
                 require(value is IntegerFrame)
                 frames += setIntegerFrame(type.name, value.value)
             }
 
-            in Id3v2FrameType.urlFrames, WCOM, WCOP, WOAF, WOAR, WOAS, WORS, WPAY, WPUB -> {
-                require(value is UrlLink || value is TextFrame)
-
-                if (value is TextFrame) {
-                    frames += setUrlLinkFrame(type.name, value.value)
-                } else if (value is UrlLink) {
-                    frames += setUrlLinkFrame(type.name, value.url)
-                }
-            }
-
-            USLT -> {
+            is UnsynchronisedLyricsTagFrame -> {
                 require(value is UnsynchronisedLyrics)
                 frames += setLyricsFrame(value.language, value.description, value.lyrics)
             }
 
-            APIC -> {
+            is AttachedPictureTagFrame -> {
                 require(value is AttachedPicture)
                 frames += setPictureFrame(value.type, value.data, value.description, value.useUnicodeEncoding)
             }
 
-            TXXX -> {
+            is UserDefinedTextTagFrame -> {
                 require(value is UserDefinedText)
                 frames += setUserStringFrame(value.description, value.value)
             }
 
-            COMM -> {
+            is CommentTagFrame -> {
                 require(value is CommentFrame)
                 frames += setCommentFrame(value.language, value.description, value.text)
             }
 
-            PRIV -> {
+            is PrivateTagFrame -> {
                 require(value is PrivateFrame)
                 frames += setPrivateFrame(value.id, value.data)
             }
 
-            IPLS -> {
+            is PairedTextTagFrame -> {
                 require(value is PairedTextFrame)
                 frames += setPairedTextFrame(type.name, value.pairs)
             }
 
-            SYLT -> {
+            is SynchronizedLyricsTagFrame -> {
                 require(value is SynchronizedLyrics)
                 frames += setSynchronisedLyricsFrame(
                     value.type,
@@ -117,87 +132,57 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * Advanced set frame as string
      *
      * @see set
-     * @see Id3v2FrameType
+     * @see Id3v2v3TagFrame
      * @see FrameValue
      * @throws IllegalArgumentException if [value] is not compatible with [frameName] or [frameName] is not supported.
      */
     @JsName("setFrame")
-    operator fun set(frameName: String, value: FrameValue) = set(Id3v2FrameType.fromCode(frameName), value)
+    @Throws(IllegalArgumentException::class)
+    operator fun set(frameName: String, value: FrameValue) = set(Id3v2v3TagFrame.fromCode(frameName), value)
 
     /**
      * _implies_ ([id] == [TBPM] || [id] == [TLEN] || [id] == [TYER])
-     * @see Id3v2FrameType
-     * @see Id3v2FrameType.numericFrames
-     * @see IntegerFrame
+     * @see Id3v2v3TagFrame
+     * @see Id3v2v3TagFrame.integerFrames
+     * @see IntegerTagFrame
      */
     @JsName("setIntFrame")
-    operator fun set(id: Id3v2FrameType, value: Int) {
-        require(id == TBPM || id == TLEN || id == TYER)
+    operator fun set(id: IntegerTagFrame, value: Int) {
         set(id, IntegerFrame(value))
     }
 
     /**
-     * _implies_ ([id] in [Id3v2FrameType.stringFrames] || [id] in [Id3v2FrameType.urlFrames])
-     * @see Id3v2FrameType
-     * @see Id3v2FrameType.stringFrames
-     * @see Id3v2FrameType.urlFrames
-     * @see TextFrame
+     * _implies_ ([id] in [Id3v2v3TagFrame.stringFrames] || [id] in [Id3v2v3TagFrame.urlFrames])
+     * @see Id3v2v3TagFrame
+     * @see Id3v2v3TagFrame.stringFrames
+     * @see Id3v2v3TagFrame.urlFrames
+     * @see TextTagFrame
      */
     @JsName("setStringFrame")
-    operator fun set(id: Id3v2FrameType, value: String) {
-        require(
-            id == TALB ||
-                id == TCOP ||
-                id == TCMP ||
-                id == TDAT ||
-                id == TEXT ||
-                id == TIT1 ||
-                id == TIT2 ||
-                id == TIT3 ||
-                id == TKEY ||
-                id == TLAN ||
-                id == TMED ||
-                id == TPE2 ||
-                id == TPE3 ||
-                id == TPE4 ||
-                id == TPOS ||
-                id == TPUB ||
-                id == TRCK ||
-                id == TSRC ||
-                id == WCOM ||
-                id == WCOP ||
-                id == WOAF ||
-                id == WOAR ||
-                id == WOAS ||
-                id == WORS ||
-                id == WPAY ||
-                id == WPUB,
-        )
+    operator fun set(id: TextTagFrame, value: String) {
         set(id, TextFrame(value))
     }
 
     /**
      * _implies_ ([id] == [TCOM] || [id] == [TCON] || [id] == [TPE1])
-     * @see Id3v2FrameType
-     * @see Id3v2FrameType.listFrames
+     * @see Id3v2v3TagFrame
+     * @see Id3v2v3TagFrame.listFrames
      * @see StringListFrame
      */
     @JsName("setListStringFrame")
     @JvmName("setListStringFrame")
-    operator fun set(id: Id3v2FrameType, value: List<String>) {
-        require(id == TCOM || id == TCON || id == TPE1)
+    operator fun set(id: ListStringTagFrame, value: List<String>) {
         set(id, StringListFrame(value))
     }
 
     /**
      * _implies_ ([id] == [IPLS])
-     * @see Id3v2FrameType
-     * @see PairedTextFrame
+     * @see Id3v2v3TagFrame
+     * @see PairedTextTagFrame
      */
     @JsName("setPairStringFrame")
     @JvmName("setPairStringFrame")
-    operator fun set(id: Id3v2FrameType, value: List<Pair<String, String>>) {
-        require(id == IPLS)
+    operator fun set(id: PairedTextTagFrame, value: List<Pair<String, String>>) {
         set(id, PairedTextFrame(value))
     }
 
@@ -205,101 +190,89 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
 
     /**
      * _implies_ ([id] == [USLT])
-     * @see Id3v2FrameType
-     * @see UnsynchronisedLyrics
+     * @see Id3v2v3TagFrame
+     * @see UnsynchronisedLyricsTagFrame
      */
     @JsName("setUnsynchronisedLyricsFrame")
-    operator fun set(id: Id3v2FrameType, value: UnsynchronisedLyrics) {
-        require(id == USLT)
+    operator fun set(id: UnsynchronisedLyricsTagFrame, value: UnsynchronisedLyrics) {
         set(id, value as FrameValue)
     }
 
     /**
      * _implies_ ([id] == [APIC])
-     * @see Id3v2FrameType
-     * @see AttachedPicture
+     * @see Id3v2v3TagFrame
+     * @see AttachedPictureTagFrame
      * @see AttachedPictureType
      */
     @JsName("setAttachedPictureFrame")
-    operator fun set(id: Id3v2FrameType, value: AttachedPicture) {
-        require(id == APIC)
+    operator fun set(id: AttachedPictureTagFrame, value: AttachedPicture) {
         set(id, value as FrameValue)
     }
 
     /**
      * _implies_ ([id] == [SYLT])
-     * @see Id3v2FrameType
-     * @see SynchronizedLyrics
+     * @see Id3v2v3TagFrame
+     * @see SynchronizedLyricsTagFrame
      * @see SynchronizedLyricsType
      * @see SynchronizedLyricsTimestampFormat
      */
     @JsName("setSynchronizedLyricsFrame")
-    operator fun set(id: Id3v2FrameType, value: SynchronizedLyrics) {
-        require(id == SYLT)
+    operator fun set(id: SynchronizedLyricsTagFrame, value: SynchronizedLyrics) {
         set(id, value as FrameValue)
     }
 
     /**
      * _implies_ ([id] == [TXXX])
-     * @see Id3v2FrameType
-     * @see UserDefinedText
+     * @see Id3v2v3TagFrame
+     * @see UserDefinedTextTagFrame
      */
     @JsName("setUserDefinedTextFrame")
-    operator fun set(id: Id3v2FrameType, value: UserDefinedText) {
-        require(id == TXXX)
+    operator fun set(id: UserDefinedTextTagFrame, value: UserDefinedText) {
         set(id, value as FrameValue)
     }
 
     /**
      * _implies_ ([id] == [COMM])
-     * @see Id3v2FrameType
-     * @see CommentFrame
+     * @see Id3v2v3TagFrame
+     * @see CommentTagFrame
      */
     @JsName("setCommentFrame")
-    operator fun set(id: Id3v2FrameType, value: CommentFrame) {
-        require(id == COMM)
+    operator fun set(id: CommentTagFrame, value: CommentFrame) {
         set(id, value as FrameValue)
     }
 
     /**
      * _implies_ ([id] == [PRIV])
-     * @see Id3v2FrameType
-     * @see PrivateFrame
+     * @see Id3v2v3TagFrame
+     * @see PrivateTagFrame
      */
     @JsName("setPrivateFrame")
-    operator fun set(id: Id3v2FrameType, value: PrivateFrame) {
-        require(id == PRIV)
+    operator fun set(id: PrivateTagFrame, value: PrivateFrame) {
         set(id, value as FrameValue)
     }
 
     // -- overloads --
 
     /**
-     * _implies_ ([id] == [TXXX] || [id] == [COMM])
-     * @see Id3v2FrameType
+     * _implies_ ([id] == [TXXX])
+     * @see Id3v2v3TagFrame
+     * @see UserDefinedTextTagFrame
      * @see UserDefinedText
-     * @see CommentFrame
      */
-    @JsName("setTextPairFrame")
-    @JvmName("setTextPairFrame")
-    operator fun set(id: Id3v2FrameType, value: Pair<String, String>) {
-        require(id == TXXX || id == COMM)
-        if (id == TXXX) {
-            set(id, UserDefinedText(value.first, value.second))
-        } else {
-            set(id, CommentFrame(value.first, value.second))
-        }
+    @JsName("setUserDefinedTextFramePair")
+    @JvmName("setUserDefinedTextFramePair")
+    operator fun set(id: UserDefinedTextTagFrame, value: Pair<String, String>) {
+        set(id, UserDefinedText(value.first, value.second))
     }
 
     /**
      * _implies_ ([id] == [PRIV])
-     * @see Id3v2FrameType
-     * @see PrivateFrame
+     * @see Id3v2v3TagFrame
+     * @see PrivateTagFrame
      */
     @JsName("setPairPrivateFrame")
     @JvmName("setPairPrivateFrame")
-    operator fun set(id: Id3v2FrameType, value: Pair<String, ByteArray>) {
-        require(id == PRIV)
+    operator fun set(id: PrivateTagFrame, value: Pair<String, ByteArray>) {
         set(id, PrivateFrame(value.first, value.second))
     }
 
@@ -309,6 +282,7 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      *
      * @return [arrayBuffer] with the tag added.
      * @see Id3AudioWriter.set
+     * @see Id3AudioWriter.removeTag
      */
     fun addTag(): ByteArray {
         this.removeTag()
@@ -358,7 +332,13 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
         return arrayBuffer
     }
 
-    private fun removeTag() {
+    /**
+     * Remove tag from [arrayBuffer].
+     *
+     * @see Id3AudioWriter.set
+     * @see Id3AudioWriter.addTag
+     */
+    fun removeTag() {
         val headerLength = 10
 
         if (arrayBuffer.size < headerLength) return
@@ -399,5 +379,4 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
 
 /** DSL */
 @Id3Dsl
-fun id3AudioWriter(array: ByteArray = ByteArray(0), block: Id3AudioWriter.() -> Unit) =
-    Id3AudioWriter(array).apply(block)
+fun id3AudioWriter(array: ByteArray, block: Id3AudioWriter.() -> Unit) = Id3AudioWriter(array).apply(block)

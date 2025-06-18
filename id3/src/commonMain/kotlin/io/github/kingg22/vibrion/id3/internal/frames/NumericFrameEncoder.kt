@@ -1,5 +1,5 @@
 @file:JvmSynthetic
-@file:JvmName("-NumericFrame")
+@file:JvmName("-NumericFrameEncoder")
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
@@ -8,17 +8,17 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class NumericFrame internal constructor(
+internal data class NumericFrameEncoder internal constructor(
     @JvmSynthetic override val name: String,
     @JvmSynthetic val value: String,
     @JvmSynthetic override val size: Int,
-) : Frame(name, size) {
+) : FrameEncoder(name, size) {
     constructor(name: String, value: Int, size: Int) : this(name, value.toString(), size)
 
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         // Escribir header del frame (10 bytes)
-        // 1. Frame ID (4 bytes)
+        // 1. FrameEncoder ID (4 bytes)
         name.forEachIndexed { i, char ->
             buffer[offset + i] = char.code.toByte()
         }

@@ -21,7 +21,7 @@ class PrivFrameTest {
         writer["PRIV"] = PrivateFrame(id = ownerId, data = data)
         val actual = writer.addTag()
 
-        // Content of the PRIV frame: Owner ID (Windows-1252) + Null terminator + PrivateFrame Data
+        // Content of the PRIV frame: Owner ID (Windows-1252) + Null terminator + PrivateTagFrame Data
         val ownerIdBytes = encodeWindows1252(ownerId)
         val frameContent = ownerIdBytes + 0 + data // 8 bytes + 1 byte + 9 bytes = 18 bytes
         val frameContentSize = frameContent.size // 18 bytes
