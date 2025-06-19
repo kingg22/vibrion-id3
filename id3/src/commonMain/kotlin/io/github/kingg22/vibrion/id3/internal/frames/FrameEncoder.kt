@@ -26,12 +26,15 @@ internal sealed class FrameEncoder(@JvmSynthetic open val name: String, @JvmSynt
         buffer[offset + 8] = 0
         buffer[offset + 9] = 0
 
-        return offset + 10
+        return offset + HEADER
     }
 
     companion object {
         @JvmStatic
         @JvmSynthetic
         protected val BOM = byteArrayOf(0xFF.toByte(), 0xFE.toByte())
+
+        @JvmSynthetic
+        protected const val HEADER = 10
     }
 }

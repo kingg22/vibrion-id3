@@ -44,6 +44,6 @@ internal data class UserTextFrameEncoder internal constructor(
         // Value
         valueBytes.copyInto(buffer, currentOffset)
 
-        return offset + contentSize
+        return HEADER + contentSize
     }
 }

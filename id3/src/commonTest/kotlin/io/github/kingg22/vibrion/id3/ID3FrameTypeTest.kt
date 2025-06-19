@@ -8,4 +8,9 @@ class ID3FrameTypeTest {
     fun nameEqualsString() {
         assertEquals("TDAT", Id3v2v3TagFrame.TDAT.name)
     }
+
+    @Test
+    fun tagsFramesSupported() {
+        assertEquals(39, Id3v2v3TagFrame.allFrames.size)
+    }
 }

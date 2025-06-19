@@ -39,6 +39,6 @@ internal data class NumericFrameEncoder internal constructor(
         val encoded = encodeWindows1252(value)
         encoded.copyInto(buffer, offset + 11)
 
-        return 10 + contentSize // Tamaño total del frame
+        return HEADER + contentSize // Tamaño total del frame
     }
 }

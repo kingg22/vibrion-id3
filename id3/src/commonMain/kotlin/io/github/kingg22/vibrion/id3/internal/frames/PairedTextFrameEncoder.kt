@@ -48,6 +48,6 @@ internal data class PairedTextFrameEncoder internal constructor(
             buffer[currentOffset++] = 0
         }
 
-        return offset + contentSize
+        return HEADER + contentSize
     }
 }

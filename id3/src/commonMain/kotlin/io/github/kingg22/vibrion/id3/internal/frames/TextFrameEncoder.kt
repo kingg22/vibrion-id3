@@ -26,6 +26,6 @@ internal data class TextFrameEncoder internal constructor(
         val encoded = encodeUtf16LE(value)
         encoded.copyInto(buffer, currentOffset)
 
-        return offset + 1 + BOM.size + encoded.size
+        return HEADER + 1 + BOM.size + encoded.size
     }
 }

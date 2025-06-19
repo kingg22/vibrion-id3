@@ -29,7 +29,7 @@ internal data class PrivateFrameEncoder internal constructor(
         // Value
         value.copyInto(buffer, currentOffset)
 
-        return offset + contentSize
+        return HEADER + contentSize
     }
 
     @JvmSynthetic

@@ -21,6 +21,6 @@ internal data class UrlFrameEncoder internal constructor(
         val encoded = encodeWindows1252(value)
         encoded.copyInto(buffer, currentOffset)
 
-        return offset + encoded.size
+        return HEADER + encoded.size
     }
 }

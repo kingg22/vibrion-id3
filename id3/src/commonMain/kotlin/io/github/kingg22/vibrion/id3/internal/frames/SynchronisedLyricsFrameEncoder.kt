@@ -63,6 +63,6 @@ internal data class SynchronisedLyricsFrameEncoder internal constructor(
             currentOffset += timeBytes.size
         }
 
-        return offset + contentSize
+        return HEADER + contentSize
     }
 }

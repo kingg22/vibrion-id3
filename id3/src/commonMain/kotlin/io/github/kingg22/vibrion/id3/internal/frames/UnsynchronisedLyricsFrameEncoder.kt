@@ -42,6 +42,6 @@ internal data class UnsynchronisedLyricsFrameEncoder internal constructor(
         // Value
         valueBytes.copyInto(buffer, currentOffset)
 
-        return offset + contentSize
+        return HEADER + contentSize
     }
 }

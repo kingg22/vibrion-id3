@@ -58,7 +58,7 @@ internal data class PictureFrameEncoder internal constructor(
         // PictureFrameEncoder data
         value.copyInto(buffer, currentOffset)
 
-        return offset + contentSize
+        return HEADER + contentSize
     }
 
     @JvmSynthetic
