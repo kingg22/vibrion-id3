@@ -13,16 +13,16 @@ private const val ENCODING_SIZE = 1
 private const val BOM_SIZE = 2
 
 @JvmSynthetic
-fun getNumericFrameSize(frameSize: Int) = FRAME_HEADER_SIZE + ENCODING_SIZE + frameSize
+internal fun getNumericFrameSize(frameSize: Int) = FRAME_HEADER_SIZE + ENCODING_SIZE + frameSize
 
 @JvmSynthetic
-fun getStringFrameSize(frameSize: Int): Int {
+internal fun getStringFrameSize(frameSize: Int): Int {
     val frameUtf16Size = frameSize * 2
     return FRAME_HEADER_SIZE + ENCODING_SIZE + BOM_SIZE + frameUtf16Size
 }
 
 @JvmSynthetic
-fun getLyricsFrameSize(descriptionSize: Int, lyricsSize: Int): Int {
+internal fun getLyricsFrameSize(descriptionSize: Int, lyricsSize: Int): Int {
     val languageSize = 3
     val descriptionUtf16Size = descriptionSize * 2
     val separatorSize = 2
@@ -32,7 +32,12 @@ fun getLyricsFrameSize(descriptionSize: Int, lyricsSize: Int): Int {
 }
 
 @JvmSynthetic
-fun getPictureFrameSize(pictureSize: Int, mimeTypeSize: Int, descriptionSize: Int, useUnicodeEncoding: Boolean): Int {
+internal fun getPictureFrameSize(
+    pictureSize: Int,
+    mimeTypeSize: Int,
+    descriptionSize: Int,
+    useUnicodeEncoding: Boolean,
+): Int {
     val separatorSize = 1
     val pictureTypeSize = 1
 
@@ -47,7 +52,7 @@ fun getPictureFrameSize(pictureSize: Int, mimeTypeSize: Int, descriptionSize: In
 }
 
 @JvmSynthetic
-fun getCommentFrameSize(descriptionSize: Int, textSize: Int): Int {
+internal fun getCommentFrameSize(descriptionSize: Int, textSize: Int): Int {
     val languageSize = 3
     val descriptionUtf16Size = descriptionSize * 2
     val separatorSize = 2
@@ -57,13 +62,13 @@ fun getCommentFrameSize(descriptionSize: Int, textSize: Int): Int {
 }
 
 @JvmSynthetic
-fun getPrivateFrameSize(idSize: Int, dataSize: Int): Int {
+internal fun getPrivateFrameSize(idSize: Int, dataSize: Int): Int {
     val separatorSize = 1
     return FRAME_HEADER_SIZE + idSize + separatorSize + dataSize
 }
 
 @JvmSynthetic
-fun getUserStringFrameSize(descriptionSize: Int, valueSize: Int): Int {
+internal fun getUserStringFrameSize(descriptionSize: Int, valueSize: Int): Int {
     val descriptionUtf16Size = descriptionSize * 2
     val separatorSize = 2
     val valueUtf16Size = valueSize * 2
@@ -72,10 +77,10 @@ fun getUserStringFrameSize(descriptionSize: Int, valueSize: Int): Int {
 }
 
 @JvmSynthetic
-fun getUrlLinkFrameSize(urlSize: Int) = FRAME_HEADER_SIZE + urlSize
+internal fun getUrlLinkFrameSize(urlSize: Int) = FRAME_HEADER_SIZE + urlSize
 
 @JvmSynthetic
-fun getPairedTextFrameSize(list: List<Pair<String, String>>): Int {
+internal fun getPairedTextFrameSize(list: List<Pair<String, String>>): Int {
     val separatorSize = 2
 
     val encodedListSize = list.sumOf { (key, value) ->
@@ -87,7 +92,7 @@ fun getPairedTextFrameSize(list: List<Pair<String, String>>): Int {
 }
 
 @JvmSynthetic
-fun getSynchronisedLyricsFrameSize(lyrics: List<Pair<String, Int>>, descriptionSize: Int): Int {
+internal fun getSynchronisedLyricsFrameSize(lyrics: List<Pair<String, Int>>, descriptionSize: Int): Int {
     val languageSize = 3
     val timestampFormatSize = 1
     val contentTypeSize = 1

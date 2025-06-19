@@ -6,7 +6,6 @@ import io.github.kingg22.vibrion.id3.internal.frames.FrameEncoder
 import io.github.kingg22.vibrion.id3.model.*
 import kotlin.js.JsName
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Builder for ID3 tags.
@@ -27,10 +26,6 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
     companion object {
         private const val HEADER_SIZE = 10
     }
-
-    /** Special method to builders outside this data class */
-    @JvmSynthetic
-    internal fun setFrames(frames: List<FrameEncoder>) = apply { this.frames.addAll(frames) }
 
     /**
      * Set various frames of varios type [Id3v2v3TagFrame] to [values]
@@ -59,8 +54,8 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
         when (type) {
             is ListStringTagFrame -> {
                 require(value is StringListFrame)
-                val joined = value.values.joinToString(if (type == TCON) ";" else "/")
-                frames += setStringFrame(type::class.simpleName!!, joined)
+                val joined = value.values.joinToString(if (type is TCON) ";" else "/")
+                frames += setStringFrame(type.name, joined)
             }
 
             // First evaluate url, after TextTagFrame because UrlTagFrame is a TextTagFrame but encode different
@@ -71,7 +66,7 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
 
             is TextTagFrame -> {
                 require(value is TextFrame)
-                if (type == TDAT) {
+                if (type is TDAT) {
                     frames += setIntegerFrame(type.name, value.value)
                     return
                 }
@@ -339,9 +334,7 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see Id3AudioWriter.addTag
      */
     fun removeTag() {
-        val headerLength = 10
-
-        if (arrayBuffer.size < headerLength) return
+        if (arrayBuffer.size < HEADER_SIZE) return
 
         val version = arrayBuffer[3].toInt() and 0xFF
         if (!isId3v2(arrayBuffer) || version < 2 || version > 4) return
@@ -353,7 +346,7 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
                 arrayBuffer[8],
                 arrayBuffer[9],
             ).map { it.toInt() and 0xFF },
-        ) + headerLength
+        ) + HEADER_SIZE
 
         arrayBuffer = arrayBuffer.sliceArray(tagSize until arrayBuffer.size)
     }
