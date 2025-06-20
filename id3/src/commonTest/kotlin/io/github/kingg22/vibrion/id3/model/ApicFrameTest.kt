@@ -2,7 +2,6 @@ package io.github.kingg22.vibrion.id3.model
 
 import io.github.kingg22.vibrion.id3.Id3AudioWriter
 import io.github.kingg22.vibrion.id3.Id3v2v3TagFrame
-import io.github.kingg22.vibrion.id3.getEmptyBuffer
 import io.github.kingg22.vibrion.id3.id3Header
 import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
@@ -51,7 +50,7 @@ class ApicFrameTest {
         val signature = byteArrayOf(0xFF.toByte(), 0xD8.toByte(), 0xFF.toByte())
         val fullImage = signature + imageContent
 
-        val writer = Id3AudioWriter(getEmptyBuffer())
+        val writer = Id3AudioWriter()
         writer.padding = 0
         writer[Id3v2v3TagFrame.APIC] = AttachedPicture(
             type = AttachedPictureType.CoverFront,
@@ -59,8 +58,7 @@ class ApicFrameTest {
             description = "yo",
             useUnicodeEncoding = true,
         )
-        writer.addTag()
-        val actual = writer.arrayBuffer
+        val actual = writer.addTag()
 
         val expected = buildList {
             addAll(id3Header.toList())
@@ -87,7 +85,7 @@ class ApicFrameTest {
     @Test
     fun forceWesternEncodingWhenDescriptionEmpty() {
         val signature = buildImage(0, 0, 1, 0)
-        val writer = Id3AudioWriter(getEmptyBuffer())
+        val writer = Id3AudioWriter()
         writer.padding = 0
         writer[Id3v2v3TagFrame.APIC] = AttachedPicture(
             type = 3,
@@ -95,8 +93,7 @@ class ApicFrameTest {
             description = "",
             useUnicodeEncoding = true,
         )
-        writer.addTag()
-        val actual = writer.arrayBuffer
+        val actual = writer.addTag()
         val expected = expectedApicFrame("image/x-icon", signature.sliceArray(0..3), "", unicode = false)
         assertContentEquals(expected, actual)
     }
@@ -105,20 +102,6 @@ class ApicFrameTest {
     fun throwsWhenPictureTypeIsInvalid() {
         assertFailsWith<IllegalArgumentException> {
             AttachedPicture(type = 43, data = ByteArray(0))
-        }
-    }
-
-    @Test
-    fun throwsWhenUnknownMime() {
-        val empty = ByteArray(0)
-        val writer = Id3AudioWriter(getEmptyBuffer())
-        assertFailsWith<IllegalArgumentException> {
-            writer[Id3v2v3TagFrame.APIC] = AttachedPicture(
-                type = 0,
-                data = empty,
-                description = "",
-            )
-            writer.addTag()
         }
     }
 
@@ -153,7 +136,7 @@ class ApicFrameTest {
     }
 
     private fun testApic(mime: String, signature: ByteArray, unicode: Boolean = false) {
-        val writer = Id3AudioWriter(getEmptyBuffer())
+        val writer = Id3AudioWriter()
         writer.padding = 0
         writer[Id3v2v3TagFrame.APIC] = AttachedPicture(
             type = 3,
@@ -161,8 +144,7 @@ class ApicFrameTest {
             description = "yo",
             useUnicodeEncoding = unicode,
         )
-        writer.addTag()
-        val actual = writer.arrayBuffer
+        val actual = writer.addTag()
         val expected = expectedApicFrame(mime, signature, "yo", unicode)
         assertContentEquals(expected, actual)
     }

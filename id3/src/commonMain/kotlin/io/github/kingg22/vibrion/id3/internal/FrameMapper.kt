@@ -38,7 +38,7 @@ internal fun setPictureFrame(
     description: String,
     useUnicodeEncoding: Boolean,
 ): PictureFrameEncoder {
-    val mimeType = requireNotNull(getMimeType(data)) { "Unknown picture MIME type" }
+    val mimeType = getMimeType(data)
     val actualUseUnicode = description.isNotEmpty() && useUnicodeEncoding
 
     return PictureFrameEncoder(

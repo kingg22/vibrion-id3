@@ -3,14 +3,25 @@ package io.github.kingg22.vibrion.id3;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Map;
 
 import io.github.kingg22.vibrion.id3.model.AttachedPictureType;
 
 class Id3BuilderJavaTest {
     @Test
+    void testId3Writer() {
+        final var writer = new Id3AudioWriter();
+        writer.setPadding(0);
+        writer.set(Id3v2v3TagFrame.TIT2.INSTANCE, "Título");
+        writer.set(Id3v2v3TagFrame.TPE1.INSTANCE, List.of("Eminem", "50 Cent"));
+        writer.set(Id3v2v3TagFrame.IPLS.INSTANCE, Map.of("Guitar", "Eminem", "Vocals", "50 Cent"));
+        Assertions.assertNotEquals(0, writer.build().length);
+    }
+
+    @Test
     void testBuilderStyle() {
-        final var writer = Id3WriterBuilder.id3writer(new byte[]{})
+        final var writer = Id3WriterBuilder.id3Writer()
             .title("Título")
             .artist("Artista")
             .picture(new AttachedPictureBuilder().type(AttachedPictureType.CoverFront).data(new byte[]{
@@ -47,7 +58,6 @@ class Id3BuilderJavaTest {
             .syncLyrics(new SynchronizedLyricsBuilder().line("a line", 1000).line("sdadk", 12343))
             .build();
         writer.setPadding(0);
-        writer.addTag();
-        Assertions.assertNotEquals(0, writer.getArrayBuffer().length);
+        Assertions.assertNotEquals(0, writer.toByteArray().length);
     }
 }

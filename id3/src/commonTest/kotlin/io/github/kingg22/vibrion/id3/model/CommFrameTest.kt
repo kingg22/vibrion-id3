@@ -2,7 +2,6 @@ package io.github.kingg22.vibrion.id3.model
 
 import io.github.kingg22.vibrion.id3.Id3AudioWriter
 import io.github.kingg22.vibrion.id3.Id3v2v3TagFrame
-import io.github.kingg22.vibrion.id3.getEmptyBuffer
 import io.github.kingg22.vibrion.id3.id3Header
 import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
@@ -15,14 +14,13 @@ class CommFrameTest {
 
     @Test
     fun testDefaultCommFrame() {
-        val writer = Id3AudioWriter(getEmptyBuffer())
+        val writer = Id3AudioWriter()
         writer.padding = 0
         writer[Id3v2v3TagFrame.COMM] = CommentFrame(
             description = "advert",
             text = "free hugs",
         )
-        writer.addTag()
-        val actual = writer.arrayBuffer
+        val actual = writer.addTag()
 
         val expected = buildList {
             addAll(id3Header.toList())
@@ -46,15 +44,15 @@ class CommFrameTest {
 
     @Test
     fun testCustomLangCommFrame() {
-        val writer = Id3AudioWriter(getEmptyBuffer())
+        val writer = Id3AudioWriter()
         writer.padding = 0
         writer["COMM"] = CommentFrame(
             description = "この世界",
             text = "俺の名前",
             language = "jpn",
         )
-        writer.addTag()
-        val actual = writer.arrayBuffer
+
+        val actual = writer.addTag()
 
         val expected = buildList {
             addAll(id3Header.toList())

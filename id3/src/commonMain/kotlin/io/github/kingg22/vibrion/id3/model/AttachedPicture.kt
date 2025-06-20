@@ -1,8 +1,16 @@
 package io.github.kingg22.vibrion.id3.model
 
+import io.github.kingg22.vibrion.id3.KoverIgnore
 import kotlin.jvm.JvmOverloads
 
-/** @see io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.APIC */
+/**
+ * Attached picture.
+ *
+ * _Requirements:_
+ * - [type] **must be between 0 and 20**. [AttachedPictureType]
+ *
+ * @see io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.APIC
+ */
 data class AttachedPicture @JvmOverloads constructor(
     val type: Int,
     val data: ByteArray,
@@ -26,6 +34,7 @@ data class AttachedPicture @JvmOverloads constructor(
         require(type in 0..20) { "Incorrect picture type" }
     }
 
+    @KoverIgnore
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || this::class != other::class) return false
@@ -40,6 +49,7 @@ data class AttachedPicture @JvmOverloads constructor(
         return true
     }
 
+    @KoverIgnore
     override fun hashCode(): Int {
         var result = type
         result = 31 * result + useUnicodeEncoding.hashCode()

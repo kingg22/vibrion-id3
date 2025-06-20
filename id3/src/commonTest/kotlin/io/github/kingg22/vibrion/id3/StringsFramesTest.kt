@@ -81,11 +81,10 @@ class StringsFramesTest {
         assertEquals(preComputedExpectedList.size, urlLinkFrames.size, "Missing pre computed expected byteArrays")
 
         urlLinkFrames.forEachIndexed { index, frame ->
-            val writer = Id3AudioWriter(getEmptyBuffer())
+            val writer = Id3AudioWriter()
             writer.padding = 0
             writer[frame] = TextFrame("https://google.com")
-            writer.addTag()
-            val actual = writer.arrayBuffer
+            val actual = writer.addTag()
             val expected = byteArrayOf(
                 *id3Header,
                 *encodeSynchsafeInt(28),
@@ -121,7 +120,7 @@ class StringsFramesTest {
             ),
         )
         oneByteEncodedFrames.forEachIndexed { index, frame ->
-            val writer = Id3AudioWriter(getEmptyBuffer())
+            val writer = Id3AudioWriter()
             writer.padding = 0
             writer[frame] = TextFrame("Lyricist/Text writer")
             val actual = writer.addTag()
@@ -290,11 +289,10 @@ class StringsFramesTest {
         )
 
         twoByteEncodedFrames.forEachIndexed { index, frame ->
-            val writer = Id3AudioWriter(getEmptyBuffer())
+            val writer = Id3AudioWriter()
             writer.padding = 0
             writer[frame] = TextFrame("Lyricist/Text writer")
-            writer.addTag()
-            val actual = writer.arrayBuffer
+            val actual = writer.addTag()
             val expected = byteArrayOf(
                 *id3Header,
                 *encodeSynchsafeInt(53),

@@ -1,7 +1,10 @@
 package io.github.kingg22.vibrion.id3.model
 
+import io.github.kingg22.vibrion.id3.KoverIgnore
+
 /** @see io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.PRIV */
 data class PrivateFrame(val id: String, val data: ByteArray) : FrameValue() {
+    @KoverIgnore
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || this::class != other::class) return false
@@ -14,6 +17,7 @@ data class PrivateFrame(val id: String, val data: ByteArray) : FrameValue() {
         return true
     }
 
+    @KoverIgnore
     override fun hashCode(): Int {
         var result = id.hashCode()
         result = 31 * result + data.contentHashCode()

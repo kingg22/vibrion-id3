@@ -51,8 +51,8 @@ internal fun isId3v2(buf: ByteArray) = buf.size >= 3 &&
     buf[2] == 0x33.toByte()
 
 @JvmSynthetic
-internal fun getMimeType(bytes: ByteArray): String? {
-    if (bytes.isEmpty()) return null
+internal fun getMimeType(bytes: ByteArray): String {
+    if (bytes.isEmpty()) return "image/"
 
     fun b(i: Int): Int = bytes.getOrNull(i)?.toInt()?.and(0xFF) ?: -1
 
@@ -66,6 +66,6 @@ internal fun getMimeType(bytes: ByteArray): String? {
 
         b(0) == 0x42 && b(1) == 0x4D -> "image/bmp"
         b(0) == 0x00 && b(1) == 0x00 && b(2) == 0x01 && b(3) == 0x00 -> "image/x-icon"
-        else -> null
+        else -> "image/"
     }
 }

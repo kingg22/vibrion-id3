@@ -2,7 +2,16 @@ package io.github.kingg22.vibrion.id3.model
 
 import kotlin.jvm.JvmOverloads
 
-/** @see io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.SYLT */
+/**
+ * Synchronised lyrics.
+ *
+ * _Requirements:_
+ * - Type **in range of 0-6**. [SynchronizedLyricsType]
+ * - TimestampsFormat **in range of 1-2**. [SynchronizedLyricsTimestampFormat]
+ * - Language **must be in ISO 639-2 format**.
+ *
+ * @see io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.SYLT
+ */
 data class SynchronizedLyrics @JvmOverloads constructor(
     val type: Int,
     val text: List<Pair<String, Int>>,

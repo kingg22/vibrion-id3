@@ -1,7 +1,6 @@
 package io.github.kingg22.vibrion.id3.model
 
 import io.github.kingg22.vibrion.id3.Id3AudioWriter
-import io.github.kingg22.vibrion.id3.getEmptyBuffer
 import io.github.kingg22.vibrion.id3.id3Header
 import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
 import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
@@ -16,7 +15,7 @@ class PrivFrameTest {
         val ownerId = "site.com"
 
         // 2. Instantiate and configure the ID3Writer
-        val writer = Id3AudioWriter(getEmptyBuffer())
+        val writer = Id3AudioWriter()
         writer.padding = 0
         writer["PRIV"] = PrivateFrame(id = ownerId, data = data)
         val actual = writer.addTag()

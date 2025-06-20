@@ -40,7 +40,7 @@ class IntegersFramesTest {
         assertEquals(preComputedExpectedList.size, integerFrames.size, "Missing pre-computed expected byteArrays")
 
         integerFrames.forEachIndexed { index, frameName ->
-            val writer = Id3AudioWriter(getEmptyBuffer())
+            val writer = Id3AudioWriter()
             writer.padding = 0
             writer[frameName] = IntegerFrame(2023)
             val actual = writer.addTag()

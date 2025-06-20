@@ -1,7 +1,6 @@
 package io.github.kingg22.vibrion.id3.model
 
 import io.github.kingg22.vibrion.id3.Id3AudioWriter
-import io.github.kingg22.vibrion.id3.getEmptyBuffer
 import io.github.kingg22.vibrion.id3.id3Header
 import io.github.kingg22.vibrion.id3.internal.encodeSynchsafeInt
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
@@ -14,7 +13,7 @@ class UsltFrameTest {
 
     @Test
     fun testUSLT_DefaultLanguage() {
-        val writer = Id3AudioWriter(getEmptyBuffer())
+        val writer = Id3AudioWriter()
         writer.padding = 0
         writer["USLT"] = UnsynchronisedLyrics(
             description = "Ярл", // Ярл
@@ -49,7 +48,7 @@ class UsltFrameTest {
 
     @Test
     fun testUSLT_ChangedLanguage() {
-        val writer = Id3AudioWriter(getEmptyBuffer())
+        val writer = Id3AudioWriter()
         writer.padding = 0
         writer["USLT"] = UnsynchronisedLyrics(
             language = "rus",

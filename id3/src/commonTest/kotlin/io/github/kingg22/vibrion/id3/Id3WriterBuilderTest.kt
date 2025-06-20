@@ -1,6 +1,6 @@
 package io.github.kingg22.vibrion.id3
 
-import io.github.kingg22.vibrion.id3.Id3WriterBuilder.Companion.id3writerBuilder
+import io.github.kingg22.vibrion.id3.Id3WriterBuilder.Companion.id3Writer
 import io.github.kingg22.vibrion.id3.model.AttachedPicture
 import io.github.kingg22.vibrion.id3.model.AttachedPictureType
 import io.github.kingg22.vibrion.id3.model.CommentFrame
@@ -15,7 +15,7 @@ import kotlin.test.assertNotEquals
 class Id3WriterBuilderTest {
     @Test
     fun usingDsl() {
-        val writer = id3writerBuilder(getEmptyBuffer()) {
+        val writer = id3Writer {
             title = "Hello"
             album = "Album"
             year = 2022
@@ -76,7 +76,6 @@ class Id3WriterBuilderTest {
             userText("Description", "Value")
         }
         writer.padding = 0
-        writer.addTag()
-        assertNotEquals(0, writer.arrayBuffer.size)
+        assertNotEquals(0, writer.addTag().size)
     }
 }

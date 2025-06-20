@@ -4,10 +4,53 @@ import io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.*
 import io.github.kingg22.vibrion.id3.model.*
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
-import kotlin.jvm.JvmSynthetic
 
-@ConsistentCopyVisibility
-data class Id3WriterBuilder private constructor(private val array: ByteArray) {
+/**
+ * Builder for [Id3AudioWriter], aka _a verbose builder for tag frame_.
+ *
+ * All properties and function correspond to a [Id3v2v3TagFrame] supported.
+ *
+ * _Note_: Current is impossible to delete a value from the builder.
+ * If you need to do that, create a [Id3WriterBuilder.copy] before and modify it, or only don't set the value.
+ *
+ * **For advanced user** with knowledge in tags frame of the Id3 tag,
+ * you can use [Id3AudioWriter.id3AudioWriter] directly, it is type safe with all overloads of [Id3AudioWriter.set].
+ *
+ * Example:
+ * ```kotlin
+ * val track = ...
+ * val tag: ByteArray = Id3WriterBuilder.id3Writer {
+ *     title = track.title
+ *     artist(track.artist.name)
+ *     album = track.album?.title
+ *     bpm = track.bpm?.toInt()
+ *     length = track.duration
+ *     year = track.releaseDate?.year
+ * }.toByteArray()
+ * ```
+ * Java builder style:
+ * ```java
+ * class Id3BuilderJavaTest {
+ *     void testBuilderStyle() {
+ *         final byte[] tag = Id3WriterBuilder.id3Writer()
+ *             .title("Título")
+ *             .artist("Artista")
+ *             .picture(new AttachedPictureBuilder().type(AttachedPictureType.CoverFront).data(new byte[]{
+ *                 (byte) 0xFF, (byte) 0xD8, (byte) 0xFF
+ *             }))
+ *             .toByteArray();
+ *      }
+ * }
+ * ```
+ *
+ * @see Id3AudioWriter
+ * @see Id3v2v3TagFrame
+ * @see Id3WriterBuilder.build
+ * @see Id3WriterBuilder.toByteArray
+ * @see Id3WriterBuilder.id3Writer
+ */
+@Id3Dsl
+class Id3WriterBuilder {
     private val values = mutableListOf<Pair<Id3v2v3TagFrame, FrameValue>>()
 
     // --- Strings ---
@@ -222,13 +265,21 @@ data class Id3WriterBuilder private constructor(private val array: ByteArray) {
     fun year(year: Int) = apply { values += TYER to IntegerFrame(year) }
 
     // -- List of strings --
-    fun artist(vararg names: String) = apply { values += TPE1 to StringListFrame(names.toList()) }
-    fun genre(vararg genres: String) = apply { values += TCON to StringListFrame(*genres) }
-    fun composer(vararg composers: String) = apply { values += TCOM to StringListFrame(*composers) }
+    fun artist(name: String, vararg names: String) = apply {
+        values += TPE1 to StringListFrame(listOf(name, *names))
+    }
+
+    fun genre(genre: String, vararg genres: String) = apply { values += TCON to StringListFrame(genre, *genres) }
+    fun composer(composer: String, vararg composers: String) = apply {
+        values +=
+            TCOM to StringListFrame(composer, *composers)
+    }
 
     // --- Pairs ---
     fun involvedPeople(people: Map<String, String>) = apply { values += IPLS to PairedTextFrame(people) }
-    fun involvedPeople(vararg people: Pair<String, String>) = apply { values += IPLS to PairedTextFrame(*people) }
+    fun involvedPeople(people: Pair<String, String>, vararg peoples: Pair<String, String>) = apply {
+        values += IPLS to PairedTextFrame(people, *peoples)
+    }
 
     // --- Lyrics ---
 
@@ -289,21 +340,44 @@ data class Id3WriterBuilder private constructor(private val array: ByteArray) {
      * @return [Id3AudioWriter] instance
      * @see Id3AudioWriter
      */
-    fun build() = Id3AudioWriter(array).apply {
-        val types = values.map { it.first }
-        this[types] = values.map { it.second }
+    fun build() = Id3AudioWriter().apply {
+        val types = this@Id3WriterBuilder.values.map { it.first }
+        this[types] = this@Id3WriterBuilder.values.map { it.second }
     }
 
-    companion object {
-        @JvmStatic
-        fun id3writer(array: ByteArray) = Id3WriterBuilder(array)
+    /**
+     * Shortcut for [build] and [Id3AudioWriter.toByteArray]
+     * @param padding Padding to add to the end of the [ByteArray].
+     */
+    @JvmOverloads
+    fun toByteArray(padding: Int = 4096) = build().apply {
+        this.padding = padding
+    }.toByteArray()
 
-        @Id3Dsl
-        fun id3writerBuilder(array: ByteArray, block: Id3WriterBuilder.() -> Unit) =
-            Id3WriterBuilder(array).apply(block).build()
+    companion object {
+        /** Retrieve the [Id3WriterBuilder] instance, can be used for builder style u others. */
+        @JvmStatic
+        fun id3Writer() = Id3WriterBuilder()
+
+        /** Create a new [Id3AudioWriter] using a DSL of [Id3WriterBuilder]. */
+        @JvmStatic
+        fun id3Writer(block: Id3WriterBuilder.() -> Unit) = Id3WriterBuilder().apply(block).build()
+    }
+
+    @KoverIgnore
+    override fun toString(): String = "Id3WriterBuilder()"
+
+    /**
+     * Generate a copy of this builder.
+     *
+     * _The new instance doesn't have values on properties, only copy the value frames._
+     */
+    fun copy() = Id3WriterBuilder().apply {
+        this.values.addAll(this@Id3WriterBuilder.values)
     }
 
     @Suppress("kotlin:S3776")
+    @KoverIgnore
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || this::class != other::class) return false
@@ -313,7 +387,6 @@ data class Id3WriterBuilder private constructor(private val array: ByteArray) {
         if (bpm != other.bpm) return false
         if (length != other.length) return false
         if (year != other.year) return false
-        if (!array.contentEquals(other.array)) return false
         if (values != other.values) return false
         if (title != other.title) return false
         if (album != other.album) return false
@@ -347,11 +420,11 @@ data class Id3WriterBuilder private constructor(private val array: ByteArray) {
         return true
     }
 
+    @KoverIgnore
     override fun hashCode(): Int {
         var result = bpm ?: 0
         result = 31 * result + (length ?: 0)
         result = 31 * result + (year ?: 0)
-        result = 31 * result + array.contentHashCode()
         result = 31 * result + values.hashCode()
         result = 31 * result + (title?.hashCode() ?: 0)
         result = 31 * result + (album?.hashCode() ?: 0)
@@ -383,51 +456,4 @@ data class Id3WriterBuilder private constructor(private val array: ByteArray) {
         result = 31 * result + (copyrightWeb?.hashCode() ?: 0)
         return result
     }
-}
-
-class SynchronizedLyricsBuilder {
-    var type = SynchronizedLyricsType.Lyrics
-    var timestampFormat = SynchronizedLyricsTimestampFormat.Milliseconds
-    var language: String = "eng"
-    var description: String = ""
-    private val lines = mutableListOf<Pair<String, Int>>()
-
-    fun type(type: SynchronizedLyricsType) = apply { this.type = type }
-    fun timestampFormat(format: SynchronizedLyricsTimestampFormat) = apply { this.timestampFormat = format }
-    fun language(language: String) = apply { this.language = language }
-    fun description(description: String) = apply { this.description = description }
-    fun line(text: String, timestamp: Int) = apply {
-        lines += text to timestamp
-    }
-
-    @JvmSynthetic
-    internal fun build() = SynchronizedLyrics(type, timestampFormat, lines, language, description)
-}
-
-class UnsynchronisedLyricsBuilder {
-    lateinit var lyrics: String
-    var description: String = ""
-    var language: String = "eng"
-
-    fun lyrics(lyrics: String) = apply { this.lyrics = lyrics }
-    fun description(description: String) = apply { this.description = description }
-    fun language(language: String) = apply { this.language = language }
-
-    @JvmSynthetic
-    internal fun build() = UnsynchronisedLyrics(lyrics, description, language)
-}
-
-class AttachedPictureBuilder {
-    var type: AttachedPictureType = AttachedPictureType.CoverFront
-    var data: ByteArray = byteArrayOf()
-    var description: String = ""
-    var useUnicodeEncoding: Boolean = true
-
-    fun type(type: AttachedPictureType) = apply { this.type = type }
-    fun data(data: ByteArray) = apply { this.data = data }
-    fun description(description: String) = apply { this.description = description }
-    fun useUnicodeEncoding(useUnicodeEncoding: Boolean) = apply { this.useUnicodeEncoding = useUnicodeEncoding }
-
-    @JvmSynthetic
-    internal fun build() = AttachedPicture(type, data, description, useUnicodeEncoding)
 }

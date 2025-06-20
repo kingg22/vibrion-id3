@@ -1,7 +1,6 @@
 package io.github.kingg22.vibrion.id3.model
 
 import io.github.kingg22.vibrion.id3.Id3AudioWriter
-import io.github.kingg22.vibrion.id3.getEmptyBuffer
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
@@ -9,7 +8,7 @@ import kotlin.test.assertEquals
 class IplsFrameTest {
     @Test
     fun `should write IPLS frame correctly`() {
-        val writer = Id3AudioWriter(getEmptyBuffer())
+        val writer = Id3AudioWriter()
         writer.padding = 0
         writer["IPLS"] = PairedTextFrame(
             "author" to "Thomas Bangalter",

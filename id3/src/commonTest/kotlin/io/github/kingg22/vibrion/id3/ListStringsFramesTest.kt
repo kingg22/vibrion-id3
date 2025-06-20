@@ -47,7 +47,7 @@ class ListStringsFramesTest {
 
         frames.forEachIndexed { index, frameName ->
             val delemiter = if (frameName == "TCON") ';' else '/'
-            val writer = Id3AudioWriter(getEmptyBuffer())
+            val writer = Id3AudioWriter()
             writer.padding = 0
             writer[frameName] = StringListFrame("Eminem", "50 Cent")
             val actual = writer.addTag()

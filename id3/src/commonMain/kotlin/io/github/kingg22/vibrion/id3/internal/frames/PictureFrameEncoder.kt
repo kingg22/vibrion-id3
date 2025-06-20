@@ -3,6 +3,7 @@
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
+import io.github.kingg22.vibrion.id3.KoverIgnore
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
 import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
 import kotlin.jvm.JvmName
@@ -62,6 +63,7 @@ internal data class PictureFrameEncoder internal constructor(
     }
 
     @JvmSynthetic
+    @KoverIgnore
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || this::class != other::class) return false
@@ -80,6 +82,7 @@ internal data class PictureFrameEncoder internal constructor(
     }
 
     @JvmSynthetic
+    @KoverIgnore
     override fun hashCode(): Int {
         var result = pictureType
         result = 31 * result + useUnicode.hashCode()

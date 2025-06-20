@@ -1,7 +1,4 @@
-@file:OptIn(ExperimentalWasmDsl::class, ExperimentalKotlinGradlePluginApi::class)
-
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -32,30 +29,8 @@ kotlin {
             useJUnitPlatform()
         }
     }
-    wasmJs {
-        browser()
-        nodejs()
-        useEsModules()
-        binaries.library()
-        generateTypeScriptDefinitions()
-    }
-    wasmWasi {
-        nodejs()
-        binaries.library()
-    }
-
-    applyDefaultHierarchyTemplate {
-        common {
-            group("androidTargetAndJvm") {
-                withAndroidTarget()
-                withJvm()
-            }
-        }
-    }
 
     sourceSets {
-        commonMain.dependencies {
-        }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
@@ -89,25 +64,21 @@ dokka.dokkaSourceSets.configureEach {
     reportUndocumented = true
     enableJdkDocumentationLink = true
     enableKotlinStdLibDocumentationLink = true
-    suppressedFiles.from(layout.buildDirectory.dir("generated"))
-    // not used, but ok
-    externalDocumentationLinks {
-        register("kotlinx.coroutines") {
-            url("https://kotlinlang.org/api/kotlinx.coroutines/")
+}
+
+kover {
+    reports.total {
+        verify {
+            rule("Basic Line Coverage") {
+                minBound(60, CoverageUnit.LINE)
+            }
+
+            rule("Basic Branch Coverage") {
+                minBound(20, CoverageUnit.BRANCH)
+            }
         }
-        register("kotlinx.serialization") {
-            url("https://kotlinlang.org/api/kotlinx.serialization/")
-        }
-        register("kotlinx-datetime") {
-            url("https://kotlinlang.org/api/kotlinx-datetime/")
-            packageListUrl("https://kotlinlang.org/api/kotlinx-datetime/kotlinx-datetime/package-list")
-        }
-        register("ktor-client") {
-            url("https://api.ktor.io/ktor-client/")
-            packageListUrl("https://api.ktor.io/package-list")
-        }
-        register("kermit-logger") {
-            url("https://kermit.touchlab.co/htmlMultiModule/")
+        filters.excludes {
+            annotatedBy("$group.vibrion.id3.KoverIgnore")
         }
     }
 }

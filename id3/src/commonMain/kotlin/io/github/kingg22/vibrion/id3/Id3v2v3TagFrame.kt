@@ -3,7 +3,6 @@
 package io.github.kingg22.vibrion.id3
 
 import kotlin.js.ExperimentalJsStatic
-import kotlin.js.JsStatic
 import kotlin.jvm.JvmStatic
 
 /**
@@ -238,42 +237,41 @@ sealed interface Id3v2v3TagFrame : Id3TagFrame {
 
     companion object {
         @JvmStatic
-        @JsStatic
         val listFrames = listOf(TPE1, TCOM, TCON)
 
         @JvmStatic
-        @JsStatic
         val stringFrames = listOf(
             TLAN, TIT1, TIT2, TIT3, TALB, TPE2, TPE3, TPE4, TRCK, TPOS, TMED,
             TPUB, TCOP, TKEY, TEXT, TDAT, TCMP, TSRC,
         )
 
         @JvmStatic
-        @JsStatic
         val integerFrames = listOf(TBPM, TLEN, TYER)
 
         @JvmStatic
-        @JsStatic
         val urlFrames = listOf(WCOM, WCOP, WOAF, WOAR, WOAS, WORS, WPAY, WPUB)
 
         @JvmStatic
-        @JsStatic
         val objectFrames = listOf(USLT, SYLT, APIC, TXXX, COMM, PRIV)
 
         @JvmStatic
-        @JsStatic
         val stringAndUrlFrames = stringFrames + urlFrames
 
         @JvmStatic
-        @JsStatic
         val listPairFrames = listOf(IPLS)
 
         @JvmStatic
-        @JsStatic
         val allFrames = listFrames + stringAndUrlFrames + integerFrames + listPairFrames + objectFrames
 
+        /**
+         * Get [Id3v2v3TagFrame] from the name (or code) of the frame.
+         *
+         * @param code Name of the frame. Must be four char and uppercase.
+         * @return [Id3v2v3TagFrame] or [UNKNOWN] if not found.
+         * @see Id3v2v3TagFrame.name
+         * @see Id3v2v3TagFrame.allFrames
+         */
         @JvmStatic
-        @JsStatic
         fun fromCode(code: String) = allFrames.firstOrNull { it.name == code.trim().uppercase() } ?: UNKNOWN
     }
 }

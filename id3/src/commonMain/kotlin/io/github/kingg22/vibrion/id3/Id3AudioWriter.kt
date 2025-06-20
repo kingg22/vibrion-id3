@@ -4,27 +4,92 @@ import io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.*
 import io.github.kingg22.vibrion.id3.internal.*
 import io.github.kingg22.vibrion.id3.internal.frames.FrameEncoder
 import io.github.kingg22.vibrion.id3.model.*
-import kotlin.js.JsName
-import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmSynthetic
 
 /**
- * Builder for ID3 tags.
+ * Builder for ID3 v2.3 tags.
  *
- * @param arrayBuffer ByteArray to add the tags.
+ * _Note_: Current is impossible to delete a tag frame after set it.
+ * If you need to do that, create a [Id3AudioWriter.deepCopy] before and modify it, or only don't set the value.
+ *
+ * **Don't recommend to call [Id3AudioWriter.addTag] or [Id3AudioWriter.toByteArray] or [Id3AudioWriter.build] repeated.**
+ *
+ * Example:
+ * ```kotlin
+ * val writer = Id3AudioWriter()
+ * writer[Id3v2v3TagFrame.TPE1] = listOf("Eminem", "50 Cent")
+ * val tag = writer.addTag()
+ * ```
+ * Java:
+ * ```java
+ * class Id3BuilderJavaTest {
+ *     void testId3Writer() {
+ *         final var writer = new Id3AudioWriter();
+ *         writer.setPadding(0);
+ *         // Need to call `.INSTANCE` because is an kotlin object.
+ *         writer.set(Id3v2v3TagFrame.TIT2.INSTANCE, "Title");
+ *         writer.set(Id3v2v3TagFrame.TPE1.INSTANCE, List.of("Eminem", "50 Cent"));
+ *         final byte[] tag = writer.build();
+ *     }
+ * }
+ * ```
+ *
  * @property padding Padding to add to the end of the file.
  *
- * @see io.github.kingg22.vibrion.id3.Id3AudioWriter.set
- * @see io.github.kingg22.vibrion.id3.Id3AudioWriter.addTag
+ * @see Id3AudioWriter.set
+ * @see Id3AudioWriter.addTag
+ * @see Id3AudioWriter.build
+ * @see Id3AudioWriter.removeTag
  * @see Id3v2v3TagFrame
  * @see FrameValue
+ * @see Id3WriterBuilder
  * @see <a href="https://github.com/egoroof/browser-id3-writer">Inspired on 'egoroof/browser-id3-writer' on JavaScript / Typescript</a>
  */
-data class Id3AudioWriter(var arrayBuffer: ByteArray) {
-    var padding = 4096
+@Id3Dsl
+data class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
     private val frames = mutableListOf<FrameEncoder>()
 
     companion object {
         private const val HEADER_SIZE = 10
+
+        /**
+         * DSL for [Id3AudioWriter].
+         *
+         * @see Id3AudioWriter
+         * @see Id3AudioWriter.set
+         * @see Id3AudioWriter.addTag
+         * @see Id3v2v3TagFrame
+         * @see FrameValue
+         */
+        @JvmSynthetic
+        fun id3AudioWriter(block: Id3AudioWriter.() -> Unit) = Id3AudioWriter().apply(block)
+
+        /**
+         * Remove tag of [arrayBuffer] if it is a valid ID3v2 tag.
+         *
+         * @see Id3AudioWriter.set
+         * @see Id3AudioWriter.addTag
+         */
+        @JvmStatic
+        fun removeTag(arrayBuffer: ByteArray): ByteArray {
+            if (arrayBuffer.size < HEADER_SIZE) return arrayBuffer
+
+            val version = arrayBuffer[3].toInt() and 0xFF
+            if (!isId3v2(arrayBuffer) || version < 2 || version > 4) return arrayBuffer
+
+            val tagSize = uint7ArrayToUint28(
+                listOf(
+                    arrayBuffer[6],
+                    arrayBuffer[7],
+                    arrayBuffer[8],
+                    arrayBuffer[9],
+                ).map { it.toInt() and 0xFF },
+            ) + HEADER_SIZE
+
+            return arrayBuffer.sliceArray(tagSize until arrayBuffer.size)
+        }
     }
 
     /**
@@ -131,7 +196,6 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see FrameValue
      * @throws IllegalArgumentException if [value] is not compatible with [frameName] or [frameName] is not supported.
      */
-    @JsName("setFrame")
     @Throws(IllegalArgumentException::class)
     operator fun set(frameName: String, value: FrameValue) = set(Id3v2v3TagFrame.fromCode(frameName), value)
 
@@ -141,7 +205,6 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see Id3v2v3TagFrame.integerFrames
      * @see IntegerTagFrame
      */
-    @JsName("setIntFrame")
     operator fun set(id: IntegerTagFrame, value: Int) {
         set(id, IntegerFrame(value))
     }
@@ -153,7 +216,6 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see Id3v2v3TagFrame.urlFrames
      * @see TextTagFrame
      */
-    @JsName("setStringFrame")
     operator fun set(id: TextTagFrame, value: String) {
         set(id, TextFrame(value))
     }
@@ -164,8 +226,6 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see Id3v2v3TagFrame.listFrames
      * @see StringListFrame
      */
-    @JsName("setListStringFrame")
-    @JvmName("setListStringFrame")
     operator fun set(id: ListStringTagFrame, value: List<String>) {
         set(id, StringListFrame(value))
     }
@@ -175,8 +235,7 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see Id3v2v3TagFrame
      * @see PairedTextTagFrame
      */
-    @JsName("setPairStringFrame")
-    @JvmName("setPairStringFrame")
+    @JvmSynthetic
     operator fun set(id: PairedTextTagFrame, value: List<Pair<String, String>>) {
         set(id, PairedTextFrame(value))
     }
@@ -188,7 +247,6 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see Id3v2v3TagFrame
      * @see UnsynchronisedLyricsTagFrame
      */
-    @JsName("setUnsynchronisedLyricsFrame")
     operator fun set(id: UnsynchronisedLyricsTagFrame, value: UnsynchronisedLyrics) {
         set(id, value as FrameValue)
     }
@@ -199,7 +257,6 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see AttachedPictureTagFrame
      * @see AttachedPictureType
      */
-    @JsName("setAttachedPictureFrame")
     operator fun set(id: AttachedPictureTagFrame, value: AttachedPicture) {
         set(id, value as FrameValue)
     }
@@ -211,7 +268,6 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see SynchronizedLyricsType
      * @see SynchronizedLyricsTimestampFormat
      */
-    @JsName("setSynchronizedLyricsFrame")
     operator fun set(id: SynchronizedLyricsTagFrame, value: SynchronizedLyrics) {
         set(id, value as FrameValue)
     }
@@ -221,7 +277,6 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see Id3v2v3TagFrame
      * @see UserDefinedTextTagFrame
      */
-    @JsName("setUserDefinedTextFrame")
     operator fun set(id: UserDefinedTextTagFrame, value: UserDefinedText) {
         set(id, value as FrameValue)
     }
@@ -231,7 +286,6 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see Id3v2v3TagFrame
      * @see CommentTagFrame
      */
-    @JsName("setCommentFrame")
     operator fun set(id: CommentTagFrame, value: CommentFrame) {
         set(id, value as FrameValue)
     }
@@ -241,7 +295,6 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see Id3v2v3TagFrame
      * @see PrivateTagFrame
      */
-    @JsName("setPrivateFrame")
     operator fun set(id: PrivateTagFrame, value: PrivateFrame) {
         set(id, value as FrameValue)
     }
@@ -249,15 +302,58 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
     // -- overloads --
 
     /**
+     * _implies_ ([id] == [IPLS])
+     * @see Id3v2v3TagFrame
+     * @see PairedTextTagFrame
+     */
+    operator fun set(id: PairedTextTagFrame, value: Map<String, String>) {
+        set(id, PairedTextFrame(value))
+    }
+
+    /**
+     * _implies_ ([id] == [USLT])
+     *
+     * Example Kotlin:
+     * ```kotlin
+     * id3AudioWriter {
+     *     this[USLT, "lyrics", "description"] = "language"
+     * }
+     * ```
+     *
+     * @see Id3v2v3TagFrame
+     * @see UnsynchronisedLyricsTagFrame
+     */
+    operator fun set(id: UnsynchronisedLyricsTagFrame, lyrics: String, description: String, language: String) {
+        set(id, UnsynchronisedLyrics(lyrics, description, language))
+    }
+
+    /**
      * _implies_ ([id] == [TXXX])
      * @see Id3v2v3TagFrame
      * @see UserDefinedTextTagFrame
      * @see UserDefinedText
      */
-    @JsName("setUserDefinedTextFramePair")
-    @JvmName("setUserDefinedTextFramePair")
+    @JvmSynthetic
     operator fun set(id: UserDefinedTextTagFrame, value: Pair<String, String>) {
         set(id, UserDefinedText(value.first, value.second))
+    }
+
+    /**
+     * _implies_ ([id] == [TXXX])
+     *
+     * Example Kotlin:
+     * ```kotlin
+     * id3AudioWriter {
+     *     this[TXXX, "description"] = "value"
+     * }
+     * ```
+     *
+     * @see Id3v2v3TagFrame
+     * @see UserDefinedTextTagFrame
+     * @see UserDefinedText
+     */
+    operator fun set(id: UserDefinedTextTagFrame, description: String, value: String) {
+        set(id, UserDefinedText(description, value))
     }
 
     /**
@@ -265,27 +361,38 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
      * @see Id3v2v3TagFrame
      * @see PrivateTagFrame
      */
-    @JsName("setPairPrivateFrame")
-    @JvmName("setPairPrivateFrame")
+    @JvmSynthetic
     operator fun set(id: PrivateTagFrame, value: Pair<String, ByteArray>) {
         set(id, PrivateFrame(value.first, value.second))
     }
 
     /**
-     * Add tag to [arrayBuffer].
-     * Aka build.
+     * _implies_ ([id] == [PRIV])
      *
-     * @return [arrayBuffer] with the tag added.
+     * Example Kotlin:
+     * ```kotlin
+     * id3AudioWriter {
+     *     this[PRIV, "id"] = byteArrayOf()
+     * }
+     * ```
+     *
+     * @see Id3v2v3TagFrame
+     * @see PrivateTagFrame
+     */
+    operator fun set(tag: PrivateTagFrame, id: String, value: ByteArray) {
+        set(tag, PrivateFrame(id, value))
+    }
+
+    /**
+     * Build the tag and add it to a new [ByteArray].
+     *
+     * @return [ByteArray] with the tag added.
      * @see Id3AudioWriter.set
-     * @see Id3AudioWriter.removeTag
      */
     fun addTag(): ByteArray {
-        this.removeTag()
-
         // Calcular tamaño TOTAL incluyendo headers de frame
-        val totalFrameSize = frames.sumOf { it.size }
-        val totalTagSize = HEADER_SIZE + totalFrameSize + padding
-        val newBuffer = ByteArray(arrayBuffer.size + totalTagSize)
+        val totalTagSize = HEADER_SIZE + padding + frames.sumOf { it.size }
+        val newBuffer = ByteArray(totalTagSize)
 
         var offset = 0
 
@@ -315,61 +422,33 @@ data class Id3AudioWriter(var arrayBuffer: ByteArray) {
         if (padding > 0) {
             // workaround ArrayIndexOutOfBoundsException arraycopy: last destination index 332 out of bounds for byte[322]
             newBuffer.fill(0, offset, offset + padding)
-            offset += padding
         }
 
-        // Copy original content
-        if (arrayBuffer.isNotEmpty()) {
-            // workaround ArrayIndexOutOfBoundsException arraycopy: last destination index 332 out of bounds for byte[322]
-            arrayBuffer.copyInto(newBuffer, offset)
-        }
-        arrayBuffer = newBuffer
-        return arrayBuffer
+        return newBuffer
     }
 
     /**
-     * Remove tag from [arrayBuffer].
+     * Build the tag and add it to a new [ByteArray].
      *
+     * @see addTag
      * @see Id3AudioWriter.set
-     * @see Id3AudioWriter.addTag
      */
-    fun removeTag() {
-        if (arrayBuffer.size < HEADER_SIZE) return
+    fun build() = addTag()
 
-        val version = arrayBuffer[3].toInt() and 0xFF
-        if (!isId3v2(arrayBuffer) || version < 2 || version > 4) return
+    /**
+     * Build the tag and add it to a new [ByteArray].
+     *
+     * @return [ByteArray] with the tag added.
+     * @see Id3AudioWriter.set
+     */
+    fun toByteArray() = addTag()
 
-        val tagSize = uint7ArrayToUint28(
-            listOf(
-                arrayBuffer[6],
-                arrayBuffer[7],
-                arrayBuffer[8],
-                arrayBuffer[9],
-            ).map { it.toInt() and 0xFF },
-        ) + HEADER_SIZE
-
-        arrayBuffer = arrayBuffer.sliceArray(tagSize until arrayBuffer.size)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || this::class != other::class) return false
-
-        other as Id3AudioWriter
-
-        if (!arrayBuffer.contentEquals(other.arrayBuffer)) return false
-        if (frames != other.frames) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = arrayBuffer.contentHashCode()
-        result = 31 * result + frames.hashCode()
-        return result
+    /**
+     * Deep copy of the current [Id3AudioWriter].
+     * Include all frames previously added with [Id3AudioWriter.set]
+     */
+    @JvmOverloads
+    fun deepCopy(padding: Int = this.padding) = Id3AudioWriter(padding).apply {
+        this.frames.addAll(this@Id3AudioWriter.frames)
     }
 }
-
-/** DSL */
-@Id3Dsl
-fun id3AudioWriter(array: ByteArray, block: Id3AudioWriter.() -> Unit) = Id3AudioWriter(array).apply(block)
