@@ -15,4 +15,9 @@ class AttachedPictureBuilder {
     fun description(description: String) = apply { this.description = description }
     fun useUnicodeEncoding(useUnicodeEncoding: Boolean) = apply { this.useUnicodeEncoding = useUnicodeEncoding }
     fun build() = AttachedPicture(type, data, description, useUnicodeEncoding)
+
+    companion object {
+        /** DSL builder for [AttachedPicture] */
+        fun builder(block: AttachedPictureBuilder.() -> Unit) = AttachedPictureBuilder().apply(block).build()
+    }
 }

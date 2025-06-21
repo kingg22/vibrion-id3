@@ -16,4 +16,9 @@ class UnsynchronisedLyricsBuilder {
     fun description(description: String) = apply { this.description = description }
     fun language(language: String) = apply { this.language = language }
     fun build() = UnsynchronisedLyrics(lyrics, description, language)
+
+    companion object {
+        /** DSL Builder for [UnsynchronisedLyrics] */
+        fun builder(block: UnsynchronisedLyricsBuilder.() -> Unit) = UnsynchronisedLyricsBuilder().apply(block).build()
+    }
 }

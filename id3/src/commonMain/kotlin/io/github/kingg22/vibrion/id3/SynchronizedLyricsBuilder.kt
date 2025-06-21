@@ -24,4 +24,9 @@ class SynchronizedLyricsBuilder {
     fun line(text: String, timestamp: Int) = apply {
         lines += text to timestamp
     }
+
+    companion object {
+        /** DSL Builder for [SynchronizedLyrics] */
+        fun builder(block: SynchronizedLyricsBuilder.() -> Unit) = SynchronizedLyricsBuilder().apply(block).build()
+    }
 }
