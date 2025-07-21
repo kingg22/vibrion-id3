@@ -10,21 +10,21 @@ import kotlin.test.assertEquals
 class TransformsTest {
 
     @Test
-    fun `test Uint32 To Uint8 255`() {
+    fun testUint32ToUint8_255() {
         val actual = uint32ToUint8Array(255u)
         val expected = byteArrayOf(0, 0, 0, 255.toByte())
         assertContentEquals(expected, actual)
     }
 
     @Test
-    fun `test Uint32 To Uint8 256`() {
+    fun testUint32ToUint8_256() {
         val actual = uint32ToUint8Array(256u)
         val expected = byteArrayOf(0, 0, 1, 0)
         assertContentEquals(expected, actual)
     }
 
     @Test
-    fun `test Uint32 to Uint8 257`() {
+    fun testUint32ToUint8_257() {
         val actual = uint32ToUint8Array(257u)
         val expected = byteArrayOf(0, 0, 1, 1)
         assertContentEquals(expected, actual)

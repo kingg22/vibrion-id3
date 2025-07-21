@@ -10,7 +10,7 @@ import kotlin.test.assertContentEquals
 
 class PrivFrameTest {
     @Test
-    fun `should correctly write a private frame into ID3`() {
+    fun shouldCorrectlyWritePrivateFrameIntoID3() {
         val data = byteArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
         val ownerId = "site.com"
 

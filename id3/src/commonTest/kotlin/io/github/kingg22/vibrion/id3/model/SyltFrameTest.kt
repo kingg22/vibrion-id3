@@ -12,7 +12,7 @@ import kotlin.test.assertEquals
 
 class SyltFrameTest {
     @Test
-    fun `should write SYLT frame correctly`() {
+    fun testShouldWriteSYLTFrameCorrectly() {
         val writer = Id3AudioWriter()
         writer.padding = 0
 

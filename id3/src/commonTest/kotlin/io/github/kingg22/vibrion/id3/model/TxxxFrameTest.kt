@@ -8,7 +8,7 @@ import kotlin.test.assertFailsWith
 class TxxxFrameTest {
 
     @Test
-    fun `test TXXX Frame Encoding`() {
+    fun testTXXXFrameEncoding() {
         val writer = Id3AudioWriter()
         writer.padding = 0
         writer["TXXX"] = UserDefinedText(description = "foo", value = "bar")
@@ -20,6 +20,8 @@ class TxxxFrameTest {
             1, (-1).toByte(), (-2).toByte(), 102, 0, 111, 0, 111, 0, 0,
             0, (-1).toByte(), (-2).toByte(), 98, 0, 97, 0, 114, 0,
         )
+        // TODO generate expected programmatic
+
         /*
         val expected = buildList {
             addAll(id3Header.toList())

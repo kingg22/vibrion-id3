@@ -7,7 +7,7 @@ import kotlin.test.assertEquals
 
 class IplsFrameTest {
     @Test
-    fun `should write IPLS frame correctly`() {
+    fun testShouldWriteIPLSFrameCorrectly() {
         val writer = Id3AudioWriter()
         writer.padding = 0
         writer["IPLS"] = PairedTextFrame(
@@ -16,6 +16,8 @@ class IplsFrameTest {
             "mixer" to "DJ Falcon",
         )
         val actual = writer.addTag()
+        // TODO generate expected programmatic
+
         /*
         val encodingByte = 0x01.toByte() // UTF-16 with BOM
         val bomBytes = byteArrayOf(0xFF.toByte(), 0xFE.toByte()) // UTF-16 LE BOM

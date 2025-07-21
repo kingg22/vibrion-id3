@@ -10,21 +10,21 @@ import kotlin.test.assertTrue
 class EncoderTest {
 
     @Test
-    fun `test String To Code Points latin`() {
+    fun testStringToCodePointsLatin() {
         val actual = strToCodePoints("Hello")
         val expected = listOf(72, 101, 108, 108, 111)
         assertEquals(expected, actual)
     }
 
     @Test
-    fun `test String To Code Points cyrillic`() {
+    fun testStringToCodePointsCyrillic() {
         val actual = strToCodePoints("Привет")
         val expected = listOf(1055, 1088, 1080, 1074, 1077, 1090)
         assertEquals(expected, actual)
     }
 
     @Test
-    fun `test Encode Windows1252 latin`() {
+    fun testEncodeWindows1252Latin() {
         val actual = encodeWindows1252("Hello")
         val expected = byteArrayOf(72, 101, 108, 108, 111)
         assertTrue(
@@ -34,7 +34,7 @@ class EncoderTest {
     }
 
     @Test
-    fun `test Encode Windows1252 cyrillicLoss`() {
+    fun testEncodeWindows1252CyrillicLoss() {
         val actual = encodeWindows1252("Привет")
         val expected = byteArrayOf(31, 64, 56, 50, 53, 66)
         assertTrue(
@@ -44,7 +44,7 @@ class EncoderTest {
     }
 
     @Test
-    fun `test Encode Utf16le latin`() {
+    fun testEncodeUtf16leLatin() {
         val actual = encodeUtf16LE("Hello")
         val expected = byteArrayOf(72, 0, 101, 0, 108, 0, 108, 0, 111, 0)
         assertTrue(
@@ -54,7 +54,7 @@ class EncoderTest {
     }
 
     @Test
-    fun `test Encode Utf16le cyrillic`() {
+    fun testEncodeUtf16leCyrillic() {
         val actual = encodeUtf16LE("Привет")
         val expected = byteArrayOf(31, 4, 64, 4, 56, 4, 50, 4, 53, 4, 66, 4)
         assertTrue(

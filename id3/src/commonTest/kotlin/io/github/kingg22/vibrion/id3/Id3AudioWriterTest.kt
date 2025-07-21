@@ -8,7 +8,7 @@ import kotlin.test.assertFails
 
 class Id3AudioWriterTest {
     @Test
-    fun `set string frame`() {
+    fun testSetStringFrame() {
         id3AudioWriter {
             this[TIT2] = "My Title"
             this[WOAR] = "https://example.com"
@@ -16,7 +16,7 @@ class Id3AudioWriterTest {
     }
 
     @Test
-    fun `set integer frame`() {
+    fun testSetIntegerFrame() {
         id3AudioWriter {
             this[TLEN] = 12345
             this[TYER] = 2022
@@ -24,7 +24,7 @@ class Id3AudioWriterTest {
     }
 
     @Test
-    fun `set list of strings frame`() {
+    fun testSetListOfStringsFrame() {
         id3AudioWriter {
             this[TPE1] = listOf("Artist 1", "Artist 2")
             this[TCON] = listOf("Pop", "Rock")
@@ -32,14 +32,14 @@ class Id3AudioWriterTest {
     }
 
     @Test
-    fun `set pair list frame`() {
+    fun testSetPairListFrame() {
         id3AudioWriter {
             this[IPLS] = listOf("Guitar" to "John", "Drums" to "Mike")
         }
     }
 
     @Test
-    fun `set UnsynchronisedLyrics frame`() {
+    fun testSetUnsynchronisedLyricsFrame() {
         id3AudioWriter {
             this[USLT, "lyrics", "description"] = "eng"
             this[USLT] = UnsynchronisedLyrics("Lyrics here", "desc", "eng")
@@ -47,14 +47,14 @@ class Id3AudioWriterTest {
     }
 
     @Test
-    fun `set AttachedPicture frame`() {
+    fun testSetAttachedPictureFrame() {
         id3AudioWriter {
             this[APIC] = AttachedPicture(3, byteArrayOf(0xFF.toByte(), 0xD8.toByte(), 0xFF.toByte(), 1, 2, 3), "cover")
         }
     }
 
     @Test
-    fun `set SynchronizedLyrics frame`() {
+    fun testSetSynchronizedLyricsFrame() {
         id3AudioWriter {
             this[SYLT] = SynchronizedLyrics(
                 SynchronizedLyricsType.Lyrics,
@@ -67,7 +67,7 @@ class Id3AudioWriterTest {
     }
 
     @Test
-    fun `set UserDefinedText frame`() {
+    fun testSetUserDefinedTextFrame() {
         id3AudioWriter {
             this[TXXX, "key"] = "value"
             this[TXXX] = UserDefinedText("key", "value")
@@ -75,14 +75,14 @@ class Id3AudioWriterTest {
     }
 
     @Test
-    fun `set Comment frame`() {
+    fun testSetCommentFrame() {
         id3AudioWriter {
             this[COMM] = CommentFrame("eng", "note")
         }
     }
 
     @Test
-    fun `set PrivateFrame`() {
+    fun testSetPrivateFrame() {
         id3AudioWriter {
             this[PRIV, "id"] = byteArrayOf(1, 2, 3)
             this[PRIV] = PrivateFrame("owner", byteArrayOf(1, 2, 3))
@@ -90,21 +90,21 @@ class Id3AudioWriterTest {
     }
 
     @Test
-    fun `set pair as user defined`() {
+    fun testSetPairAsUserDefined() {
         id3AudioWriter {
             this[TXXX] = "key" to "value"
         }
     }
 
     @Test
-    fun `set pair as private`() {
+    fun testSetPairAsPrivate() {
         id3AudioWriter {
             this[PRIV] = "owner" to byteArrayOf(0x01, 0x02)
         }
     }
 
     @Test
-    fun `set FrameValue with string id that maps to unknown`() {
+    fun testSetFrameValueWithStringIdThatMapsToUnknown() {
         assertFails {
             id3AudioWriter {
                 this["ZZZZ"] = TextFrame("should fail")

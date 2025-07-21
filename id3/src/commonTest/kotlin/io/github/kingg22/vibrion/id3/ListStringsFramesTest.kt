@@ -17,7 +17,7 @@ class ListStringsFramesTest {
     }
 
     @Test
-    fun `test String List Frame`() {
+    fun testStringListFrame() {
         // (-1).toByte(), (-2).toByte()
         // 255, 254
         val preComputedExpectedList = listOf(
