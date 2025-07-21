@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.kotlinxKover)
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.maven.publish)
 }
 
 group = "io.github.kingg22"
@@ -106,6 +107,40 @@ kover {
         }
         filters.excludes {
             annotatedBy("$group.vibrion.id3.internal.KoverIgnore")
+        }
+    }
+}
+
+mavenPublishing {
+    publishToMavenCentral()
+
+    signAllPublications()
+
+    coordinates(group.toString(), "vibrion-id3", version.toString())
+
+    pom {
+        name = "Vibrion ID3 – Kotlin Multiplatform ID3 Tag Writer"
+        description = "A lightweight Kotlin Multiplatform library to write ID3v2 tags in MP3 audio files."
+        inceptionYear = "2025"
+        url = "https://github.com/kingg22/vibrion-id3"
+        licenses {
+            license {
+                name = "The MIT License"
+                url = "https://opensource.org/license/MIT"
+                distribution = "repo"
+            }
+        }
+        developers {
+            developer {
+                id = "kingg22"
+                name = "Rey Acosta (Kingg22)"
+                url = "https://github.com/kingg22"
+            }
+        }
+        scm {
+            url = "https://github.com/kingg22/vibrion-id3"
+            connection = "scm:git:git://github.com/kingg22/vibrion-id3.git"
+            developerConnection = "scm:git:ssh://git@github.com/kingg22/vibrion-id3.git"
         }
     }
 }
