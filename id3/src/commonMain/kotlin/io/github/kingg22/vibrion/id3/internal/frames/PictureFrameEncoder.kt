@@ -3,7 +3,7 @@
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
-import io.github.kingg22.vibrion.id3.KoverIgnore
+import io.github.kingg22.vibrion.id3.internal.KoverIgnore
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
 import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
 import kotlin.jvm.JvmName

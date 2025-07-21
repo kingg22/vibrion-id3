@@ -3,6 +3,7 @@ package io.github.kingg22.vibrion.id3
 import io.github.kingg22.vibrion.id3.model.SynchronizedLyrics
 import io.github.kingg22.vibrion.id3.model.SynchronizedLyricsTimestampFormat
 import io.github.kingg22.vibrion.id3.model.SynchronizedLyricsType
+import kotlin.jvm.JvmSynthetic
 
 /** Builder for [SynchronizedLyrics] */
 class SynchronizedLyricsBuilder {
@@ -27,6 +28,7 @@ class SynchronizedLyricsBuilder {
 
     companion object {
         /** DSL Builder for [SynchronizedLyrics] */
+        @JvmSynthetic
         fun builder(block: SynchronizedLyricsBuilder.() -> Unit) = SynchronizedLyricsBuilder().apply(block).build()
     }
 }

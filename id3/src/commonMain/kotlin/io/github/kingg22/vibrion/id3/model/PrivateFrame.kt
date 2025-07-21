@@ -1,6 +1,6 @@
 package io.github.kingg22.vibrion.id3.model
 
-import io.github.kingg22.vibrion.id3.KoverIgnore
+import io.github.kingg22.vibrion.id3.internal.KoverIgnore
 
 /** @see io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.PRIV */
 data class PrivateFrame(val id: String, val data: ByteArray) : FrameValue() {

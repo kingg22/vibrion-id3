@@ -1,6 +1,7 @@
 package io.github.kingg22.vibrion.id3
 
 import io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.*
+import io.github.kingg22.vibrion.id3.internal.KoverIgnore
 import io.github.kingg22.vibrion.id3.model.*
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -271,8 +272,7 @@ class Id3WriterBuilder {
 
     fun genre(genre: String, vararg genres: String) = apply { values += TCON to StringListFrame(genre, *genres) }
     fun composer(composer: String, vararg composers: String) = apply {
-        values +=
-            TCOM to StringListFrame(composer, *composers)
+        values += TCOM to StringListFrame(composer, *composers)
     }
 
     // --- Pairs ---

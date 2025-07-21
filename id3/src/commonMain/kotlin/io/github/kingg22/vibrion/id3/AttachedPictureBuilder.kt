@@ -2,6 +2,7 @@ package io.github.kingg22.vibrion.id3
 
 import io.github.kingg22.vibrion.id3.model.AttachedPicture
 import io.github.kingg22.vibrion.id3.model.AttachedPictureType
+import kotlin.jvm.JvmSynthetic
 
 /** Builder for [AttachedPicture] */
 class AttachedPictureBuilder {
@@ -18,6 +19,7 @@ class AttachedPictureBuilder {
 
     companion object {
         /** DSL builder for [AttachedPicture] */
+        @JvmSynthetic
         fun builder(block: AttachedPictureBuilder.() -> Unit) = AttachedPictureBuilder().apply(block).build()
     }
 }

@@ -1,6 +1,6 @@
 package io.github.kingg22.vibrion.id3.model
 
-import io.github.kingg22.vibrion.id3.KoverIgnore
+import io.github.kingg22.vibrion.id3.internal.KoverIgnore
 import kotlin.jvm.JvmOverloads
 
 /**
