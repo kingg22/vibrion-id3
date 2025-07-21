@@ -1,0 +1,60 @@
+[versions]
+# https://developer.android.com/build/releases/gradle-plugin
+agp = "8.11.1"
+
+# https://developer.android.com/tools/releases/platforms
+android-compileSdk = "36"
+android-minSdk = "21"
+android-targetSdk = "36"
+
+# https://github.com/Kotlin/dokka/releases
+dokka = "2.0.0"
+# https://github.com/touchlab/Kermit/releases
+#kermit = "2.0.6"
+# https://github.com/LemonAppDev/konsist/releases
+#konsist = "0.17.3"
+# https://github.com/kotest/kotest/releases
+#kotest = "6.0.0.M5"
+# https://github.com/JetBrains/kotlin/releases
+kotlin = "2.2.0"
+# https://github.com/Kotlin/kotlinx-datetime/releases
+#kotlinx-datetime = "0.7.1"
+# https://github.com/Kotlin/kotlinx-kover/releases
+kover = "0.9.1"
+# https://github.com/pinterest/ktlint/releases
+ktlint-pinterest = "1.6.0"
+# https://github.com/jlleitschuh/ktlint-gradle/releases
+ktlint-plugin = "13.0.0"
+#mockk = "1.14.3"
+
+[libraries]
+# Kotlin - Kotlinx essentials
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+#kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
+#kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
+
+# Logger
+#kermit = { group = "co.touchlab", name = "kermit", version.ref = "kermit" }
+
+# Kotest
+#kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
+#kotest-assertions-json = { group = "io.kotest", name = "kotest-assertions-json", version.ref = "kotest" }
+
+# Konsist
+#konsist = { group = "com.lemonappdev", name = "konsist", version.ref = "konsist" }
+
+# mockk
+#mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+#mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+#mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
+
+# Libraries can be bundled together for easier import
+[bundles]
+
+[plugins]
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+# Compose
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinxKover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
