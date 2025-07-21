@@ -36,3 +36,6 @@ ij_formatter_enabled = false
 
 [*.{properties,md}]
 ij_properties_keep_blank_lines = true
+
+[*.{yml,yaml}]
+indent_size = 2
