@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalAbiValidation::class)
+
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
     alias(libs.plugins.androidLibrary)
@@ -10,25 +13,39 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "0.0.1"
+version = "0.1.0"
 
 kotlin {
     compilerOptions {
         extraWarnings.set(true)
         allWarningsAsErrors.set(true)
     }
+    abiValidation {
+        enabled.set(true)
+    }
 
     androidTarget {
         publishLibraryVariants("release")
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(JvmTarget.JVM_1_8)
         }
     }
+
     jvm {
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
         }
     }
+
+    // tier 2
+    linuxX64()
+    linuxArm64()
+    // tier 3
+    mingwX64()
+    androidNativeArm32()
+    androidNativeArm64()
+    androidNativeX64()
+    androidNativeX86()
 
     sourceSets {
         commonTest.dependencies {
@@ -41,8 +58,8 @@ android {
     namespace = "$group.vibrion.id3"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -51,6 +68,16 @@ android {
         unitTests.all {
             it.useJUnitPlatform()
         }
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "**/test/**"
+            excludes += "**/commonTest/**"
+        }
+    }
+    buildFeatures {
+        buildConfig = true
     }
 }
 
@@ -78,7 +105,7 @@ kover {
             }
         }
         filters.excludes {
-            annotatedBy("$group.vibrion.id3.KoverIgnore")
+            annotatedBy("$group.vibrion.id3.internal.KoverIgnore")
         }
     }
 }
