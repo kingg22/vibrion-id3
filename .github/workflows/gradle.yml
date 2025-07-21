@@ -5,9 +5,12 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
-name: Java CI with Gradle
+name: Kotlin CI with Gradle
 
-on: [ push, pull_request ]
+on:
+    push:
+        branches: [ main ]
+    pull_request:
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.ref }}
@@ -27,6 +30,7 @@ jobs:
       with:
         java-version: '21'
         distribution: 'jetbrains'
+        cache: 'gradle'
 
     - name: Change wrapper permissions
       run: chmod +x ./gradlew
@@ -37,6 +41,7 @@ jobs:
       uses: gradle/actions/setup-gradle@v4
       with:
           gradle-version: '8.13'
+          cache-read-only: false
           validate-wrappers: true
 
     - name: Build with Gradle Wrapper
@@ -66,6 +71,14 @@ jobs:
       with:
         java-version: '21'
         distribution: 'jetbrains'
+        cache: 'gradle'
+
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+      with:
+          gradle-version: '8.13'
+          validate-wrappers: true
+          cache-read-only: true
 
     # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
