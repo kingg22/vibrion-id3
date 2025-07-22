@@ -88,7 +88,7 @@ jobs:
         name: Manual build (Kotlin Multiplatform, only JVM)
         shell: bash
         run: |
-          ./gradlew :jvmTestClasses
+          ./gradlew jvmTestClasses
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
