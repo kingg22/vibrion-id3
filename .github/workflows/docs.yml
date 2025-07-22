@@ -34,6 +34,8 @@ jobs:
           java-version: '17'
           distribution: 'jetbrains'
           cache: 'gradle'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
