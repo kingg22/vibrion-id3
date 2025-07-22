@@ -46,6 +46,11 @@ sealed interface Id3v2v3TagFrame : Id3TagFrame {
 
     // -- string --
 
+    /** Software/Hardware and settings used for encoding */
+    object TSSE : TextTagFrame {
+        override val name = "TSSE"
+    }
+
     /** Language */
     object TLAN : TextTagFrame {
         override val name = "TLAN"
@@ -239,7 +244,7 @@ sealed interface Id3v2v3TagFrame : Id3TagFrame {
         @JvmStatic
         val stringFrames = listOf(
             TLAN, TIT1, TIT2, TIT3, TALB, TPE2, TPE3, TPE4, TRCK, TPOS, TMED,
-            TPUB, TCOP, TKEY, TEXT, TDAT, TCMP, TSRC,
+            TPUB, TCOP, TKEY, TEXT, TDAT, TCMP, TSRC, TSSE,
         )
 
         @JvmStatic
