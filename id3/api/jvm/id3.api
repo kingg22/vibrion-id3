@@ -20,6 +20,9 @@ public final class io/github/kingg22/vibrion/id3/AttachedPictureBuilder$Companio
 	public final synthetic fun builder (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/vibrion/id3/model/AttachedPicture;
 }
 
+public abstract interface annotation class io/github/kingg22/vibrion/id3/ExperimentalVibrionId3 : java/lang/annotation/Annotation {
+}
+
 public final class io/github/kingg22/vibrion/id3/Id3AudioWriter {
 	public static final field Companion Lio/github/kingg22/vibrion/id3/Id3AudioWriter$Companion;
 	public fun <init> ()V
@@ -81,15 +84,20 @@ public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder {
 	public final fun artistWeb (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun bpm (I)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun build ()Lio/github/kingg22/vibrion/id3/Id3AudioWriter;
+	public final fun comment (Lio/github/kingg22/vibrion/id3/model/CommentFrame;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun comment (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun comment (Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun comment (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public static synthetic fun comment$default (Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun commercialWeb (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun composer (Ljava/lang/String;[Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun conductor (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun contentGroup (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun copy ()Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun copyright (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun copyrightWeb (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun disc (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun encoderSoftware (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun fileWeb (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun genre (Ljava/lang/String;[Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
@@ -101,8 +109,12 @@ public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder {
 	public final fun getComment ()Lio/github/kingg22/vibrion/id3/model/CommentFrame;
 	public final fun getCommercialWeb ()Ljava/lang/String;
 	public final fun getComposer ()Ljava/util/List;
+	public final fun getConductor ()Ljava/lang/String;
+	public final fun getContentGroup ()Ljava/lang/String;
 	public final fun getCopyright ()Ljava/lang/String;
 	public final fun getCopyrightWeb ()Ljava/lang/String;
+	public final fun getDisc ()Ljava/lang/String;
+	public final fun getEncoderSoftware ()Ljava/lang/String;
 	public final fun getFileWeb ()Ljava/lang/String;
 	public final fun getGenres ()Ljava/util/List;
 	public final fun getInvolvedPeople ()Ljava/util/List;
@@ -111,6 +123,7 @@ public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder {
 	public final fun getLabel ()Ljava/lang/String;
 	public final fun getLanguage ()Ljava/lang/String;
 	public final fun getLength ()Ljava/lang/Integer;
+	public final fun getLyricist ()Ljava/lang/String;
 	public final fun getLyrics ()Lio/github/kingg22/vibrion/id3/model/UnsynchronisedLyrics;
 	public final fun getMediaType ()Ljava/lang/String;
 	public final fun getPayWeb ()Ljava/lang/String;
@@ -118,31 +131,42 @@ public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder {
 	public final fun getPrivateFrame ()Lio/github/kingg22/vibrion/id3/model/PrivateFrame;
 	public final fun getPublisherWeb ()Ljava/lang/String;
 	public final fun getRadioWeb ()Ljava/lang/String;
+	public final fun getReleaseDate ()Ljava/lang/String;
+	public final fun getRemixer ()Ljava/lang/String;
 	public final fun getSourceWeb ()Ljava/lang/String;
 	public final fun getSubtitle ()Ljava/lang/String;
 	public final fun getSyncLyrics ()Lio/github/kingg22/vibrion/id3/model/SynchronizedLyrics;
 	public final fun getTitle ()Ljava/lang/String;
+	public final fun getTrack ()Ljava/lang/String;
 	public final fun getUserText ()Lio/github/kingg22/vibrion/id3/model/UserDefinedText;
 	public final fun getYear ()Ljava/lang/Integer;
 	public fun hashCode ()I
 	public static final fun id3Writer ()Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
-	public static final fun id3Writer (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/vibrion/id3/Id3AudioWriter;
 	public final fun involvedPeople (Ljava/util/Map;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun involvedPeople (Lkotlin/Pair;[Lkotlin/Pair;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun isCompilation ()Z
+	public final fun isCompilation (Z)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public static synthetic fun isCompilation$default (Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;ZILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun isrc (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun key (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun label (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun language (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun length (I)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun lyricist (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun lyrics (Lio/github/kingg22/vibrion/id3/UnsynchronisedLyricsBuilder;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
-	public final fun lyrics (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun lyrics (Lio/github/kingg22/vibrion/id3/model/UnsynchronisedLyrics;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final synthetic fun lyrics (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun mediaType (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun payWeb (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun picture (Lio/github/kingg22/vibrion/id3/AttachedPictureBuilder;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
-	public final fun picture (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun picture (Lio/github/kingg22/vibrion/id3/model/AttachedPicture;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final synthetic fun picture (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun privateFrame (Lio/github/kingg22/vibrion/id3/model/PrivateFrame;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun privateFrame (Ljava/lang/String;[B)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun publisherWeb (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun radioWeb (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun releaseDate (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun remixer (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun setAlbum (Ljava/lang/String;)V
 	public final fun setAlbumArtist (Ljava/lang/String;)V
 	public final fun setArtistWeb (Ljava/lang/String;)V
@@ -150,9 +174,14 @@ public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder {
 	public final fun setBpm (Ljava/lang/Integer;)V
 	public final fun setComment (Lio/github/kingg22/vibrion/id3/model/CommentFrame;)V
 	public final fun setCommercialWeb (Ljava/lang/String;)V
+	public final fun setCompilation (Z)V
 	public final fun setComposer (Ljava/util/List;)V
+	public final fun setConductor (Ljava/lang/String;)V
+	public final fun setContentGroup (Ljava/lang/String;)V
 	public final fun setCopyright (Ljava/lang/String;)V
 	public final fun setCopyrightWeb (Ljava/lang/String;)V
+	public final fun setDisc (Ljava/lang/String;)V
+	public final fun setEncoderSoftware (Ljava/lang/String;)V
 	public final fun setFileWeb (Ljava/lang/String;)V
 	public final fun setGenres (Ljava/util/List;)V
 	public final fun setInvolvedPeople (Ljava/util/List;)V
@@ -161,6 +190,7 @@ public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder {
 	public final fun setLabel (Ljava/lang/String;)V
 	public final fun setLanguage (Ljava/lang/String;)V
 	public final fun setLength (Ljava/lang/Integer;)V
+	public final fun setLyricist (Ljava/lang/String;)V
 	public final fun setLyrics (Lio/github/kingg22/vibrion/id3/model/UnsynchronisedLyrics;)V
 	public final fun setMediaType (Ljava/lang/String;)V
 	public final fun setPayWeb (Ljava/lang/String;)V
@@ -168,28 +198,34 @@ public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder {
 	public final fun setPrivateFrame (Lio/github/kingg22/vibrion/id3/model/PrivateFrame;)V
 	public final fun setPublisherWeb (Ljava/lang/String;)V
 	public final fun setRadioWeb (Ljava/lang/String;)V
+	public final fun setReleaseDate (Ljava/lang/String;)V
+	public final fun setRemixer (Ljava/lang/String;)V
 	public final fun setSourceWeb (Ljava/lang/String;)V
 	public final fun setSubtitle (Ljava/lang/String;)V
 	public final fun setSyncLyrics (Lio/github/kingg22/vibrion/id3/model/SynchronizedLyrics;)V
 	public final fun setTitle (Ljava/lang/String;)V
+	public final fun setTrack (Ljava/lang/String;)V
 	public final fun setUserText (Lio/github/kingg22/vibrion/id3/model/UserDefinedText;)V
 	public final fun setYear (Ljava/lang/Integer;)V
 	public final fun sourceWeb (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun subtitle (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun syncLyrics (Lio/github/kingg22/vibrion/id3/SynchronizedLyricsBuilder;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
-	public final fun syncLyrics (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun syncLyrics (Lio/github/kingg22/vibrion/id3/model/SynchronizedLyrics;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final synthetic fun syncLyrics (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun title (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun toByteArray ()[B
 	public final fun toByteArray (I)[B
 	public static synthetic fun toByteArray$default (Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;IILjava/lang/Object;)[B
 	public fun toString ()Ljava/lang/String;
+	public final fun track (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun userText (Lio/github/kingg22/vibrion/id3/model/UserDefinedText;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun userText (Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun year (I)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder$Companion {
 	public final fun id3Writer ()Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
-	public final fun id3Writer (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/vibrion/id3/Id3AudioWriter;
+	public final synthetic fun id3Writer (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/vibrion/id3/Id3AudioWriter;
 }
 
 public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame : io/github/kingg22/vibrion/id3/Id3TagFrame {
@@ -207,7 +243,10 @@ public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame : 
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$APIC : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$AttachedPictureTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$APIC;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$AttachedPictureTagFrame : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame {
@@ -215,7 +254,10 @@ public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$At
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$COMM : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$CommentTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$COMM;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$CommentTagFrame : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame {
@@ -235,7 +277,10 @@ public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$Companion {
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$IPLS : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$PairedTextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$IPLS;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$IntegerTagFrame : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame {
@@ -246,7 +291,10 @@ public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$Li
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$PRIV : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$PrivateTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$PRIV;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$PairedTextTagFrame : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame {
@@ -257,7 +305,10 @@ public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$Pr
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$SYLT : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$SynchronizedLyricsTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$SYLT;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$SynchronizedLyricsTagFrame : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame {
@@ -265,132 +316,210 @@ public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$Sy
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TALB : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TALB;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TBPM : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$IntegerTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TBPM;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TCMP : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TCMP;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TCOM : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$ListStringTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TCOM;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TCON : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$ListStringTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TCON;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TCOP : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TCOP;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TDAT : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TDAT;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TEXT : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TEXT;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TIT1 : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TIT1;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TIT2 : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TIT2;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TIT3 : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TIT3;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TKEY : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TKEY;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TLAN : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TLAN;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TLEN : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$IntegerTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TLEN;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TMED : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TMED;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPE1 : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$ListStringTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPE1;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPE2 : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPE2;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPE3 : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPE3;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPE4 : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPE4;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPOS : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPOS;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPUB : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TPUB;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TRCK : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TRCK;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TSRC : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TSRC;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TSSE : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TSSE;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TXXX : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UserDefinedTextTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TXXX;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TYER : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$IntegerTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TYER;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$TextTagFrame : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame {
@@ -398,12 +527,18 @@ public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$Te
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UNKNOWN : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UNKNOWN;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$USLT : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UnsynchronisedLyricsTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$USLT;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UnsynchronisedLyricsTagFrame : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame {
@@ -417,42 +552,66 @@ public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$Us
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WCOM : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UrlTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WCOM;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WCOP : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UrlTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WCOP;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WOAF : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UrlTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WOAF;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WOAR : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UrlTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WOAR;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WOAS : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UrlTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WOAS;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WORS : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UrlTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WORS;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WPAY : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UrlTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WPAY;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WPUB : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UrlTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WPUB;
+	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/vibrion/id3/SynchronizedLyricsBuilder {

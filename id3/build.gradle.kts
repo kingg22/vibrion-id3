@@ -14,7 +14,7 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "0.2.0"
+version = "0.3.0"
 
 kotlin {
     compilerOptions {
@@ -23,6 +23,11 @@ kotlin {
     }
     abiValidation {
         enabled.set(true)
+        filters {
+            excluded {
+                annotatedWith.add("$group.vibrion.id3.ExperimentalVibrionId3")
+            }
+        }
     }
 
     androidTarget {
