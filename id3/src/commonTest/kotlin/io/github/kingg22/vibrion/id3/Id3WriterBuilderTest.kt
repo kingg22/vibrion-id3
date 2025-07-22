@@ -11,6 +11,7 @@ import io.github.kingg22.vibrion.id3.model.SynchronizedLyricsType
 import io.github.kingg22.vibrion.id3.model.UserDefinedText
 import kotlin.test.Test
 import kotlin.test.assertNotEquals
+import kotlin.test.assertTrue
 
 class Id3WriterBuilderTest {
     @Test
@@ -77,5 +78,82 @@ class Id3WriterBuilderTest {
         }
         writer.padding = 0
         assertNotEquals(0, writer.addTag().size)
+    }
+
+    @Test
+    fun builderShouldSupportAllDeclaredFrames() {
+        val builder = Id3WriterBuilder().apply {
+            // --- Strings ---
+            title("title")
+            album("album")
+            subtitle("subtitle")
+            albumArtist("albumArtist")
+            mediaType("mediaType")
+            label("label")
+            copyright("copyright")
+            isrc("ISRC123")
+            key("C#m")
+            language("eng")
+            lyricist("lyricist")
+            contentGroup("group")
+            conductor("conductor")
+            remixer("remixer")
+            track("1/12")
+            disc("1/2")
+            releaseDate("2107") // 21 July
+            isCompilation(true)
+            encoderSoftware("MyEncoder 1.0")
+
+            // --- Integers ---
+            bpm(128)
+            length(300000)
+            year(2024)
+
+            // --- Lists ---
+            artist("Main", "Feat1", "Feat2")
+            genre("Pop", "Electronic")
+            composer("Composer1", "Composer2")
+
+            // --- Pairs ---
+            involvedPeople("Producer" to "John", "Mixer" to "Anna")
+
+            // --- Lyrics ---
+            lyrics { lyrics = "Some unsynced lyrics" }
+            syncLyrics { line("Line 1", 1000) }
+
+            // --- Picture ---
+            picture {
+                data = byteArrayOf(1, 2, 3)
+                description = "Cover"
+            }
+
+            // --- Comment ---
+            comment("Nice song", "eng", "desc")
+
+            // --- Private ---
+            privateFrame("com.myapp", byteArrayOf(1, 2, 3, 4))
+
+            // --- User-defined text ---
+            userText("MyDesc", "MyValue")
+
+            // --- URLs ---
+            artistWeb("https://artist.com")
+            fileWeb("https://file.com")
+            sourceWeb("https://source.com")
+            radioWeb("https://radio.com")
+            payWeb("https://pay.com")
+            publisherWeb("https://pub.com")
+            commercialWeb("https://buy.com")
+            copyrightWeb("https://rights.com")
+        }
+
+        val generatedTags = builder.valuesForTest.keys.toSet()
+        val expectedTags = Id3v2v3TagFrame.allFrames.toSet()
+
+        val missing = expectedTags - generatedTags
+        val unexpected = generatedTags - expectedTags
+
+        assertTrue(missing.isEmpty(), "Missing frames: $missing")
+        assertTrue(unexpected.isEmpty(), "Unexpected frames: $unexpected")
     }
 }

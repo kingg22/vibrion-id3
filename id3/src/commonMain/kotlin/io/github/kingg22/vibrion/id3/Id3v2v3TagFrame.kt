@@ -23,217 +23,217 @@ sealed interface Id3v2v3TagFrame : Id3TagFrame {
     // -- list --
 
     /** Song artists */
-    object TPE1 : ListStringTagFrame {
+    data object TPE1 : ListStringTagFrame {
         override val name = "TPE1"
     }
 
     /** Song composers */
-    object TCOM : ListStringTagFrame {
+    data object TCOM : ListStringTagFrame {
         override val name = "TCOM"
     }
 
     /** Song genres */
-    object TCON : ListStringTagFrame {
+    data object TCON : ListStringTagFrame {
         override val name = "TCON"
     }
 
     // -- list of pairs --
 
     /** Involved people */
-    object IPLS : PairedTextTagFrame {
+    data object IPLS : PairedTextTagFrame {
         override val name = "IPLS"
     }
 
     // -- string --
 
     /** Software/Hardware and settings used for encoding */
-    object TSSE : TextTagFrame {
+    data object TSSE : TextTagFrame {
         override val name = "TSSE"
     }
 
     /** Language */
-    object TLAN : TextTagFrame {
+    data object TLAN : TextTagFrame {
         override val name = "TLAN"
     }
 
     /** Content group description */
-    object TIT1 : TextTagFrame {
+    data object TIT1 : TextTagFrame {
         override val name = "TIT1"
     }
 
     /** Song title */
-    object TIT2 : TextTagFrame {
+    data object TIT2 : TextTagFrame {
         override val name = "TIT2"
     }
 
     /** Song subtitle */
-    object TIT3 : TextTagFrame {
+    data object TIT3 : TextTagFrame {
         override val name = "TIT3"
     }
 
     /** Album title */
-    object TALB : TextTagFrame {
+    data object TALB : TextTagFrame {
         override val name = "TALB"
     }
 
     /** Album artist */
-    object TPE2 : TextTagFrame {
+    data object TPE2 : TextTagFrame {
         override val name = "TPE2"
     }
 
     /** Conductor/performer refinement */
-    object TPE3 : TextTagFrame {
+    data object TPE3 : TextTagFrame {
         override val name = "TPE3"
     }
 
     /** Interpreted, remixed, or otherwise modified by */
-    object TPE4 : TextTagFrame {
+    data object TPE4 : TextTagFrame {
         override val name = "TPE4"
     }
 
     /** Song number in album: 5 or 5/10 */
-    object TRCK : TextTagFrame {
+    data object TRCK : TextTagFrame {
         override val name = "TRCK"
     }
 
     /** Album disc number: 1 or 1/3 */
-    object TPOS : TextTagFrame {
+    data object TPOS : TextTagFrame {
         override val name = "TPOS"
     }
 
     /** Media type */
-    object TMED : TextTagFrame {
+    data object TMED : TextTagFrame {
         override val name = "TMED"
     }
 
     /** Label name */
-    object TPUB : TextTagFrame {
+    data object TPUB : TextTagFrame {
         override val name = "TPUB"
     }
 
     /** Copyright */
-    object TCOP : TextTagFrame {
+    data object TCOP : TextTagFrame {
         override val name = "TCOP"
     }
 
     /** Musical key in which the sound starts */
-    object TKEY : TextTagFrame {
+    data object TKEY : TextTagFrame {
         override val name = "TKEY"
     }
 
     /** Lyricist / text writer */
-    object TEXT : TextTagFrame {
+    data object TEXT : TextTagFrame {
         override val name = "TEXT"
     }
 
     /** Album release date expressed as DDMM */
-    object TDAT : TextTagFrame {
+    data object TDAT : TextTagFrame {
         override val name = "TDAT"
     }
 
     /** Compilation flag ("1" stored as a string) */
-    object TCMP : TextTagFrame {
+    data object TCMP : TextTagFrame {
         override val name = "TCMP"
     }
 
     /** ISRC */
-    object TSRC : TextTagFrame {
+    data object TSRC : TextTagFrame {
         override val name = "TSRC"
     }
 
     // -- urls --
 
     /** Commercial information */
-    object WCOM : UrlTagFrame {
+    data object WCOM : UrlTagFrame {
         override val name = "WCOM"
     }
 
     /** Copyright/Legal information */
-    object WCOP : UrlTagFrame {
+    data object WCOP : UrlTagFrame {
         override val name = "WCOP"
     }
 
     /** Official audio file webpage */
-    object WOAF : UrlTagFrame {
+    data object WOAF : UrlTagFrame {
         override val name = "WOAF"
     }
 
     /** Official artist/performer webpage */
-    object WOAR : UrlTagFrame {
+    data object WOAR : UrlTagFrame {
         override val name = "WOAR"
     }
 
     /** Official audio source webpage */
-    object WOAS : UrlTagFrame {
+    data object WOAS : UrlTagFrame {
         override val name = "WOAS"
     }
 
     /** Official internet radio station homepage */
-    object WORS : UrlTagFrame {
+    data object WORS : UrlTagFrame {
         override val name = "WORS"
     }
 
     /** Payment */
-    object WPAY : UrlTagFrame {
+    data object WPAY : UrlTagFrame {
         override val name = "WPAY"
     }
 
     /** Publishers official webpage */
-    object WPUB : UrlTagFrame {
+    data object WPUB : UrlTagFrame {
         override val name = "WPUB"
     }
 
     // -- integers --
 
     /** Beats per minute BPM */
-    object TBPM : IntegerTagFrame {
+    data object TBPM : IntegerTagFrame {
         override val name = "TBPM"
     }
 
     /** Song duration */
-    object TLEN : IntegerTagFrame {
+    data object TLEN : IntegerTagFrame {
         override val name = "TLEN"
     }
 
     /** Album release year */
-    object TYER : IntegerTagFrame {
+    data object TYER : IntegerTagFrame {
         override val name = "TYER"
     }
 
     // -- objects --
 
     /** Unsynchronised lyrics */
-    object USLT : UnsynchronisedLyricsTagFrame {
+    data object USLT : UnsynchronisedLyricsTagFrame {
         override val name = "USLT"
     }
 
     /** Synchronised lyrics */
-    object SYLT : SynchronizedLyricsTagFrame {
+    data object SYLT : SynchronizedLyricsTagFrame {
         override val name = "SYLT"
     }
 
     /** Song cover */
-    object APIC : AttachedPictureTagFrame {
+    data object APIC : AttachedPictureTagFrame {
         override val name = "APIC"
     }
 
     /** User defined text information */
-    object TXXX : UserDefinedTextTagFrame {
+    data object TXXX : UserDefinedTextTagFrame {
         override val name = "TXXX"
     }
 
     /** Comments */
-    object COMM : CommentTagFrame {
+    data object COMM : CommentTagFrame {
         override val name = "COMM"
     }
 
     /** PrivateFrameEncoder frame */
-    object PRIV : PrivateTagFrame {
+    data object PRIV : PrivateTagFrame {
         override val name = "PRIV"
     }
 
     /** All other frames are unsupported */
-    object UNKNOWN : Id3v2v3TagFrame {
+    data object UNKNOWN : Id3v2v3TagFrame {
         override val name = "UNKNOWN"
     }
 

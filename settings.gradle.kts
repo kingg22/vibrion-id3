@@ -35,3 +35,4 @@ dependencyResolutionManagement {
 }
 
 include(":id3")
+include("id3-java-test")

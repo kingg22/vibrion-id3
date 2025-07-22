@@ -2,10 +2,11 @@
 
 ![Kotlin Multiplatform](https://img.shields.io/badge/Kotlin_Multiplatform-%237F52FF.svg?style=flat-square&logo=kotlin&logoColor=white)
 
-![GitHub License](https://img.shields.io/github/license/kingg22/vibrion-id3)
 ![Maven Central Version](https://img.shields.io/maven-central/v/io.github.kingg22/vibrion-id3)
 ![Maven Central Last Update](https://img.shields.io/maven-central/last-update/io.github.kingg22/vibrion-id3)
-![Gitea Last Commit (branch)](https://img.shields.io/gitea/last-commit/kingg22/vibrion-id3/main)
+
+![GitHub License](https://img.shields.io/github/license/kingg22/vibrion-id3)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/kingg22/vibrion-id3/main)
 
 A Kotlin Multiplatform library for write ID3 (v2.3) tag to MP3 files. Java Compatible. Currently, reading ID3 tags is not supported.
 
