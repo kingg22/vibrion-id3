@@ -1,4 +1,4 @@
-rootProject.name = "vibrion"
+rootProject.name = "vibrion-id3"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -35,5 +35,3 @@ dependencyResolutionManagement {
 }
 
 include(":id3")
-// Rename projects
-project(":id3").name = "vibrion-id3"
