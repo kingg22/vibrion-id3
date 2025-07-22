@@ -19,7 +19,8 @@ class StringsFramesTest {
         val twoByteEncodedFrames = listOf(
             "TLAN", "TIT1", "TIT2", "TIT3", "TALB",
             "TPE2", "TPE3", "TPE4", "TRCK", "TPOS",
-            "TPUB", "TKEY", "TMED", "TSRC", "TCOP", "TEXT",
+            "TPUB", "TKEY", "TMED", "TSRC", "TCOP",
+            "TEXT", "TSSE",
         )
 
         @JvmStatic
@@ -280,6 +281,14 @@ class StringsFramesTest {
                 0, 116, 0, 47, 0, 84, 0, 101, 0, 120, 0, 116,
                 0, 32, 0, 119, 0, 114, 0, 105, 0, 116, 0, 101,
                 0, 114, 0,
+            ),
+            byteArrayOf(
+                73, 68, 51, 3, 0, 0, 0, 0, 0, 53, 84, 83,
+                83, 69, 0, 0, 0, 43, 0, 0, 1, (-1).toByte(), (-2).toByte(),
+                76, 0, 121, 0, 114, 0, 105, 0, 99, 0, 105,
+                0, 115, 0, 116, 0, 47, 0, 84, 0, 101, 0,
+                120, 0, 116, 0, 32, 0, 119, 0, 114, 0, 105,
+                0, 116, 0, 101, 0, 114, 0,
             ),
         )
         assertEquals(

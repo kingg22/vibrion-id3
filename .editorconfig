@@ -39,3 +39,6 @@ ij_properties_keep_blank_lines = true
 
 [*.{yml,yaml}]
 indent_size = 2
+
+[*.md]
+indent_size = 2
