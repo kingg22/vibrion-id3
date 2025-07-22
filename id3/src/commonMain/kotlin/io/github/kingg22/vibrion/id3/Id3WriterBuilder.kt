@@ -5,6 +5,7 @@ import io.github.kingg22.vibrion.id3.internal.KoverIgnore
 import io.github.kingg22.vibrion.id3.model.*
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmSynthetic
 
 /**
  * Builder for [Id3AudioWriter], aka _a verbose builder for tag frame_.
@@ -53,6 +54,9 @@ import kotlin.jvm.JvmStatic
 @Id3Dsl
 class Id3WriterBuilder {
     private val values = mutableListOf<Pair<Id3v2v3TagFrame, FrameValue>>()
+
+    internal val valuesForTest
+        get() = values.toMap()
 
     // --- Strings ---
     var title: String? = null
@@ -113,6 +117,60 @@ class Id3WriterBuilder {
         set(value) {
             field = value
             value?.let { values += TLAN to TextFrame(it) }
+        }
+
+    var contentGroup: String? = null
+        set(value) {
+            field = value
+            value?.let { values += TIT1 to TextFrame(it) }
+        }
+
+    var conductor: String? = null
+        set(value) {
+            field = value
+            value?.let { values += TPE3 to TextFrame(it) }
+        }
+
+    var remixer: String? = null
+        set(value) {
+            field = value
+            value?.let { values += TPE4 to TextFrame(it) }
+        }
+
+    var track: String? = null
+        set(value) {
+            field = value
+            value?.let { values += TRCK to TextFrame(it) }
+        }
+
+    var disc: String? = null
+        set(value) {
+            field = value
+            value?.let { values += TPOS to TextFrame(it) }
+        }
+
+    var lyricist: String? = null
+        set(value) {
+            field = value
+            value?.let { values += TEXT to TextFrame(it) }
+        }
+
+    var releaseDate: String? = null
+        set(value) {
+            field = value
+            value?.let { values += TDAT to TextFrame(it) }
+        }
+
+    var isCompilation: Boolean = false
+        set(value) {
+            field = value
+            if (value) values += TCMP to TextFrame("1")
+        }
+
+    var encoderSoftware: String? = null
+        set(value) {
+            field = value
+            value?.let { values += TSSE to TextFrame(it) }
         }
 
     // --- Integers ---
@@ -259,6 +317,19 @@ class Id3WriterBuilder {
     fun isrc(isrc: String) = apply { values += TSRC to TextFrame(isrc) }
     fun key(key: String) = apply { values += TKEY to TextFrame(key) }
     fun language(language: String) = apply { values += TLAN to TextFrame(language) }
+    fun contentGroup(group: String) = apply { values += TIT1 to TextFrame(group) }
+    fun conductor(name: String) = apply { values += TPE3 to TextFrame(name) }
+    fun remixer(name: String) = apply { values += TPE4 to TextFrame(name) }
+    fun track(number: String) = apply { values += TRCK to TextFrame(number) }
+    fun disc(number: String) = apply { values += TPOS to TextFrame(number) }
+    fun lyricist(name: String) = apply { values += TEXT to TextFrame(name) }
+    fun releaseDate(date: String) = apply { values += TDAT to TextFrame(date) }
+
+    fun isCompilation(flag: Boolean = true) = apply {
+        if (flag) values += TCMP to TextFrame("1")
+    }
+
+    fun encoderSoftware(name: String) = apply { values += TSSE to TextFrame(name) }
 
     // --- Integers ---
     fun bpm(bpm: Int) = apply { values += TBPM to IntegerFrame(bpm) }
@@ -271,6 +342,7 @@ class Id3WriterBuilder {
     }
 
     fun genre(genre: String, vararg genres: String) = apply { values += TCON to StringListFrame(genre, *genres) }
+
     fun composer(composer: String, vararg composers: String) = apply {
         values += TCOM to StringListFrame(composer, *composers)
     }
@@ -284,6 +356,7 @@ class Id3WriterBuilder {
     // --- Lyrics ---
 
     /** Need [UnsynchronisedLyricsBuilder.lyrics] */
+    @JvmSynthetic
     fun lyrics(block: UnsynchronisedLyricsBuilder.() -> Unit) = apply {
         val builder = UnsynchronisedLyricsBuilder().apply(block)
         values += USLT to builder.build()
@@ -292,6 +365,9 @@ class Id3WriterBuilder {
     /** Need [UnsynchronisedLyricsBuilder.lyrics] */
     fun lyrics(builder: UnsynchronisedLyricsBuilder) = apply { values += USLT to builder.build() }
 
+    fun lyrics(unsynchronisedLyrics: UnsynchronisedLyrics) = apply { values += USLT to unsynchronisedLyrics }
+
+    @JvmSynthetic
     fun syncLyrics(block: SynchronizedLyricsBuilder.() -> Unit) = apply {
         val builder = SynchronizedLyricsBuilder().apply(block)
         values += SYLT to builder.build()
@@ -299,7 +375,10 @@ class Id3WriterBuilder {
 
     fun syncLyrics(builder: SynchronizedLyricsBuilder) = apply { values += SYLT to builder.build() }
 
+    fun syncLyrics(synchronizedLyrics: SynchronizedLyrics) = apply { values += SYLT to synchronizedLyrics }
+
     // --- Picture ---
+    @JvmSynthetic
     fun picture(block: AttachedPictureBuilder.() -> Unit) = apply {
         val builder = AttachedPictureBuilder().apply(block)
         values += APIC to builder.build()
@@ -307,21 +386,29 @@ class Id3WriterBuilder {
 
     fun picture(builder: AttachedPictureBuilder) = apply { values += APIC to builder.build() }
 
+    fun picture(attachedPicture: AttachedPicture) = apply { values += APIC to attachedPicture }
+
     // --- Comment ---
     @JvmOverloads
     fun comment(text: String, lang: String = "eng", description: String = "") = apply {
         values += COMM to CommentFrame(language = lang, description = description, text = text)
     }
 
+    fun comment(comment: CommentFrame) = apply { values += COMM to comment }
+
     // --- Private ---
     fun privateFrame(id: String, data: ByteArray) = apply {
         values += PRIV to PrivateFrame(id, data)
     }
 
+    fun privateFrame(privateFrame: PrivateFrame) = apply { values += PRIV to privateFrame }
+
     // --- User defined ---
     fun userText(description: String, value: String) = apply {
         values += TXXX to UserDefinedText(description, value)
     }
+
+    fun userText(user: UserDefinedText) = apply { values += TXXX to user }
 
     // --- Web URLs ---
     fun artistWeb(url: String) = apply { values += WOAR to TextFrame(url) }
@@ -360,7 +447,7 @@ class Id3WriterBuilder {
         fun id3Writer() = Id3WriterBuilder()
 
         /** Create a new [Id3AudioWriter] using a DSL of [Id3WriterBuilder]. */
-        @JvmStatic
+        @JvmSynthetic
         fun id3Writer(block: Id3WriterBuilder.() -> Unit) = Id3WriterBuilder().apply(block).build()
     }
 
@@ -376,7 +463,6 @@ class Id3WriterBuilder {
         this.values.addAll(this@Id3WriterBuilder.values)
     }
 
-    @Suppress("kotlin:S3776")
     @KoverIgnore
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -384,76 +470,9 @@ class Id3WriterBuilder {
 
         other as Id3WriterBuilder
 
-        if (bpm != other.bpm) return false
-        if (length != other.length) return false
-        if (year != other.year) return false
-        if (values != other.values) return false
-        if (title != other.title) return false
-        if (album != other.album) return false
-        if (subtitle != other.subtitle) return false
-        if (albumArtist != other.albumArtist) return false
-        if (mediaType != other.mediaType) return false
-        if (label != other.label) return false
-        if (copyright != other.copyright) return false
-        if (isrc != other.isrc) return false
-        if (key != other.key) return false
-        if (language != other.language) return false
-        if (artists != other.artists) return false
-        if (genres != other.genres) return false
-        if (composer != other.composer) return false
-        if (involvedPeople != other.involvedPeople) return false
-        if (lyrics != other.lyrics) return false
-        if (syncLyrics != other.syncLyrics) return false
-        if (picture != other.picture) return false
-        if (comment != other.comment) return false
-        if (privateFrame != other.privateFrame) return false
-        if (userText != other.userText) return false
-        if (artistWeb != other.artistWeb) return false
-        if (fileWeb != other.fileWeb) return false
-        if (sourceWeb != other.sourceWeb) return false
-        if (radioWeb != other.radioWeb) return false
-        if (payWeb != other.payWeb) return false
-        if (publisherWeb != other.publisherWeb) return false
-        if (commercialWeb != other.commercialWeb) return false
-        if (copyrightWeb != other.copyrightWeb) return false
-
-        return true
+        return other.values == this.values
     }
 
     @KoverIgnore
-    override fun hashCode(): Int {
-        var result = bpm ?: 0
-        result = 31 * result + (length ?: 0)
-        result = 31 * result + (year ?: 0)
-        result = 31 * result + values.hashCode()
-        result = 31 * result + (title?.hashCode() ?: 0)
-        result = 31 * result + (album?.hashCode() ?: 0)
-        result = 31 * result + (subtitle?.hashCode() ?: 0)
-        result = 31 * result + (albumArtist?.hashCode() ?: 0)
-        result = 31 * result + (mediaType?.hashCode() ?: 0)
-        result = 31 * result + (label?.hashCode() ?: 0)
-        result = 31 * result + (copyright?.hashCode() ?: 0)
-        result = 31 * result + (isrc?.hashCode() ?: 0)
-        result = 31 * result + (key?.hashCode() ?: 0)
-        result = 31 * result + (language?.hashCode() ?: 0)
-        result = 31 * result + (artists?.hashCode() ?: 0)
-        result = 31 * result + (genres?.hashCode() ?: 0)
-        result = 31 * result + (composer?.hashCode() ?: 0)
-        result = 31 * result + (involvedPeople?.hashCode() ?: 0)
-        result = 31 * result + (lyrics?.hashCode() ?: 0)
-        result = 31 * result + (syncLyrics?.hashCode() ?: 0)
-        result = 31 * result + (picture?.hashCode() ?: 0)
-        result = 31 * result + (comment?.hashCode() ?: 0)
-        result = 31 * result + (privateFrame?.hashCode() ?: 0)
-        result = 31 * result + (userText?.hashCode() ?: 0)
-        result = 31 * result + (artistWeb?.hashCode() ?: 0)
-        result = 31 * result + (fileWeb?.hashCode() ?: 0)
-        result = 31 * result + (sourceWeb?.hashCode() ?: 0)
-        result = 31 * result + (radioWeb?.hashCode() ?: 0)
-        result = 31 * result + (payWeb?.hashCode() ?: 0)
-        result = 31 * result + (publisherWeb?.hashCode() ?: 0)
-        result = 31 * result + (commercialWeb?.hashCode() ?: 0)
-        result = 31 * result + (copyrightWeb?.hashCode() ?: 0)
-        return result
-    }
+    override fun hashCode(): Int = values.hashCode()
 }
