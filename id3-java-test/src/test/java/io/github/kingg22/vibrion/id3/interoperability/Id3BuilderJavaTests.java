@@ -1,4 +1,4 @@
-package io.github.kingg22.vibrion.id3;
+package io.github.kingg22.vibrion.id3.interoperability;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -6,12 +6,18 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Map;
 
+import io.github.kingg22.vibrion.id3.AttachedPictureBuilder;
+import io.github.kingg22.vibrion.id3.Id3WriterBuilder;
+import io.github.kingg22.vibrion.id3.Id3v2v3TagFrame;
+import io.github.kingg22.vibrion.id3.Id3AudioWriter;
+import io.github.kingg22.vibrion.id3.SynchronizedLyricsBuilder;
+import io.github.kingg22.vibrion.id3.UnsynchronisedLyricsBuilder;
 import io.github.kingg22.vibrion.id3.model.AttachedPictureType;
 
-class Id3BuilderJavaTest {
+class Id3BuilderJavaTests {
     @Test
     void testId3Writer() {
-        final var writer = new Id3AudioWriter();
+        final Id3AudioWriter writer = new Id3AudioWriter();
         writer.setPadding(0);
         writer.set(Id3v2v3TagFrame.TIT2.INSTANCE, "Título");
         writer.set(Id3v2v3TagFrame.TPE1.INSTANCE, List.of("Eminem", "50 Cent"));
@@ -21,7 +27,7 @@ class Id3BuilderJavaTest {
 
     @Test
     void testBuilderStyle() {
-        final var writer = Id3WriterBuilder.id3Writer()
+        final Id3AudioWriter writer = Id3WriterBuilder.id3Writer()
             .title("Título")
             .artist("Artista")
             .picture(new AttachedPictureBuilder().type(AttachedPictureType.CoverFront).data(new byte[]{
