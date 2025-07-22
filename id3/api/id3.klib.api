@@ -1,0 +1,775 @@
+// Klib ABI Dump
+// Targets: [androidNativeArm32, androidNativeArm64, androidNativeX64, androidNativeX86, linuxArm64, linuxX64, mingwX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.kingg22:id3>
+open annotation class io.github.kingg22.vibrion.id3/Id3Dsl : kotlin/Annotation { // io.github.kingg22.vibrion.id3/Id3Dsl|null[0]
+    constructor <init>() // io.github.kingg22.vibrion.id3/Id3Dsl.<init>|<init>(){}[0]
+}
+
+final enum class io.github.kingg22.vibrion.id3.model/AttachedPictureType : kotlin/Enum<io.github.kingg22.vibrion.id3.model/AttachedPictureType> { // io.github.kingg22.vibrion.id3.model/AttachedPictureType|null[0]
+    enum entry Artist // io.github.kingg22.vibrion.id3.model/AttachedPictureType.Artist|null[0]
+    enum entry Band // io.github.kingg22.vibrion.id3.model/AttachedPictureType.Band|null[0]
+    enum entry BandLogotype // io.github.kingg22.vibrion.id3.model/AttachedPictureType.BandLogotype|null[0]
+    enum entry BrightColouredFish // io.github.kingg22.vibrion.id3.model/AttachedPictureType.BrightColouredFish|null[0]
+    enum entry Composer // io.github.kingg22.vibrion.id3.model/AttachedPictureType.Composer|null[0]
+    enum entry Conductor // io.github.kingg22.vibrion.id3.model/AttachedPictureType.Conductor|null[0]
+    enum entry CoverBack // io.github.kingg22.vibrion.id3.model/AttachedPictureType.CoverBack|null[0]
+    enum entry CoverFront // io.github.kingg22.vibrion.id3.model/AttachedPictureType.CoverFront|null[0]
+    enum entry DuringPerformance // io.github.kingg22.vibrion.id3.model/AttachedPictureType.DuringPerformance|null[0]
+    enum entry DuringRecording // io.github.kingg22.vibrion.id3.model/AttachedPictureType.DuringRecording|null[0]
+    enum entry Icon // io.github.kingg22.vibrion.id3.model/AttachedPictureType.Icon|null[0]
+    enum entry Illustration // io.github.kingg22.vibrion.id3.model/AttachedPictureType.Illustration|null[0]
+    enum entry LeadArtist // io.github.kingg22.vibrion.id3.model/AttachedPictureType.LeadArtist|null[0]
+    enum entry Leaflet // io.github.kingg22.vibrion.id3.model/AttachedPictureType.Leaflet|null[0]
+    enum entry Lyricist // io.github.kingg22.vibrion.id3.model/AttachedPictureType.Lyricist|null[0]
+    enum entry Media // io.github.kingg22.vibrion.id3.model/AttachedPictureType.Media|null[0]
+    enum entry MovieScreenCapture // io.github.kingg22.vibrion.id3.model/AttachedPictureType.MovieScreenCapture|null[0]
+    enum entry Other // io.github.kingg22.vibrion.id3.model/AttachedPictureType.Other|null[0]
+    enum entry OtherIcon // io.github.kingg22.vibrion.id3.model/AttachedPictureType.OtherIcon|null[0]
+    enum entry PublisherLogotype // io.github.kingg22.vibrion.id3.model/AttachedPictureType.PublisherLogotype|null[0]
+    enum entry RecordingLocation // io.github.kingg22.vibrion.id3.model/AttachedPictureType.RecordingLocation|null[0]
+
+    final val entries // io.github.kingg22.vibrion.id3.model/AttachedPictureType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<io.github.kingg22.vibrion.id3.model/AttachedPictureType> // io.github.kingg22.vibrion.id3.model/AttachedPictureType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val value // io.github.kingg22.vibrion.id3.model/AttachedPictureType.value|{}value[0]
+        final fun <get-value>(): kotlin/Int // io.github.kingg22.vibrion.id3.model/AttachedPictureType.value.<get-value>|<get-value>(){}[0]
+
+    final fun valueOf(kotlin/String): io.github.kingg22.vibrion.id3.model/AttachedPictureType // io.github.kingg22.vibrion.id3.model/AttachedPictureType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<io.github.kingg22.vibrion.id3.model/AttachedPictureType> // io.github.kingg22.vibrion.id3.model/AttachedPictureType.values|values#static(){}[0]
+}
+
+final enum class io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat : kotlin/Enum<io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat> { // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat|null[0]
+    enum entry Frames // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat.Frames|null[0]
+    enum entry Milliseconds // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat.Milliseconds|null[0]
+
+    final val entries // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat> // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val value // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat.value|{}value[0]
+        final fun <get-value>(): kotlin/Int // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat.value.<get-value>|<get-value>(){}[0]
+
+    final fun valueOf(kotlin/String): io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat> // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat.values|values#static(){}[0]
+}
+
+final enum class io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType : kotlin/Enum<io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType> { // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType|null[0]
+    enum entry Chord // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.Chord|null[0]
+    enum entry Events // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.Events|null[0]
+    enum entry Lyrics // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.Lyrics|null[0]
+    enum entry MovementPartName // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.MovementPartName|null[0]
+    enum entry Other // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.Other|null[0]
+    enum entry TextTranscription // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.TextTranscription|null[0]
+    enum entry Trivia // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.Trivia|null[0]
+
+    final val entries // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType> // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val value // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.value|{}value[0]
+        final fun <get-value>(): kotlin/Int // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.value.<get-value>|<get-value>(){}[0]
+
+    final fun valueOf(kotlin/String): io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType> // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.values|values#static(){}[0]
+}
+
+sealed interface io.github.kingg22.vibrion.id3/Id3TagFrame { // io.github.kingg22.vibrion.id3/Id3TagFrame|null[0]
+    abstract val name // io.github.kingg22.vibrion.id3/Id3TagFrame.name|{}name[0]
+        abstract fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3TagFrame.name.<get-name>|<get-name>(){}[0]
+}
+
+sealed interface io.github.kingg22.vibrion.id3/Id3v2v3TagFrame : io.github.kingg22.vibrion.id3/Id3TagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame|null[0]
+    sealed interface AttachedPictureTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.AttachedPictureTagFrame|null[0]
+
+    sealed interface CommentTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.CommentTagFrame|null[0]
+
+    sealed interface IntegerTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.IntegerTagFrame|null[0]
+
+    sealed interface ListStringTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.ListStringTagFrame|null[0]
+
+    sealed interface PairedTextTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PairedTextTagFrame|null[0]
+
+    sealed interface PrivateTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PrivateTagFrame|null[0]
+
+    sealed interface SynchronizedLyricsTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.SynchronizedLyricsTagFrame|null[0]
+
+    sealed interface TextTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame|null[0]
+
+    sealed interface UnsynchronisedLyricsTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UnsynchronisedLyricsTagFrame|null[0]
+
+    sealed interface UrlTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UrlTagFrame|null[0]
+
+    sealed interface UserDefinedTextTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedTextTagFrame|null[0]
+
+    final object APIC : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.AttachedPictureTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.APIC|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.APIC.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.APIC.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object COMM : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.CommentTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.COMM|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.COMM.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.COMM.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object Companion { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion|null[0]
+        final val allFrames // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.allFrames|{}allFrames[0]
+            final fun <get-allFrames>(): kotlin.collections/List<io.github.kingg22.vibrion.id3/Id3v2v3TagFrame> // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.allFrames.<get-allFrames>|<get-allFrames>(){}[0]
+        final val integerFrames // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.integerFrames|{}integerFrames[0]
+            final fun <get-integerFrames>(): kotlin.collections/List<io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.IntegerTagFrame> // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.integerFrames.<get-integerFrames>|<get-integerFrames>(){}[0]
+        final val listFrames // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.listFrames|{}listFrames[0]
+            final fun <get-listFrames>(): kotlin.collections/List<io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.ListStringTagFrame> // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.listFrames.<get-listFrames>|<get-listFrames>(){}[0]
+        final val listPairFrames // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.listPairFrames|{}listPairFrames[0]
+            final fun <get-listPairFrames>(): kotlin.collections/List<io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.IPLS> // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.listPairFrames.<get-listPairFrames>|<get-listPairFrames>(){}[0]
+        final val objectFrames // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.objectFrames|{}objectFrames[0]
+            final fun <get-objectFrames>(): kotlin.collections/List<io.github.kingg22.vibrion.id3/Id3v2v3TagFrame> // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.objectFrames.<get-objectFrames>|<get-objectFrames>(){}[0]
+        final val stringAndUrlFrames // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.stringAndUrlFrames|{}stringAndUrlFrames[0]
+            final fun <get-stringAndUrlFrames>(): kotlin.collections/List<io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame> // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.stringAndUrlFrames.<get-stringAndUrlFrames>|<get-stringAndUrlFrames>(){}[0]
+        final val stringFrames // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.stringFrames|{}stringFrames[0]
+            final fun <get-stringFrames>(): kotlin.collections/List<io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame> // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.stringFrames.<get-stringFrames>|<get-stringFrames>(){}[0]
+        final val urlFrames // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.urlFrames|{}urlFrames[0]
+            final fun <get-urlFrames>(): kotlin.collections/List<io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UrlTagFrame> // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.urlFrames.<get-urlFrames>|<get-urlFrames>(){}[0]
+
+        final fun fromCode(kotlin/String): io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.Companion.fromCode|fromCode(kotlin.String){}[0]
+    }
+
+    final object IPLS : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PairedTextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.IPLS|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.IPLS.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.IPLS.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object PRIV : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PrivateTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PRIV|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PRIV.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PRIV.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object SYLT : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.SynchronizedLyricsTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.SYLT|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.SYLT.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.SYLT.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TALB : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TALB|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TALB.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TALB.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TBPM : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.IntegerTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TBPM|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TBPM.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TBPM.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TCMP : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCMP|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCMP.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCMP.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TCOM : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.ListStringTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCOM|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCOM.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCOM.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TCON : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.ListStringTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCON|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCON.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCON.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TCOP : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCOP|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCOP.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TCOP.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TDAT : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TDAT|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TDAT.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TDAT.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TEXT : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TEXT|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TEXT.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TEXT.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TIT1 : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TIT1|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TIT1.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TIT1.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TIT2 : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TIT2|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TIT2.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TIT2.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TIT3 : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TIT3|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TIT3.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TIT3.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TKEY : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TKEY|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TKEY.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TKEY.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TLAN : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TLAN|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TLAN.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TLAN.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TLEN : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.IntegerTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TLEN|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TLEN.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TLEN.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TMED : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TMED|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TMED.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TMED.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TPE1 : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.ListStringTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE1|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE1.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE1.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TPE2 : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE2|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE2.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE2.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TPE3 : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE3|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE3.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE3.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TPE4 : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE4|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE4.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPE4.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TPOS : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPOS|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPOS.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPOS.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TPUB : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPUB|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPUB.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TPUB.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TRCK : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TRCK|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TRCK.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TRCK.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TSRC : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TSRC|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TSRC.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TSRC.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TSSE : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TSSE|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TSSE.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TSSE.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TXXX : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedTextTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TXXX|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TXXX.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TXXX.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object TYER : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.IntegerTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TYER|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TYER.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TYER.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object UNKNOWN : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UNKNOWN|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UNKNOWN.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UNKNOWN.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object USLT : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UnsynchronisedLyricsTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.USLT|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.USLT.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.USLT.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object WCOM : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UrlTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WCOM|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WCOM.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WCOM.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object WCOP : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UrlTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WCOP|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WCOP.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WCOP.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object WOAF : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UrlTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WOAF|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WOAF.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WOAF.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object WOAR : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UrlTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WOAR|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WOAR.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WOAR.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object WOAS : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UrlTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WOAS|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WOAS.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WOAS.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object WORS : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UrlTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WORS|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WORS.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WORS.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object WPAY : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UrlTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WPAY|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WPAY.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WPAY.name.<get-name>|<get-name>(){}[0]
+    }
+
+    final object WPUB : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UrlTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WPUB|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WPUB.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WPUB.name.<get-name>|<get-name>(){}[0]
+    }
+}
+
+final class io.github.kingg22.vibrion.id3.model/AttachedPicture : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/AttachedPicture|null[0]
+    constructor <init>(io.github.kingg22.vibrion.id3.model/AttachedPictureType, kotlin/ByteArray, kotlin/String = ..., kotlin/Boolean = ...) // io.github.kingg22.vibrion.id3.model/AttachedPicture.<init>|<init>(io.github.kingg22.vibrion.id3.model.AttachedPictureType;kotlin.ByteArray;kotlin.String;kotlin.Boolean){}[0]
+    constructor <init>(kotlin/Int, kotlin/ByteArray, kotlin/String = ..., kotlin/Boolean = ...) // io.github.kingg22.vibrion.id3.model/AttachedPicture.<init>|<init>(kotlin.Int;kotlin.ByteArray;kotlin.String;kotlin.Boolean){}[0]
+
+    final val data // io.github.kingg22.vibrion.id3.model/AttachedPicture.data|{}data[0]
+        final fun <get-data>(): kotlin/ByteArray // io.github.kingg22.vibrion.id3.model/AttachedPicture.data.<get-data>|<get-data>(){}[0]
+    final val description // io.github.kingg22.vibrion.id3.model/AttachedPicture.description|{}description[0]
+        final fun <get-description>(): kotlin/String // io.github.kingg22.vibrion.id3.model/AttachedPicture.description.<get-description>|<get-description>(){}[0]
+    final val type // io.github.kingg22.vibrion.id3.model/AttachedPicture.type|{}type[0]
+        final fun <get-type>(): kotlin/Int // io.github.kingg22.vibrion.id3.model/AttachedPicture.type.<get-type>|<get-type>(){}[0]
+    final val useUnicodeEncoding // io.github.kingg22.vibrion.id3.model/AttachedPicture.useUnicodeEncoding|{}useUnicodeEncoding[0]
+        final fun <get-useUnicodeEncoding>(): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/AttachedPicture.useUnicodeEncoding.<get-useUnicodeEncoding>|<get-useUnicodeEncoding>(){}[0]
+
+    final fun component1(): kotlin/Int // io.github.kingg22.vibrion.id3.model/AttachedPicture.component1|component1(){}[0]
+    final fun component2(): kotlin/ByteArray // io.github.kingg22.vibrion.id3.model/AttachedPicture.component2|component2(){}[0]
+    final fun component3(): kotlin/String // io.github.kingg22.vibrion.id3.model/AttachedPicture.component3|component3(){}[0]
+    final fun component4(): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/AttachedPicture.component4|component4(){}[0]
+    final fun copy(kotlin/Int = ..., kotlin/ByteArray = ..., kotlin/String = ..., kotlin/Boolean = ...): io.github.kingg22.vibrion.id3.model/AttachedPicture // io.github.kingg22.vibrion.id3.model/AttachedPicture.copy|copy(kotlin.Int;kotlin.ByteArray;kotlin.String;kotlin.Boolean){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/AttachedPicture.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/AttachedPicture.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/AttachedPicture.toString|toString(){}[0]
+}
+
+final class io.github.kingg22.vibrion.id3.model/CommentFrame : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/CommentFrame|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/String = ...) // io.github.kingg22.vibrion.id3.model/CommentFrame.<init>|<init>(kotlin.String;kotlin.String;kotlin.String){}[0]
+
+    final val description // io.github.kingg22.vibrion.id3.model/CommentFrame.description|{}description[0]
+        final fun <get-description>(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.description.<get-description>|<get-description>(){}[0]
+    final val language // io.github.kingg22.vibrion.id3.model/CommentFrame.language|{}language[0]
+        final fun <get-language>(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.language.<get-language>|<get-language>(){}[0]
+    final val text // io.github.kingg22.vibrion.id3.model/CommentFrame.text|{}text[0]
+        final fun <get-text>(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.text.<get-text>|<get-text>(){}[0]
+
+    final fun component1(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.component1|component1(){}[0]
+    final fun component2(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.component2|component2(){}[0]
+    final fun component3(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.component3|component3(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ...): io.github.kingg22.vibrion.id3.model/CommentFrame // io.github.kingg22.vibrion.id3.model/CommentFrame.copy|copy(kotlin.String;kotlin.String;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/CommentFrame.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/CommentFrame.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.toString|toString(){}[0]
+}
+
+final class io.github.kingg22.vibrion.id3.model/IntegerFrame : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/IntegerFrame|null[0]
+    constructor <init>(kotlin/Int) // io.github.kingg22.vibrion.id3.model/IntegerFrame.<init>|<init>(kotlin.Int){}[0]
+
+    final val value // io.github.kingg22.vibrion.id3.model/IntegerFrame.value|{}value[0]
+        final fun <get-value>(): kotlin/Int // io.github.kingg22.vibrion.id3.model/IntegerFrame.value.<get-value>|<get-value>(){}[0]
+
+    final fun component1(): kotlin/Int // io.github.kingg22.vibrion.id3.model/IntegerFrame.component1|component1(){}[0]
+    final fun copy(kotlin/Int = ...): io.github.kingg22.vibrion.id3.model/IntegerFrame // io.github.kingg22.vibrion.id3.model/IntegerFrame.copy|copy(kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/IntegerFrame.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/IntegerFrame.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/IntegerFrame.toString|toString(){}[0]
+}
+
+final class io.github.kingg22.vibrion.id3.model/PairedTextFrame : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/PairedTextFrame|null[0]
+    constructor <init>(kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/String>>) // io.github.kingg22.vibrion.id3.model/PairedTextFrame.<init>|<init>(kotlin.collections.List<kotlin.Pair<kotlin.String,kotlin.String>>){}[0]
+    constructor <init>(kotlin.collections/Map<kotlin/String, kotlin/String>) // io.github.kingg22.vibrion.id3.model/PairedTextFrame.<init>|<init>(kotlin.collections.Map<kotlin.String,kotlin.String>){}[0]
+    constructor <init>(kotlin/Array<out kotlin/Pair<kotlin/String, kotlin/String>>...) // io.github.kingg22.vibrion.id3.model/PairedTextFrame.<init>|<init>(kotlin.Array<out|kotlin.Pair<kotlin.String,kotlin.String>>...){}[0]
+
+    final val pairs // io.github.kingg22.vibrion.id3.model/PairedTextFrame.pairs|{}pairs[0]
+        final fun <get-pairs>(): kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/String>> // io.github.kingg22.vibrion.id3.model/PairedTextFrame.pairs.<get-pairs>|<get-pairs>(){}[0]
+
+    final fun component1(): kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/String>> // io.github.kingg22.vibrion.id3.model/PairedTextFrame.component1|component1(){}[0]
+    final fun copy(kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/String>> = ...): io.github.kingg22.vibrion.id3.model/PairedTextFrame // io.github.kingg22.vibrion.id3.model/PairedTextFrame.copy|copy(kotlin.collections.List<kotlin.Pair<kotlin.String,kotlin.String>>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/PairedTextFrame.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/PairedTextFrame.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/PairedTextFrame.toString|toString(){}[0]
+}
+
+final class io.github.kingg22.vibrion.id3.model/PrivateFrame : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/PrivateFrame|null[0]
+    constructor <init>(kotlin/String, kotlin/ByteArray) // io.github.kingg22.vibrion.id3.model/PrivateFrame.<init>|<init>(kotlin.String;kotlin.ByteArray){}[0]
+
+    final val data // io.github.kingg22.vibrion.id3.model/PrivateFrame.data|{}data[0]
+        final fun <get-data>(): kotlin/ByteArray // io.github.kingg22.vibrion.id3.model/PrivateFrame.data.<get-data>|<get-data>(){}[0]
+    final val id // io.github.kingg22.vibrion.id3.model/PrivateFrame.id|{}id[0]
+        final fun <get-id>(): kotlin/String // io.github.kingg22.vibrion.id3.model/PrivateFrame.id.<get-id>|<get-id>(){}[0]
+
+    final fun component1(): kotlin/String // io.github.kingg22.vibrion.id3.model/PrivateFrame.component1|component1(){}[0]
+    final fun component2(): kotlin/ByteArray // io.github.kingg22.vibrion.id3.model/PrivateFrame.component2|component2(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/ByteArray = ...): io.github.kingg22.vibrion.id3.model/PrivateFrame // io.github.kingg22.vibrion.id3.model/PrivateFrame.copy|copy(kotlin.String;kotlin.ByteArray){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/PrivateFrame.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/PrivateFrame.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/PrivateFrame.toString|toString(){}[0]
+}
+
+final class io.github.kingg22.vibrion.id3.model/StringListFrame : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/StringListFrame|null[0]
+    constructor <init>(kotlin.collections/List<kotlin/String>) // io.github.kingg22.vibrion.id3.model/StringListFrame.<init>|<init>(kotlin.collections.List<kotlin.String>){}[0]
+    constructor <init>(kotlin/Array<out kotlin/String>...) // io.github.kingg22.vibrion.id3.model/StringListFrame.<init>|<init>(kotlin.Array<out|kotlin.String>...){}[0]
+
+    final val values // io.github.kingg22.vibrion.id3.model/StringListFrame.values|{}values[0]
+        final fun <get-values>(): kotlin.collections/List<kotlin/String> // io.github.kingg22.vibrion.id3.model/StringListFrame.values.<get-values>|<get-values>(){}[0]
+
+    final fun component1(): kotlin.collections/List<kotlin/String> // io.github.kingg22.vibrion.id3.model/StringListFrame.component1|component1(){}[0]
+    final fun copy(kotlin.collections/List<kotlin/String> = ...): io.github.kingg22.vibrion.id3.model/StringListFrame // io.github.kingg22.vibrion.id3.model/StringListFrame.copy|copy(kotlin.collections.List<kotlin.String>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/StringListFrame.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/StringListFrame.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/StringListFrame.toString|toString(){}[0]
+}
+
+final class io.github.kingg22.vibrion.id3.model/SynchronizedLyrics : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics|null[0]
+    constructor <init>(io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType, io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat, kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/Int>>, kotlin/String = ..., kotlin/String = ...) // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.<init>|<init>(io.github.kingg22.vibrion.id3.model.SynchronizedLyricsType;io.github.kingg22.vibrion.id3.model.SynchronizedLyricsTimestampFormat;kotlin.collections.List<kotlin.Pair<kotlin.String,kotlin.Int>>;kotlin.String;kotlin.String){}[0]
+    constructor <init>(io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType, io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat, kotlin/Array<out kotlin.collections/Map<kotlin/String, kotlin/Int>>..., kotlin/String = ..., kotlin/String = ...) // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.<init>|<init>(io.github.kingg22.vibrion.id3.model.SynchronizedLyricsType;io.github.kingg22.vibrion.id3.model.SynchronizedLyricsTimestampFormat;kotlin.Array<out|kotlin.collections.Map<kotlin.String,kotlin.Int>>...;kotlin.String;kotlin.String){}[0]
+    constructor <init>(io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType, io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat, kotlin/Array<out kotlin/Pair<kotlin/String, kotlin/Int>>..., kotlin/String = ..., kotlin/String = ...) // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.<init>|<init>(io.github.kingg22.vibrion.id3.model.SynchronizedLyricsType;io.github.kingg22.vibrion.id3.model.SynchronizedLyricsTimestampFormat;kotlin.Array<out|kotlin.Pair<kotlin.String,kotlin.Int>>...;kotlin.String;kotlin.String){}[0]
+    constructor <init>(kotlin/Int, kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/Int>>, kotlin/Int, kotlin/String = ..., kotlin/String = ...) // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.<init>|<init>(kotlin.Int;kotlin.collections.List<kotlin.Pair<kotlin.String,kotlin.Int>>;kotlin.Int;kotlin.String;kotlin.String){}[0]
+    constructor <init>(kotlin/Int, kotlin/Int, kotlin/Array<out kotlin.collections/Map<kotlin/String, kotlin/Int>>..., kotlin/String = ..., kotlin/String = ...) // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.<init>|<init>(kotlin.Int;kotlin.Int;kotlin.Array<out|kotlin.collections.Map<kotlin.String,kotlin.Int>>...;kotlin.String;kotlin.String){}[0]
+    constructor <init>(kotlin/Int, kotlin/Int, kotlin/Array<out kotlin/Pair<kotlin/String, kotlin/Int>>..., kotlin/String = ..., kotlin/String = ...) // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.<init>|<init>(kotlin.Int;kotlin.Int;kotlin.Array<out|kotlin.Pair<kotlin.String,kotlin.Int>>...;kotlin.String;kotlin.String){}[0]
+
+    final val description // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.description|{}description[0]
+        final fun <get-description>(): kotlin/String // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.description.<get-description>|<get-description>(){}[0]
+    final val language // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.language|{}language[0]
+        final fun <get-language>(): kotlin/String // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.language.<get-language>|<get-language>(){}[0]
+    final val text // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.text|{}text[0]
+        final fun <get-text>(): kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/Int>> // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.text.<get-text>|<get-text>(){}[0]
+    final val timestampFormat // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.timestampFormat|{}timestampFormat[0]
+        final fun <get-timestampFormat>(): kotlin/Int // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.timestampFormat.<get-timestampFormat>|<get-timestampFormat>(){}[0]
+    final val type // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.type|{}type[0]
+        final fun <get-type>(): kotlin/Int // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.type.<get-type>|<get-type>(){}[0]
+
+    final fun component1(): kotlin/Int // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.component1|component1(){}[0]
+    final fun component2(): kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/Int>> // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.component2|component2(){}[0]
+    final fun component3(): kotlin/Int // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.component3|component3(){}[0]
+    final fun component4(): kotlin/String // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.component4|component4(){}[0]
+    final fun component5(): kotlin/String // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.component5|component5(){}[0]
+    final fun copy(kotlin/Int = ..., kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/Int>> = ..., kotlin/Int = ..., kotlin/String = ..., kotlin/String = ...): io.github.kingg22.vibrion.id3.model/SynchronizedLyrics // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.copy|copy(kotlin.Int;kotlin.collections.List<kotlin.Pair<kotlin.String,kotlin.Int>>;kotlin.Int;kotlin.String;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.toString|toString(){}[0]
+}
+
+final class io.github.kingg22.vibrion.id3.model/TextFrame : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/TextFrame|null[0]
+    constructor <init>(kotlin/String) // io.github.kingg22.vibrion.id3.model/TextFrame.<init>|<init>(kotlin.String){}[0]
+
+    final val value // io.github.kingg22.vibrion.id3.model/TextFrame.value|{}value[0]
+        final fun <get-value>(): kotlin/String // io.github.kingg22.vibrion.id3.model/TextFrame.value.<get-value>|<get-value>(){}[0]
+
+    final fun component1(): kotlin/String // io.github.kingg22.vibrion.id3.model/TextFrame.component1|component1(){}[0]
+    final fun copy(kotlin/String = ...): io.github.kingg22.vibrion.id3.model/TextFrame // io.github.kingg22.vibrion.id3.model/TextFrame.copy|copy(kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/TextFrame.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/TextFrame.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/TextFrame.toString|toString(){}[0]
+}
+
+final class io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics|null[0]
+    constructor <init>(kotlin/String, kotlin/String = ..., kotlin/String = ...) // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.<init>|<init>(kotlin.String;kotlin.String;kotlin.String){}[0]
+
+    final val description // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.description|{}description[0]
+        final fun <get-description>(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.description.<get-description>|<get-description>(){}[0]
+    final val language // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.language|{}language[0]
+        final fun <get-language>(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.language.<get-language>|<get-language>(){}[0]
+    final val lyrics // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.lyrics|{}lyrics[0]
+        final fun <get-lyrics>(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.lyrics.<get-lyrics>|<get-lyrics>(){}[0]
+
+    final fun component1(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.component1|component1(){}[0]
+    final fun component2(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.component2|component2(){}[0]
+    final fun component3(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.component3|component3(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ...): io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.copy|copy(kotlin.String;kotlin.String;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.toString|toString(){}[0]
+}
+
+final class io.github.kingg22.vibrion.id3.model/UserDefinedText : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/UserDefinedText|null[0]
+    constructor <init>(kotlin/String, kotlin/String) // io.github.kingg22.vibrion.id3.model/UserDefinedText.<init>|<init>(kotlin.String;kotlin.String){}[0]
+
+    final val description // io.github.kingg22.vibrion.id3.model/UserDefinedText.description|{}description[0]
+        final fun <get-description>(): kotlin/String // io.github.kingg22.vibrion.id3.model/UserDefinedText.description.<get-description>|<get-description>(){}[0]
+    final val value // io.github.kingg22.vibrion.id3.model/UserDefinedText.value|{}value[0]
+        final fun <get-value>(): kotlin/String // io.github.kingg22.vibrion.id3.model/UserDefinedText.value.<get-value>|<get-value>(){}[0]
+
+    final fun component1(): kotlin/String // io.github.kingg22.vibrion.id3.model/UserDefinedText.component1|component1(){}[0]
+    final fun component2(): kotlin/String // io.github.kingg22.vibrion.id3.model/UserDefinedText.component2|component2(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ...): io.github.kingg22.vibrion.id3.model/UserDefinedText // io.github.kingg22.vibrion.id3.model/UserDefinedText.copy|copy(kotlin.String;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/UserDefinedText.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/UserDefinedText.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/UserDefinedText.toString|toString(){}[0]
+}
+
+final class io.github.kingg22.vibrion.id3/AttachedPictureBuilder { // io.github.kingg22.vibrion.id3/AttachedPictureBuilder|null[0]
+    constructor <init>() // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.<init>|<init>(){}[0]
+
+    final var data // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.data|{}data[0]
+        final fun <get-data>(): kotlin/ByteArray // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.data.<get-data>|<get-data>(){}[0]
+        final fun <set-data>(kotlin/ByteArray) // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.data.<set-data>|<set-data>(kotlin.ByteArray){}[0]
+    final var description // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.description|{}description[0]
+        final fun <get-description>(): kotlin/String // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.description.<get-description>|<get-description>(){}[0]
+        final fun <set-description>(kotlin/String) // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.description.<set-description>|<set-description>(kotlin.String){}[0]
+    final var type // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.type|{}type[0]
+        final fun <get-type>(): io.github.kingg22.vibrion.id3.model/AttachedPictureType // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.type.<get-type>|<get-type>(){}[0]
+        final fun <set-type>(io.github.kingg22.vibrion.id3.model/AttachedPictureType) // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.type.<set-type>|<set-type>(io.github.kingg22.vibrion.id3.model.AttachedPictureType){}[0]
+    final var useUnicodeEncoding // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.useUnicodeEncoding|{}useUnicodeEncoding[0]
+        final fun <get-useUnicodeEncoding>(): kotlin/Boolean // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.useUnicodeEncoding.<get-useUnicodeEncoding>|<get-useUnicodeEncoding>(){}[0]
+        final fun <set-useUnicodeEncoding>(kotlin/Boolean) // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.useUnicodeEncoding.<set-useUnicodeEncoding>|<set-useUnicodeEncoding>(kotlin.Boolean){}[0]
+
+    final fun build(): io.github.kingg22.vibrion.id3.model/AttachedPicture // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.build|build(){}[0]
+    final fun data(kotlin/ByteArray): io.github.kingg22.vibrion.id3/AttachedPictureBuilder // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.data|data(kotlin.ByteArray){}[0]
+    final fun description(kotlin/String): io.github.kingg22.vibrion.id3/AttachedPictureBuilder // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.description|description(kotlin.String){}[0]
+    final fun type(io.github.kingg22.vibrion.id3.model/AttachedPictureType): io.github.kingg22.vibrion.id3/AttachedPictureBuilder // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.type|type(io.github.kingg22.vibrion.id3.model.AttachedPictureType){}[0]
+    final fun useUnicodeEncoding(kotlin/Boolean): io.github.kingg22.vibrion.id3/AttachedPictureBuilder // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.useUnicodeEncoding|useUnicodeEncoding(kotlin.Boolean){}[0]
+
+    final object Companion { // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.Companion|null[0]
+        final fun builder(kotlin/Function1<io.github.kingg22.vibrion.id3/AttachedPictureBuilder, kotlin/Unit>): io.github.kingg22.vibrion.id3.model/AttachedPicture // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.Companion.builder|builder(kotlin.Function1<io.github.kingg22.vibrion.id3.AttachedPictureBuilder,kotlin.Unit>){}[0]
+    }
+}
+
+final class io.github.kingg22.vibrion.id3/Id3AudioWriter { // io.github.kingg22.vibrion.id3/Id3AudioWriter|null[0]
+    constructor <init>(kotlin/Int = ...) // io.github.kingg22.vibrion.id3/Id3AudioWriter.<init>|<init>(kotlin.Int){}[0]
+
+    final var padding // io.github.kingg22.vibrion.id3/Id3AudioWriter.padding|{}padding[0]
+        final fun <get-padding>(): kotlin/Int // io.github.kingg22.vibrion.id3/Id3AudioWriter.padding.<get-padding>|<get-padding>(){}[0]
+        final fun <set-padding>(kotlin/Int) // io.github.kingg22.vibrion.id3/Id3AudioWriter.padding.<set-padding>|<set-padding>(kotlin.Int){}[0]
+
+    final fun addTag(): kotlin/ByteArray // io.github.kingg22.vibrion.id3/Id3AudioWriter.addTag|addTag(){}[0]
+    final fun build(): kotlin/ByteArray // io.github.kingg22.vibrion.id3/Id3AudioWriter.build|build(){}[0]
+    final fun component1(): kotlin/Int // io.github.kingg22.vibrion.id3/Id3AudioWriter.component1|component1(){}[0]
+    final fun copy(kotlin/Int = ...): io.github.kingg22.vibrion.id3/Id3AudioWriter // io.github.kingg22.vibrion.id3/Id3AudioWriter.copy|copy(kotlin.Int){}[0]
+    final fun deepCopy(kotlin/Int = ...): io.github.kingg22.vibrion.id3/Id3AudioWriter // io.github.kingg22.vibrion.id3/Id3AudioWriter.deepCopy|deepCopy(kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3/Id3AudioWriter.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3/Id3AudioWriter.hashCode|hashCode(){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.AttachedPictureTagFrame, io.github.kingg22.vibrion.id3.model/AttachedPicture) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.AttachedPictureTagFrame;io.github.kingg22.vibrion.id3.model.AttachedPicture){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.CommentTagFrame, io.github.kingg22.vibrion.id3.model/CommentFrame) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.CommentTagFrame;io.github.kingg22.vibrion.id3.model.CommentFrame){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.IntegerTagFrame, kotlin/Int) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.IntegerTagFrame;kotlin.Int){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.ListStringTagFrame, kotlin.collections/List<kotlin/String>) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.ListStringTagFrame;kotlin.collections.List<kotlin.String>){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PairedTextTagFrame, kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/String>>) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.PairedTextTagFrame;kotlin.collections.List<kotlin.Pair<kotlin.String,kotlin.String>>){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PairedTextTagFrame, kotlin.collections/Map<kotlin/String, kotlin/String>) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.PairedTextTagFrame;kotlin.collections.Map<kotlin.String,kotlin.String>){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PrivateTagFrame, io.github.kingg22.vibrion.id3.model/PrivateFrame) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.PrivateTagFrame;io.github.kingg22.vibrion.id3.model.PrivateFrame){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PrivateTagFrame, kotlin/Pair<kotlin/String, kotlin/ByteArray>) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.PrivateTagFrame;kotlin.Pair<kotlin.String,kotlin.ByteArray>){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.PrivateTagFrame, kotlin/String, kotlin/ByteArray) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.PrivateTagFrame;kotlin.String;kotlin.ByteArray){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.SynchronizedLyricsTagFrame, io.github.kingg22.vibrion.id3.model/SynchronizedLyrics) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.SynchronizedLyricsTagFrame;io.github.kingg22.vibrion.id3.model.SynchronizedLyrics){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.TextTagFrame, kotlin/String) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.TextTagFrame;kotlin.String){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UnsynchronisedLyricsTagFrame, io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.UnsynchronisedLyricsTagFrame;io.github.kingg22.vibrion.id3.model.UnsynchronisedLyrics){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UnsynchronisedLyricsTagFrame, kotlin/String, kotlin/String, kotlin/String) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.UnsynchronisedLyricsTagFrame;kotlin.String;kotlin.String;kotlin.String){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedTextTagFrame, io.github.kingg22.vibrion.id3.model/UserDefinedText) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.UserDefinedTextTagFrame;io.github.kingg22.vibrion.id3.model.UserDefinedText){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedTextTagFrame, kotlin/Pair<kotlin/String, kotlin/String>) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.UserDefinedTextTagFrame;kotlin.Pair<kotlin.String,kotlin.String>){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedTextTagFrame, kotlin/String, kotlin/String) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.UserDefinedTextTagFrame;kotlin.String;kotlin.String){}[0]
+    final fun set(kotlin.collections/List<io.github.kingg22.vibrion.id3/Id3v2v3TagFrame>, kotlin.collections/List<io.github.kingg22.vibrion.id3.model/FrameValue>) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(kotlin.collections.List<io.github.kingg22.vibrion.id3.Id3v2v3TagFrame>;kotlin.collections.List<io.github.kingg22.vibrion.id3.model.FrameValue>){}[0]
+    final fun set(kotlin/String, io.github.kingg22.vibrion.id3.model/FrameValue) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(kotlin.String;io.github.kingg22.vibrion.id3.model.FrameValue){}[0]
+    final fun toByteArray(): kotlin/ByteArray // io.github.kingg22.vibrion.id3/Id3AudioWriter.toByteArray|toByteArray(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3/Id3AudioWriter.toString|toString(){}[0]
+
+    final object Companion { // io.github.kingg22.vibrion.id3/Id3AudioWriter.Companion|null[0]
+        final fun id3AudioWriter(kotlin/Function1<io.github.kingg22.vibrion.id3/Id3AudioWriter, kotlin/Unit>): io.github.kingg22.vibrion.id3/Id3AudioWriter // io.github.kingg22.vibrion.id3/Id3AudioWriter.Companion.id3AudioWriter|id3AudioWriter(kotlin.Function1<io.github.kingg22.vibrion.id3.Id3AudioWriter,kotlin.Unit>){}[0]
+        final fun removeTag(kotlin/ByteArray): kotlin/ByteArray // io.github.kingg22.vibrion.id3/Id3AudioWriter.Companion.removeTag|removeTag(kotlin.ByteArray){}[0]
+    }
+}
+
+final class io.github.kingg22.vibrion.id3/Id3WriterBuilder { // io.github.kingg22.vibrion.id3/Id3WriterBuilder|null[0]
+    constructor <init>() // io.github.kingg22.vibrion.id3/Id3WriterBuilder.<init>|<init>(){}[0]
+
+    final var album // io.github.kingg22.vibrion.id3/Id3WriterBuilder.album|{}album[0]
+        final fun <get-album>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.album.<get-album>|<get-album>(){}[0]
+        final fun <set-album>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.album.<set-album>|<set-album>(kotlin.String?){}[0]
+    final var albumArtist // io.github.kingg22.vibrion.id3/Id3WriterBuilder.albumArtist|{}albumArtist[0]
+        final fun <get-albumArtist>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.albumArtist.<get-albumArtist>|<get-albumArtist>(){}[0]
+        final fun <set-albumArtist>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.albumArtist.<set-albumArtist>|<set-albumArtist>(kotlin.String?){}[0]
+    final var artistWeb // io.github.kingg22.vibrion.id3/Id3WriterBuilder.artistWeb|{}artistWeb[0]
+        final fun <get-artistWeb>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.artistWeb.<get-artistWeb>|<get-artistWeb>(){}[0]
+        final fun <set-artistWeb>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.artistWeb.<set-artistWeb>|<set-artistWeb>(kotlin.String?){}[0]
+    final var artists // io.github.kingg22.vibrion.id3/Id3WriterBuilder.artists|{}artists[0]
+        final fun <get-artists>(): kotlin.collections/List<kotlin/String>? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.artists.<get-artists>|<get-artists>(){}[0]
+        final fun <set-artists>(kotlin.collections/List<kotlin/String>?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.artists.<set-artists>|<set-artists>(kotlin.collections.List<kotlin.String>?){}[0]
+    final var bpm // io.github.kingg22.vibrion.id3/Id3WriterBuilder.bpm|{}bpm[0]
+        final fun <get-bpm>(): kotlin/Int? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.bpm.<get-bpm>|<get-bpm>(){}[0]
+        final fun <set-bpm>(kotlin/Int?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.bpm.<set-bpm>|<set-bpm>(kotlin.Int?){}[0]
+    final var comment // io.github.kingg22.vibrion.id3/Id3WriterBuilder.comment|{}comment[0]
+        final fun <get-comment>(): io.github.kingg22.vibrion.id3.model/CommentFrame? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.comment.<get-comment>|<get-comment>(){}[0]
+        final fun <set-comment>(io.github.kingg22.vibrion.id3.model/CommentFrame?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.comment.<set-comment>|<set-comment>(io.github.kingg22.vibrion.id3.model.CommentFrame?){}[0]
+    final var commercialWeb // io.github.kingg22.vibrion.id3/Id3WriterBuilder.commercialWeb|{}commercialWeb[0]
+        final fun <get-commercialWeb>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.commercialWeb.<get-commercialWeb>|<get-commercialWeb>(){}[0]
+        final fun <set-commercialWeb>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.commercialWeb.<set-commercialWeb>|<set-commercialWeb>(kotlin.String?){}[0]
+    final var composer // io.github.kingg22.vibrion.id3/Id3WriterBuilder.composer|{}composer[0]
+        final fun <get-composer>(): kotlin.collections/List<kotlin/String>? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.composer.<get-composer>|<get-composer>(){}[0]
+        final fun <set-composer>(kotlin.collections/List<kotlin/String>?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.composer.<set-composer>|<set-composer>(kotlin.collections.List<kotlin.String>?){}[0]
+    final var copyright // io.github.kingg22.vibrion.id3/Id3WriterBuilder.copyright|{}copyright[0]
+        final fun <get-copyright>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.copyright.<get-copyright>|<get-copyright>(){}[0]
+        final fun <set-copyright>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.copyright.<set-copyright>|<set-copyright>(kotlin.String?){}[0]
+    final var copyrightWeb // io.github.kingg22.vibrion.id3/Id3WriterBuilder.copyrightWeb|{}copyrightWeb[0]
+        final fun <get-copyrightWeb>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.copyrightWeb.<get-copyrightWeb>|<get-copyrightWeb>(){}[0]
+        final fun <set-copyrightWeb>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.copyrightWeb.<set-copyrightWeb>|<set-copyrightWeb>(kotlin.String?){}[0]
+    final var fileWeb // io.github.kingg22.vibrion.id3/Id3WriterBuilder.fileWeb|{}fileWeb[0]
+        final fun <get-fileWeb>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.fileWeb.<get-fileWeb>|<get-fileWeb>(){}[0]
+        final fun <set-fileWeb>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.fileWeb.<set-fileWeb>|<set-fileWeb>(kotlin.String?){}[0]
+    final var genres // io.github.kingg22.vibrion.id3/Id3WriterBuilder.genres|{}genres[0]
+        final fun <get-genres>(): kotlin.collections/List<kotlin/String>? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.genres.<get-genres>|<get-genres>(){}[0]
+        final fun <set-genres>(kotlin.collections/List<kotlin/String>?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.genres.<set-genres>|<set-genres>(kotlin.collections.List<kotlin.String>?){}[0]
+    final var involvedPeople // io.github.kingg22.vibrion.id3/Id3WriterBuilder.involvedPeople|{}involvedPeople[0]
+        final fun <get-involvedPeople>(): kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/String>>? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.involvedPeople.<get-involvedPeople>|<get-involvedPeople>(){}[0]
+        final fun <set-involvedPeople>(kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/String>>?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.involvedPeople.<set-involvedPeople>|<set-involvedPeople>(kotlin.collections.List<kotlin.Pair<kotlin.String,kotlin.String>>?){}[0]
+    final var isrc // io.github.kingg22.vibrion.id3/Id3WriterBuilder.isrc|{}isrc[0]
+        final fun <get-isrc>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.isrc.<get-isrc>|<get-isrc>(){}[0]
+        final fun <set-isrc>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.isrc.<set-isrc>|<set-isrc>(kotlin.String?){}[0]
+    final var key // io.github.kingg22.vibrion.id3/Id3WriterBuilder.key|{}key[0]
+        final fun <get-key>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.key.<get-key>|<get-key>(){}[0]
+        final fun <set-key>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.key.<set-key>|<set-key>(kotlin.String?){}[0]
+    final var label // io.github.kingg22.vibrion.id3/Id3WriterBuilder.label|{}label[0]
+        final fun <get-label>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.label.<get-label>|<get-label>(){}[0]
+        final fun <set-label>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.label.<set-label>|<set-label>(kotlin.String?){}[0]
+    final var language // io.github.kingg22.vibrion.id3/Id3WriterBuilder.language|{}language[0]
+        final fun <get-language>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.language.<get-language>|<get-language>(){}[0]
+        final fun <set-language>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.language.<set-language>|<set-language>(kotlin.String?){}[0]
+    final var length // io.github.kingg22.vibrion.id3/Id3WriterBuilder.length|{}length[0]
+        final fun <get-length>(): kotlin/Int? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.length.<get-length>|<get-length>(){}[0]
+        final fun <set-length>(kotlin/Int?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.length.<set-length>|<set-length>(kotlin.Int?){}[0]
+    final var lyrics // io.github.kingg22.vibrion.id3/Id3WriterBuilder.lyrics|{}lyrics[0]
+        final fun <get-lyrics>(): io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.lyrics.<get-lyrics>|<get-lyrics>(){}[0]
+        final fun <set-lyrics>(io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.lyrics.<set-lyrics>|<set-lyrics>(io.github.kingg22.vibrion.id3.model.UnsynchronisedLyrics?){}[0]
+    final var mediaType // io.github.kingg22.vibrion.id3/Id3WriterBuilder.mediaType|{}mediaType[0]
+        final fun <get-mediaType>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.mediaType.<get-mediaType>|<get-mediaType>(){}[0]
+        final fun <set-mediaType>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.mediaType.<set-mediaType>|<set-mediaType>(kotlin.String?){}[0]
+    final var payWeb // io.github.kingg22.vibrion.id3/Id3WriterBuilder.payWeb|{}payWeb[0]
+        final fun <get-payWeb>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.payWeb.<get-payWeb>|<get-payWeb>(){}[0]
+        final fun <set-payWeb>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.payWeb.<set-payWeb>|<set-payWeb>(kotlin.String?){}[0]
+    final var picture // io.github.kingg22.vibrion.id3/Id3WriterBuilder.picture|{}picture[0]
+        final fun <get-picture>(): io.github.kingg22.vibrion.id3.model/AttachedPicture? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.picture.<get-picture>|<get-picture>(){}[0]
+        final fun <set-picture>(io.github.kingg22.vibrion.id3.model/AttachedPicture?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.picture.<set-picture>|<set-picture>(io.github.kingg22.vibrion.id3.model.AttachedPicture?){}[0]
+    final var privateFrame // io.github.kingg22.vibrion.id3/Id3WriterBuilder.privateFrame|{}privateFrame[0]
+        final fun <get-privateFrame>(): io.github.kingg22.vibrion.id3.model/PrivateFrame? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.privateFrame.<get-privateFrame>|<get-privateFrame>(){}[0]
+        final fun <set-privateFrame>(io.github.kingg22.vibrion.id3.model/PrivateFrame?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.privateFrame.<set-privateFrame>|<set-privateFrame>(io.github.kingg22.vibrion.id3.model.PrivateFrame?){}[0]
+    final var publisherWeb // io.github.kingg22.vibrion.id3/Id3WriterBuilder.publisherWeb|{}publisherWeb[0]
+        final fun <get-publisherWeb>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.publisherWeb.<get-publisherWeb>|<get-publisherWeb>(){}[0]
+        final fun <set-publisherWeb>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.publisherWeb.<set-publisherWeb>|<set-publisherWeb>(kotlin.String?){}[0]
+    final var radioWeb // io.github.kingg22.vibrion.id3/Id3WriterBuilder.radioWeb|{}radioWeb[0]
+        final fun <get-radioWeb>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.radioWeb.<get-radioWeb>|<get-radioWeb>(){}[0]
+        final fun <set-radioWeb>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.radioWeb.<set-radioWeb>|<set-radioWeb>(kotlin.String?){}[0]
+    final var sourceWeb // io.github.kingg22.vibrion.id3/Id3WriterBuilder.sourceWeb|{}sourceWeb[0]
+        final fun <get-sourceWeb>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.sourceWeb.<get-sourceWeb>|<get-sourceWeb>(){}[0]
+        final fun <set-sourceWeb>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.sourceWeb.<set-sourceWeb>|<set-sourceWeb>(kotlin.String?){}[0]
+    final var subtitle // io.github.kingg22.vibrion.id3/Id3WriterBuilder.subtitle|{}subtitle[0]
+        final fun <get-subtitle>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.subtitle.<get-subtitle>|<get-subtitle>(){}[0]
+        final fun <set-subtitle>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.subtitle.<set-subtitle>|<set-subtitle>(kotlin.String?){}[0]
+    final var syncLyrics // io.github.kingg22.vibrion.id3/Id3WriterBuilder.syncLyrics|{}syncLyrics[0]
+        final fun <get-syncLyrics>(): io.github.kingg22.vibrion.id3.model/SynchronizedLyrics? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.syncLyrics.<get-syncLyrics>|<get-syncLyrics>(){}[0]
+        final fun <set-syncLyrics>(io.github.kingg22.vibrion.id3.model/SynchronizedLyrics?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.syncLyrics.<set-syncLyrics>|<set-syncLyrics>(io.github.kingg22.vibrion.id3.model.SynchronizedLyrics?){}[0]
+    final var title // io.github.kingg22.vibrion.id3/Id3WriterBuilder.title|{}title[0]
+        final fun <get-title>(): kotlin/String? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.title.<get-title>|<get-title>(){}[0]
+        final fun <set-title>(kotlin/String?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.title.<set-title>|<set-title>(kotlin.String?){}[0]
+    final var userText // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userText|{}userText[0]
+        final fun <get-userText>(): io.github.kingg22.vibrion.id3.model/UserDefinedText? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userText.<get-userText>|<get-userText>(){}[0]
+        final fun <set-userText>(io.github.kingg22.vibrion.id3.model/UserDefinedText?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userText.<set-userText>|<set-userText>(io.github.kingg22.vibrion.id3.model.UserDefinedText?){}[0]
+    final var year // io.github.kingg22.vibrion.id3/Id3WriterBuilder.year|{}year[0]
+        final fun <get-year>(): kotlin/Int? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.year.<get-year>|<get-year>(){}[0]
+        final fun <set-year>(kotlin/Int?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.year.<set-year>|<set-year>(kotlin.Int?){}[0]
+
+    final fun album(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.album|album(kotlin.String){}[0]
+    final fun albumArtist(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.albumArtist|albumArtist(kotlin.String){}[0]
+    final fun artist(kotlin/String, kotlin/Array<out kotlin/String>...): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.artist|artist(kotlin.String;kotlin.Array<out|kotlin.String>...){}[0]
+    final fun artistWeb(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.artistWeb|artistWeb(kotlin.String){}[0]
+    final fun bpm(kotlin/Int): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.bpm|bpm(kotlin.Int){}[0]
+    final fun build(): io.github.kingg22.vibrion.id3/Id3AudioWriter // io.github.kingg22.vibrion.id3/Id3WriterBuilder.build|build(){}[0]
+    final fun comment(kotlin/String, kotlin/String = ..., kotlin/String = ...): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.comment|comment(kotlin.String;kotlin.String;kotlin.String){}[0]
+    final fun commercialWeb(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.commercialWeb|commercialWeb(kotlin.String){}[0]
+    final fun composer(kotlin/String, kotlin/Array<out kotlin/String>...): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.composer|composer(kotlin.String;kotlin.Array<out|kotlin.String>...){}[0]
+    final fun copy(): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.copy|copy(){}[0]
+    final fun copyright(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.copyright|copyright(kotlin.String){}[0]
+    final fun copyrightWeb(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.copyrightWeb|copyrightWeb(kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3/Id3WriterBuilder.equals|equals(kotlin.Any?){}[0]
+    final fun fileWeb(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.fileWeb|fileWeb(kotlin.String){}[0]
+    final fun genre(kotlin/String, kotlin/Array<out kotlin/String>...): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.genre|genre(kotlin.String;kotlin.Array<out|kotlin.String>...){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3/Id3WriterBuilder.hashCode|hashCode(){}[0]
+    final fun involvedPeople(kotlin.collections/Map<kotlin/String, kotlin/String>): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.involvedPeople|involvedPeople(kotlin.collections.Map<kotlin.String,kotlin.String>){}[0]
+    final fun involvedPeople(kotlin/Pair<kotlin/String, kotlin/String>, kotlin/Array<out kotlin/Pair<kotlin/String, kotlin/String>>...): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.involvedPeople|involvedPeople(kotlin.Pair<kotlin.String,kotlin.String>;kotlin.Array<out|kotlin.Pair<kotlin.String,kotlin.String>>...){}[0]
+    final fun isrc(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.isrc|isrc(kotlin.String){}[0]
+    final fun key(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.key|key(kotlin.String){}[0]
+    final fun label(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.label|label(kotlin.String){}[0]
+    final fun language(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.language|language(kotlin.String){}[0]
+    final fun length(kotlin/Int): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.length|length(kotlin.Int){}[0]
+    final fun lyrics(io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.lyrics|lyrics(io.github.kingg22.vibrion.id3.UnsynchronisedLyricsBuilder){}[0]
+    final fun lyrics(kotlin/Function1<io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder, kotlin/Unit>): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.lyrics|lyrics(kotlin.Function1<io.github.kingg22.vibrion.id3.UnsynchronisedLyricsBuilder,kotlin.Unit>){}[0]
+    final fun mediaType(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.mediaType|mediaType(kotlin.String){}[0]
+    final fun payWeb(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.payWeb|payWeb(kotlin.String){}[0]
+    final fun picture(io.github.kingg22.vibrion.id3/AttachedPictureBuilder): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.picture|picture(io.github.kingg22.vibrion.id3.AttachedPictureBuilder){}[0]
+    final fun picture(kotlin/Function1<io.github.kingg22.vibrion.id3/AttachedPictureBuilder, kotlin/Unit>): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.picture|picture(kotlin.Function1<io.github.kingg22.vibrion.id3.AttachedPictureBuilder,kotlin.Unit>){}[0]
+    final fun privateFrame(kotlin/String, kotlin/ByteArray): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.privateFrame|privateFrame(kotlin.String;kotlin.ByteArray){}[0]
+    final fun publisherWeb(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.publisherWeb|publisherWeb(kotlin.String){}[0]
+    final fun radioWeb(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.radioWeb|radioWeb(kotlin.String){}[0]
+    final fun sourceWeb(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.sourceWeb|sourceWeb(kotlin.String){}[0]
+    final fun subtitle(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.subtitle|subtitle(kotlin.String){}[0]
+    final fun syncLyrics(io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.syncLyrics|syncLyrics(io.github.kingg22.vibrion.id3.SynchronizedLyricsBuilder){}[0]
+    final fun syncLyrics(kotlin/Function1<io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder, kotlin/Unit>): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.syncLyrics|syncLyrics(kotlin.Function1<io.github.kingg22.vibrion.id3.SynchronizedLyricsBuilder,kotlin.Unit>){}[0]
+    final fun title(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.title|title(kotlin.String){}[0]
+    final fun toByteArray(kotlin/Int = ...): kotlin/ByteArray // io.github.kingg22.vibrion.id3/Id3WriterBuilder.toByteArray|toByteArray(kotlin.Int){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3/Id3WriterBuilder.toString|toString(){}[0]
+    final fun userText(kotlin/String, kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userText|userText(kotlin.String;kotlin.String){}[0]
+    final fun year(kotlin/Int): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.year|year(kotlin.Int){}[0]
+
+    final object Companion { // io.github.kingg22.vibrion.id3/Id3WriterBuilder.Companion|null[0]
+        final fun id3Writer(): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.Companion.id3Writer|id3Writer(){}[0]
+        final fun id3Writer(kotlin/Function1<io.github.kingg22.vibrion.id3/Id3WriterBuilder, kotlin/Unit>): io.github.kingg22.vibrion.id3/Id3AudioWriter // io.github.kingg22.vibrion.id3/Id3WriterBuilder.Companion.id3Writer|id3Writer(kotlin.Function1<io.github.kingg22.vibrion.id3.Id3WriterBuilder,kotlin.Unit>){}[0]
+    }
+}
+
+final class io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder { // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder|null[0]
+    constructor <init>() // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.<init>|<init>(){}[0]
+
+    final var description // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.description|{}description[0]
+        final fun <get-description>(): kotlin/String // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.description.<get-description>|<get-description>(){}[0]
+        final fun <set-description>(kotlin/String) // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.description.<set-description>|<set-description>(kotlin.String){}[0]
+    final var language // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.language|{}language[0]
+        final fun <get-language>(): kotlin/String // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.language.<get-language>|<get-language>(){}[0]
+        final fun <set-language>(kotlin/String) // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.language.<set-language>|<set-language>(kotlin.String){}[0]
+    final var timestampFormat // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.timestampFormat|{}timestampFormat[0]
+        final fun <get-timestampFormat>(): io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.timestampFormat.<get-timestampFormat>|<get-timestampFormat>(){}[0]
+        final fun <set-timestampFormat>(io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat) // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.timestampFormat.<set-timestampFormat>|<set-timestampFormat>(io.github.kingg22.vibrion.id3.model.SynchronizedLyricsTimestampFormat){}[0]
+    final var type // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.type|{}type[0]
+        final fun <get-type>(): io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.type.<get-type>|<get-type>(){}[0]
+        final fun <set-type>(io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType) // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.type.<set-type>|<set-type>(io.github.kingg22.vibrion.id3.model.SynchronizedLyricsType){}[0]
+
+    final fun build(): io.github.kingg22.vibrion.id3.model/SynchronizedLyrics // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.build|build(){}[0]
+    final fun description(kotlin/String): io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.description|description(kotlin.String){}[0]
+    final fun language(kotlin/String): io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.language|language(kotlin.String){}[0]
+    final fun line(kotlin/String, kotlin/Int): io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.line|line(kotlin.String;kotlin.Int){}[0]
+    final fun timestampFormat(io.github.kingg22.vibrion.id3.model/SynchronizedLyricsTimestampFormat): io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.timestampFormat|timestampFormat(io.github.kingg22.vibrion.id3.model.SynchronizedLyricsTimestampFormat){}[0]
+    final fun type(io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType): io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.type|type(io.github.kingg22.vibrion.id3.model.SynchronizedLyricsType){}[0]
+
+    final object Companion { // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.Companion|null[0]
+        final fun builder(kotlin/Function1<io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder, kotlin/Unit>): io.github.kingg22.vibrion.id3.model/SynchronizedLyrics // io.github.kingg22.vibrion.id3/SynchronizedLyricsBuilder.Companion.builder|builder(kotlin.Function1<io.github.kingg22.vibrion.id3.SynchronizedLyricsBuilder,kotlin.Unit>){}[0]
+    }
+}
+
+final class io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder { // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder|null[0]
+    constructor <init>() // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.<init>|<init>(){}[0]
+
+    final var description // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.description|{}description[0]
+        final fun <get-description>(): kotlin/String // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.description.<get-description>|<get-description>(){}[0]
+        final fun <set-description>(kotlin/String) // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.description.<set-description>|<set-description>(kotlin.String){}[0]
+    final var language // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.language|{}language[0]
+        final fun <get-language>(): kotlin/String // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.language.<get-language>|<get-language>(){}[0]
+        final fun <set-language>(kotlin/String) // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.language.<set-language>|<set-language>(kotlin.String){}[0]
+    final var lyrics // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.lyrics|{}lyrics[0]
+        final fun <get-lyrics>(): kotlin/String // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.lyrics.<get-lyrics>|<get-lyrics>(){}[0]
+        final fun <set-lyrics>(kotlin/String) // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.lyrics.<set-lyrics>|<set-lyrics>(kotlin.String){}[0]
+
+    final fun build(): io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.build|build(){}[0]
+    final fun description(kotlin/String): io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.description|description(kotlin.String){}[0]
+    final fun language(kotlin/String): io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.language|language(kotlin.String){}[0]
+    final fun lyrics(kotlin/String): io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.lyrics|lyrics(kotlin.String){}[0]
+
+    final object Companion { // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.Companion|null[0]
+        final fun builder(kotlin/Function1<io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder, kotlin/Unit>): io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.Companion.builder|builder(kotlin.Function1<io.github.kingg22.vibrion.id3.UnsynchronisedLyricsBuilder,kotlin.Unit>){}[0]
+    }
+}
+
+sealed class io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/FrameValue|null[0]
+    final fun languageFormat(kotlin/String) // io.github.kingg22.vibrion.id3.model/FrameValue.languageFormat|languageFormat(kotlin.String){}[0]
+}
