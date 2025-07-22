@@ -31,6 +31,10 @@ ij_formatter_enabled = false
 # noinspection EditorConfigKeyCorrectness
 ktlint = disabled
 
+[*.java]
+ij_java_class_count_to_use_import_on_demand = 20
+ij_java_names_count_to_use_import_on_demand = 20
+
 [**/build/**/*.java]
 ij_formatter_enabled = false
 
