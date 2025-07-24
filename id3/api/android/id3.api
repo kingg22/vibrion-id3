@@ -150,7 +150,7 @@ public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder {
 	public fun hashCode ()I
 	public static final fun id3Writer ()Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun involvedPeople (Ljava/util/Map;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
-	public final fun involvedPeople (Lkotlin/Pair;[Lkotlin/Pair;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final synthetic fun involvedPeople (Lkotlin/Pair;[Lkotlin/Pair;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun isCompilation ()Z
 	public final fun isCompilation (Z)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public static synthetic fun isCompilation$default (Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;ZILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
