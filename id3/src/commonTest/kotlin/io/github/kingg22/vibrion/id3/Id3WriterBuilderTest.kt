@@ -80,6 +80,7 @@ class Id3WriterBuilderTest {
         assertNotEquals(0, writer.addTag().size)
     }
 
+    @OptIn(ExperimentalVibrionId3::class)
     @Test
     fun builderShouldSupportAllDeclaredFrames() {
         val builder = Id3WriterBuilder().apply {
