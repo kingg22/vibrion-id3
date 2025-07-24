@@ -57,7 +57,8 @@ class Id3WriterBuilder {
 
     /** Exclusive to test the computed values */
     @ExperimentalVibrionId3
-    val valuesForTest = values.toMap()
+    val valuesForTest
+        get() = values.toMap()
 
     // --- Strings ---
     var title: String? = null
