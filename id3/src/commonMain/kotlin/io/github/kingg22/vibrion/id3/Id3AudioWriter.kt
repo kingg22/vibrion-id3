@@ -184,7 +184,7 @@ data class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
                 )
             }
 
-            UNKNOWN -> error("Unsupported frame ${type.name}")
+            UNKNOWN -> throw IllegalArgumentException("Unsupported frame ${type.name}")
         }
     }
 

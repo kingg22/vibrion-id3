@@ -9,9 +9,9 @@ import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
 internal data class UrlFrameEncoder internal constructor(
-    @JvmSynthetic override val name: String,
-    @JvmSynthetic val value: String,
-    @JvmSynthetic override val size: Int,
+    @get:JvmSynthetic override val name: String,
+    @get:JvmSynthetic val value: String,
+    @get:JvmSynthetic override val size: Int,
 ) : FrameEncoder(name, size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {

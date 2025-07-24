@@ -55,7 +55,9 @@ import kotlin.jvm.JvmSynthetic
 class Id3WriterBuilder {
     private val values = mutableListOf<Pair<Id3v2v3TagFrame, FrameValue>>()
 
-    internal val valuesForTest
+    /** Exclusive to test the computed values */
+    @ExperimentalVibrionId3
+    val valuesForTest
         get() = values.toMap()
 
     // --- Strings ---
@@ -349,6 +351,8 @@ class Id3WriterBuilder {
 
     // --- Pairs ---
     fun involvedPeople(people: Map<String, String>) = apply { values += IPLS to PairedTextFrame(people) }
+
+    @JvmSynthetic
     fun involvedPeople(people: Pair<String, String>, vararg peoples: Pair<String, String>) = apply {
         values += IPLS to PairedTextFrame(people, *peoples)
     }
