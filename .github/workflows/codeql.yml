@@ -96,7 +96,7 @@ jobs:
         with:
           gradle-version: '8.13'
           validate-wrappers: true
-          cache-read-only: true
+          cache-read-only: false
 
       # If the analyze step fails for one of the languages you are analyzing with
       # "We were unable to automatically build your code", modify the matrix above
