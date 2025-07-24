@@ -94,7 +94,7 @@ class Id3BuilderJavaTests {
             .commercialWeb("https://google.com")
             .copyrightWeb("https://google.com");
 
-        final var generatedTags = builder.getValuesForTest$id3().keySet();
+        final var generatedTags = builder.getValuesForTest().keySet();
         final var expectedTags = new HashSet<>(Id3v2v3TagFrame.getAllFrames());
         final var missing = expectedTags.parallelStream().filter( i -> !generatedTags.contains(i)).collect(Collectors.toUnmodifiableSet());
         final var unexpected = generatedTags.parallelStream().filter(i -> !expectedTags.contains(i)).collect(Collectors.toUnmodifiableSet());
