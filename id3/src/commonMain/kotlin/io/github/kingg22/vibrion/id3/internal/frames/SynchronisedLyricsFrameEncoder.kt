@@ -10,13 +10,13 @@ import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
 internal data class SynchronisedLyricsFrameEncoder internal constructor(
-    @JvmSynthetic override val name: String,
-    @JvmSynthetic val value: List<Pair<String, Int>>,
-    @JvmSynthetic val language: List<Byte>,
-    @JvmSynthetic val description: String,
-    @JvmSynthetic val type: Int,
-    @JvmSynthetic val timestampFormat: Int,
-    @JvmSynthetic override val size: Int,
+    @get:JvmSynthetic override val name: String,
+    @get:JvmSynthetic val value: List<Pair<String, Int>>,
+    @get:JvmSynthetic val language: List<Byte>,
+    @get:JvmSynthetic val description: String,
+    @get:JvmSynthetic val type: Int,
+    @get:JvmSynthetic val timestampFormat: Int,
+    @get:JvmSynthetic override val size: Int,
 ) : FrameEncoder(name, size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
