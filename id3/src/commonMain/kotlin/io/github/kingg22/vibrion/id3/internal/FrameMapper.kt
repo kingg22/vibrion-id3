@@ -92,6 +92,13 @@ internal fun setUserStringFrame(description: String, value: String) = UserTextFr
 )
 
 @JvmSynthetic
+internal fun setUserUrlFrame(description: String, value: String) = UserUrlFrameEncoder(
+    description = description,
+    url = value,
+    size = getUserUrlFrameSize(description.length, value.length),
+)
+
+@JvmSynthetic
 internal fun setUrlLinkFrame(name: String, url: String) = UrlFrameEncoder(
     name = name,
     value = url,

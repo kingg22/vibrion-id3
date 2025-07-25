@@ -5,6 +5,7 @@ import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
 import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
 import io.github.kingg22.vibrion.id3.internal.uint32ToUint8Array
 import io.github.kingg22.vibrion.id3.model.TextFrame
+import io.github.kingg22.vibrion.id3.model.UserDefinedText
 import kotlin.jvm.JvmStatic
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
@@ -324,5 +325,21 @@ class StringsFramesTest {
                 "Two-byte encoded frame $frame failed.",
             )
         }
+    }
+
+    @Test
+    fun testUserDefinedUrlFrame() {
+        val preComputedExpected = byteArrayOf(
+            73, 68, 51, 3, 0, 0, 0, 0, 0, 43, 87, 88,
+            88, 88, 0, 0, 0, 33, 0, 0, 1, (-1).toByte(), (-2).toByte(), 97,
+            0, 98, 0, 99, 0, 100, 0, 35, 0, 0, 0, 104,
+            116, 116, 112, 115, 58, 47, 47, 103, 111, 111, 103, 108,
+            101, 46, 99, 111, 109,
+        )
+        val writer = Id3AudioWriter()
+        writer.padding = 0
+        writer[Id3v2v3TagFrame.WXXX] = UserDefinedText("abcd#", "https://google.com")
+        val actual = writer.build()
+        assertContentEquals(preComputedExpected, actual, "User-defined URL frame failed.")
     }
 }

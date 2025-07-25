@@ -16,6 +16,7 @@ sealed interface Id3v2v3TagFrame : Id3TagFrame {
     sealed interface AttachedPictureTagFrame : Id3v2v3TagFrame
     sealed interface SynchronizedLyricsTagFrame : Id3v2v3TagFrame
     sealed interface UserDefinedTextTagFrame : Id3v2v3TagFrame
+    sealed interface UserDefinedUrlTagFrame : Id3v2v3TagFrame
     sealed interface CommentTagFrame : Id3v2v3TagFrame
     sealed interface PrivateTagFrame : Id3v2v3TagFrame
     sealed interface PairedTextTagFrame : Id3v2v3TagFrame
@@ -181,6 +182,11 @@ sealed interface Id3v2v3TagFrame : Id3TagFrame {
     /** Publishers official webpage */
     data object WPUB : UrlTagFrame {
         override val name = "WPUB"
+    }
+
+    /** User defined URL link */
+    data object WXXX : UserDefinedUrlTagFrame {
+        override val name = "WXXX"
     }
 
     // -- integers --
