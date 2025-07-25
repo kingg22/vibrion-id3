@@ -9,12 +9,11 @@ import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
 internal data class CommentFrameEncoder internal constructor(
-    @get:JvmSynthetic override val name: String,
     @get:JvmSynthetic val language: List<Byte>,
     @get:JvmSynthetic val description: String,
     @get:JvmSynthetic val value: String,
     @get:JvmSynthetic override val size: Int,
-) : FrameEncoder(name, size) {
+) : FrameEncoder("COMM", size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         val descriptionBytes = encodeUtf16LE(description)

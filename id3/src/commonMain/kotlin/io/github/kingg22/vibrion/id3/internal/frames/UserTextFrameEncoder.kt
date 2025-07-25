@@ -13,11 +13,10 @@ import kotlin.jvm.JvmSynthetic
  */
 @ConsistentCopyVisibility
 internal data class UserTextFrameEncoder internal constructor(
-    @get:JvmSynthetic override val name: String,
     @get:JvmSynthetic val description: String,
     @get:JvmSynthetic val value: String,
     @get:JvmSynthetic override val size: Int,
-) : FrameEncoder(name, size) {
+) : FrameEncoder("TXXX", size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         val descriptionBytes = encodeUtf16LE(description)

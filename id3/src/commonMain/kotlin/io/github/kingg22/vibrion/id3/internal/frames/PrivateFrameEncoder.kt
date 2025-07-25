@@ -10,11 +10,10 @@ import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
 internal data class PrivateFrameEncoder internal constructor(
-    @get:JvmSynthetic override val name: String,
     @get:JvmSynthetic val id: String,
     @get:JvmSynthetic val value: ByteArray,
     @get:JvmSynthetic override val size: Int,
-) : FrameEncoder(name, size) {
+) : FrameEncoder("PRIV", size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         val idBytes = encodeWindows1252(id)

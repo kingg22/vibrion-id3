@@ -9,7 +9,10 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 import kotlin.jvm.JvmSynthetic
 
-internal sealed class FrameEncoder(@get:JvmSynthetic open val name: String, @get:JvmSynthetic open val size: Int) {
+internal sealed class FrameEncoder(
+    @get:JvmSynthetic @field:JvmSynthetic protected open val name: String,
+    @get:JvmSynthetic @field:JvmSynthetic internal open val size: Int,
+) {
     @JvmSynthetic
     internal abstract fun writeTo(buffer: ByteArray, offset: Int): Int
 
@@ -29,7 +32,7 @@ internal sealed class FrameEncoder(@get:JvmSynthetic open val name: String, @get
         return offset + HEADER
     }
 
-    internal companion object {
+    protected companion object {
         @JvmStatic
         protected val BOM = byteArrayOf(0xFF.toByte(), 0xFE.toByte())
 

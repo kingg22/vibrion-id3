@@ -42,7 +42,6 @@ internal fun setPictureFrame(
     val actualUseUnicode = description.isNotEmpty() && useUnicodeEncoding
 
     return PictureFrameEncoder(
-        name = "APIC",
         value = data,
         pictureType = pictureType,
         mimeType = mimeType,
@@ -59,7 +58,6 @@ internal fun setPictureFrame(
 
 @JvmSynthetic
 internal fun setLyricsFrame(language: String, description: String, lyrics: String) = UnsynchronisedLyricsFrameEncoder(
-    name = "USLT",
     language = strToCodePointsByte(language),
     description = description,
     value = lyrics,
@@ -68,7 +66,6 @@ internal fun setLyricsFrame(language: String, description: String, lyrics: Strin
 
 @JvmSynthetic
 internal fun setCommentFrame(language: String, description: String, text: String) = CommentFrameEncoder(
-    name = "COMM",
     language = strToCodePointsByte(language),
     description = description,
     value = text,
@@ -77,7 +74,6 @@ internal fun setCommentFrame(language: String, description: String, text: String
 
 @JvmSynthetic
 internal fun setPrivateFrame(id: String, data: ByteArray) = PrivateFrameEncoder(
-    name = "PRIV",
     id = id,
     value = data,
     size = getPrivateFrameSize(id.length, data.size),
@@ -85,7 +81,6 @@ internal fun setPrivateFrame(id: String, data: ByteArray) = PrivateFrameEncoder(
 
 @JvmSynthetic
 internal fun setUserStringFrame(description: String, value: String) = UserTextFrameEncoder(
-    name = "TXXX",
     description = description,
     value = value,
     size = getUserStringFrameSize(description.length, value.length),
@@ -120,7 +115,6 @@ internal fun setSynchronisedLyricsFrame(
     language: String,
     description: String,
 ) = SynchronisedLyricsFrameEncoder(
-    name = "SYLT",
     value = text,
     language = strToCodePointsByte(language),
     description = description,
