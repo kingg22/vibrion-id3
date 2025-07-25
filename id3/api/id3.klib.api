@@ -105,6 +105,8 @@ sealed interface io.github.kingg22.vibrion.id3/Id3v2v3TagFrame : io.github.kingg
 
     sealed interface UserDefinedTextTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedTextTagFrame|null[0]
 
+    sealed interface UserDefinedUrlTagFrame : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedUrlTagFrame|null[0]
+
     final object APIC : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.AttachedPictureTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.APIC|null[0]
         final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.APIC.name|{}name[0]
             final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.APIC.name.<get-name>|<get-name>(){}[0]
@@ -494,6 +496,15 @@ sealed interface io.github.kingg22.vibrion.id3/Id3v2v3TagFrame : io.github.kingg
         final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WPUB.hashCode|hashCode(){}[0]
         final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WPUB.toString|toString(){}[0]
     }
+
+    final object WXXX : io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedUrlTagFrame { // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WXXX|null[0]
+        final val name // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WXXX.name|{}name[0]
+            final fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WXXX.name.<get-name>|<get-name>(){}[0]
+
+        final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WXXX.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WXXX.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.WXXX.toString|toString(){}[0]
+    }
 }
 
 final class io.github.kingg22.vibrion.id3.model/AttachedPicture : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/AttachedPicture|null[0]
@@ -731,6 +742,9 @@ final class io.github.kingg22.vibrion.id3/Id3AudioWriter { // io.github.kingg22.
     final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedTextTagFrame, io.github.kingg22.vibrion.id3.model/UserDefinedText) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.UserDefinedTextTagFrame;io.github.kingg22.vibrion.id3.model.UserDefinedText){}[0]
     final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedTextTagFrame, kotlin/Pair<kotlin/String, kotlin/String>) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.UserDefinedTextTagFrame;kotlin.Pair<kotlin.String,kotlin.String>){}[0]
     final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedTextTagFrame, kotlin/String, kotlin/String) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.UserDefinedTextTagFrame;kotlin.String;kotlin.String){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedUrlTagFrame, io.github.kingg22.vibrion.id3.model/UserDefinedText) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.UserDefinedUrlTagFrame;io.github.kingg22.vibrion.id3.model.UserDefinedText){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedUrlTagFrame, kotlin/Pair<kotlin/String, kotlin/String>) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.UserDefinedUrlTagFrame;kotlin.Pair<kotlin.String,kotlin.String>){}[0]
+    final fun set(io.github.kingg22.vibrion.id3/Id3v2v3TagFrame.UserDefinedUrlTagFrame, kotlin/String, kotlin/String) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.UserDefinedUrlTagFrame;kotlin.String;kotlin.String){}[0]
     final fun set(kotlin.collections/List<io.github.kingg22.vibrion.id3/Id3v2v3TagFrame>, kotlin.collections/List<io.github.kingg22.vibrion.id3.model/FrameValue>) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(kotlin.collections.List<io.github.kingg22.vibrion.id3.Id3v2v3TagFrame>;kotlin.collections.List<io.github.kingg22.vibrion.id3.model.FrameValue>){}[0]
     final fun set(kotlin/String, io.github.kingg22.vibrion.id3.model/FrameValue) // io.github.kingg22.vibrion.id3/Id3AudioWriter.set|set(kotlin.String;io.github.kingg22.vibrion.id3.model.FrameValue){}[0]
     final fun toByteArray(): kotlin/ByteArray // io.github.kingg22.vibrion.id3/Id3AudioWriter.toByteArray|toByteArray(){}[0]

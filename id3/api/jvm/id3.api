@@ -56,6 +56,9 @@ public final class io/github/kingg22/vibrion/id3/Id3AudioWriter {
 	public final fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UserDefinedTextTagFrame;Lio/github/kingg22/vibrion/id3/model/UserDefinedText;)V
 	public final fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UserDefinedTextTagFrame;Ljava/lang/String;Ljava/lang/String;)V
 	public final synthetic fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UserDefinedTextTagFrame;Lkotlin/Pair;)V
+	public final fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UserDefinedUrlTagFrame;Lio/github/kingg22/vibrion/id3/model/UserDefinedText;)V
+	public final fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UserDefinedUrlTagFrame;Ljava/lang/String;Ljava/lang/String;)V
+	public final synthetic fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UserDefinedUrlTagFrame;Lkotlin/Pair;)V
 	public final fun set (Ljava/lang/String;Lio/github/kingg22/vibrion/id3/model/FrameValue;)V
 	public final fun set (Ljava/util/List;Ljava/util/List;)V
 	public final fun setPadding (I)V
@@ -550,6 +553,9 @@ public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$Ur
 public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UserDefinedTextTagFrame : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame {
 }
 
+public abstract interface class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UserDefinedUrlTagFrame : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame {
+}
+
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WCOM : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UrlTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WCOM;
 	public fun equals (Ljava/lang/Object;)Z
@@ -608,6 +614,14 @@ public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WPAY : io/githu
 
 public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WPUB : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UrlTagFrame {
 	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WPUB;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WXXX : io/github/kingg22/vibrion/id3/Id3v2v3TagFrame$UserDefinedUrlTagFrame {
+	public static final field INSTANCE Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$WXXX;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getName ()Ljava/lang/String;
 	public fun hashCode ()I
