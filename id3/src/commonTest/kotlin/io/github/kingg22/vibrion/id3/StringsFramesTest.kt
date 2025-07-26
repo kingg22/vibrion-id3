@@ -329,6 +329,9 @@ class StringsFramesTest {
 
     @Test
     fun testUserDefinedUrlFrame() {
+        val description = "abcd#"
+        val url = "https://google.com"
+
         val preComputedExpected = byteArrayOf(
             73, 68, 51, 3, 0, 0, 0, 0, 0, 43, 87, 88,
             88, 88, 0, 0, 0, 33, 0, 0, 1, (-1).toByte(), (-2).toByte(), 97,
@@ -336,10 +339,33 @@ class StringsFramesTest {
             116, 116, 112, 115, 58, 47, 47, 103, 111, 111, 103, 108,
             101, 46, 99, 111, 109,
         )
+        val encodedDescription = description.encodeUtf16LE()
+        val encodedUrl = url.encodeWindows1252()
+
+        val contentSize = 1 + bom.size + encodedDescription.size + 2 + encodedUrl.size
+        val totalTagSize = 10 + contentSize
+
+        val expected = byteArrayOf(
+            *id3Header,
+            *encodeSynchsafeInt(totalTagSize), // Size of tag (syncsafe)
+
+            // Frame Header "WXXX"
+            *"WXXX".encodeWindows1252(), // Frame ID
+            *uint32ToUint8Array(contentSize.toUInt()), // Frame size
+            0x00, 0x00, // Flags
+
+            // Frame body
+            0x01, // Encoding: UTF-16 with BOM
+            *bom, // BOM
+            *encodedDescription,
+            0x00, 0x00, // UTF-16 null terminator
+            *encodedUrl,
+        )
         val writer = Id3AudioWriter()
         writer.padding = 0
-        writer[Id3v2v3TagFrame.WXXX] = UserDefinedText("abcd#", "https://google.com")
+        writer[Id3v2v3TagFrame.WXXX] = UserDefinedText(description, url)
         val actual = writer.build()
-        assertContentEquals(preComputedExpected, actual, "User-defined URL frame failed.")
+        assertContentEquals(preComputedExpected, actual, "User-defined URL frame failed in pre-computed format.")
+        assertContentEquals(expected, actual, "User-defined URL frame failed.")
     }
 }
