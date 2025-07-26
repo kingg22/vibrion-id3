@@ -245,6 +245,15 @@ data class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
         set(id, PairedTextFrame(value))
     }
 
+    /**
+     * _implies_ ([id] == [IPLS])
+     * @see Id3v2v3TagFrame
+     * @see PairedTextTagFrame
+     */
+    operator fun set(id: PairedTextTagFrame, value: PairedTextFrame) {
+        set(id, value as FrameValue)
+    }
+
     // -- objects --
 
     /**
