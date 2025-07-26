@@ -23,7 +23,7 @@ Full credit to [@egoroof](https://github.com/egoroof) for the original concept.
 >
 > This library doesn't read, remove or scan byteArray, only generate the tag. You can use `Id3AudioWriter.removeTag(bytearray)`.
 >
-> This library works on byteArray, doesn't use files, stream, sink or other format. You can open an issue or PR to add a module.
+> This library works on byteArray, doesn't use files, stream, sink, or other formats. You can open an issue or PR to add a module.
 
 ## Installation
 ![Maven Central Version](https://img.shields.io/maven-central/v/io.github.kingg22/vibrion-id3)
@@ -59,32 +59,31 @@ vibrion-id3 = { group = "io.github.kingg22", name = "vibrion-id3", version.ref =
 - Android Native X64
 - Android Native X86
 
-_You required targets is not available?_ Please make a PR to add it or create an issue.
+_You required targets are not available?_ Please make a PR to add it or create an issue.
 
 _You need an `Export` annotation for specific target?_ Please make a PR to add it or create an issue.
 
 _Java inaccessible?_ Please create an issue with demonstration of the code. I try to make java-friendly.
 
 ## Samples of use
-- Using verbose builder (work in progress):
+- Using verbose builder:
 
   Kotlin:
   ```kotlin
-  val track = "..." // origin of data
   val tag: ByteArray = Id3WriterBuilder.id3Writer {
-      title = track.title
-      artist(track.artist.name)
-      // Null is not considered as value for frame tag, but is valid for builder style
-      album = track.album?.title
-      length = track.duration
-      year = track.releaseDate?.year
+      title = "Song Title Example"
+      artist("Example Artist")
+      album = "Example Album"
+      length = 240_000 // 4 minutos en milisegundos
+      year = 2021
+      year = null // null is not considered to add frame but is permitted in builder
       picture {
-          // DSL marker
           type = AttachedPictureType.CoverFront
-          data = byteArrayOf(0xFF.toByte(), 0xD8.toByte(), 0xFF.toByte())
+          data = byteArrayOf(0xFF.toByte(), 0xD8.toByte(), 0xFF.toByte()) // Data of image with mimeType JPEG
       }
       syncLyrics {
-        line("One line of the song", timestamp = 1000) // repeteable function
+          line("Just a simple line", timestamp = 1000)
+          line("Another line of lyrics", timestamp = 5000)
       }
   }.toByteArray()
   ```
@@ -108,7 +107,7 @@ _Java inaccessible?_ Please create an issue with demonstration of the code. I tr
   writer[Id3v2v3TagFrame.TIT2] = "Title"
   writer[Id3v2v3TagFrame.TPE1] = listOf("Eminem", "50 Cent")
   // ⚠️ Advanced use only. May lead to invalid tag structure if not used carefully.
-  writer["TXXX"] = "key" to "value"
+  writer["IPLS"] = PairedTextFrame("key" to "value")
   val tag: ByteArray = writer.build()
   ```
   Java:
@@ -121,7 +120,7 @@ _Java inaccessible?_ Please create an issue with demonstration of the code. I tr
       writer.set(Id3v2v3TagFrame.TPE1.INSTANCE, List.of("Eminem", "50 Cent"));
       // ⚠️ Advanced use only. May lead to invalid tag structure if not used carefully.
       // Java consumers don't need to use kotlin Pair, can use Map thinking is only for pair key-value
-      writer.set("TXXX", Map.of("key", value));
+      writer.set("IPLS", new PairedTextFrame(Map.of("key", value)));
       final byte[] tag = writer.build();
       }
   }
@@ -189,6 +188,7 @@ _Grouped by type, where (`name`) is the type in code_
 - APIC (`AttachedPicture`) (attached picture)
 - TXXX (`UserDefinedText`) (user defined text)
 - PRIV (`PrivateFrame`) (private frame)
+- WXXX (`UserDefinedText`) (user defined url link)
 
 ## APIC picture types (`AttachedPictureType`)
 

@@ -8,13 +8,12 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class CommentFrameEncoder internal constructor(
-    @get:JvmSynthetic override val name: String,
-    @get:JvmSynthetic val language: List<Byte>,
-    @get:JvmSynthetic val description: String,
-    @get:JvmSynthetic val value: String,
-    @get:JvmSynthetic override val size: Int,
-) : FrameEncoder(name, size) {
+internal data class CommentFrameEncoder private constructor(
+    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
+    private val language: List<Byte>,
+    private val description: String,
+    private val value: String,
+) : FrameEncoder("COMM", size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         val descriptionBytes = encodeUtf16LE(description)
@@ -43,5 +42,11 @@ internal data class CommentFrameEncoder internal constructor(
         valueBytes.copyInto(buffer, currentOffset)
 
         return HEADER + contentSize
+    }
+
+    internal companion object {
+        @JvmSynthetic
+        internal fun CommentFrameEncoder(language: List<Byte>, description: String, value: String, size: Int) =
+            CommentFrameEncoder(size, language, description, value)
     }
 }

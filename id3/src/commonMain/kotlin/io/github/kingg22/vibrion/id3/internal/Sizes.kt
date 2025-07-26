@@ -80,6 +80,14 @@ internal fun getUserStringFrameSize(descriptionSize: Int, valueSize: Int): Int {
 internal fun getUrlLinkFrameSize(urlSize: Int) = FRAME_HEADER_SIZE + urlSize
 
 @JvmSynthetic
+internal fun getUserUrlFrameSize(descriptionSize: Int, urlSize: Int) = FRAME_HEADER_SIZE + // frame header
+    ENCODING_SIZE + // encoding byte
+    BOM_SIZE + // BOM (2 bytes)
+    (descriptionSize * 2) +
+    BOM_SIZE + // null terminator for UTF-16LE
+    urlSize
+
+@JvmSynthetic
 internal fun getPairedTextFrameSize(list: List<Pair<String, String>>): Int {
     val separatorSize = 2
 

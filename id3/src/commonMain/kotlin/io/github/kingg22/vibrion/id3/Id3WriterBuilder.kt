@@ -20,29 +20,39 @@ import kotlin.jvm.JvmSynthetic
  *
  * Example:
  * ```kotlin
- * val track = ...
  * val tag: ByteArray = Id3WriterBuilder.id3Writer {
- *     title = track.title
- *     artist(track.artist.name)
- *     album = track.album?.title
- *     bpm = track.bpm?.toInt()
- *     length = track.duration
- *     year = track.releaseDate?.year
+ *     title = "Song Title Example"
+ *     artist("Example Artist")
+ *     album = "Example Album"
+ *     length = 240_000
+ *     year = 2021
+ *     picture {
+ *         type = AttachedPictureType.CoverFront
+ *         data = byteArrayOf(0xFF.toByte(), 0xD8.toByte(), 0xFF.toByte())
+ *     }
+ *     syncLyrics {
+ *         line("Just a simple line", timestamp = 1000)
+ *         line("Another line of lyrics", timestamp = 5000)
+ *     }
  * }.toByteArray()
  * ```
  * Java builder style:
  * ```java
- * class Id3BuilderJavaTest {
- *     void testBuilderStyle() {
- *         final byte[] tag = Id3WriterBuilder.id3Writer()
- *             .title("Título")
- *             .artist("Artista")
- *             .picture(new AttachedPictureBuilder().type(AttachedPictureType.CoverFront).data(new byte[]{
- *                 (byte) 0xFF, (byte) 0xD8, (byte) 0xFF
- *             }))
- *             .toByteArray();
- *      }
- * }
+ * final byte[] tag = Id3WriterBuilder.id3Writer()
+ *     .title("Song Title Example")
+ *     .artist("Example Artist")
+ *     .album("Example Album")
+ *     .year(2021)
+ *     .length(240000)
+ *     .picture(
+ *         new AttachedPictureBuilder()
+ *             .type(AttachedPictureType.CoverFront)
+ *             .data(new byte[]{(byte) 0xFF, (byte) 0xD8, (byte) 0xFF})
+ *     ).syncLyrics(
+ *         new SynchronizedLyricsBuilder()
+ *             .line("Just a simple line", 1000)
+ *             .line("Another line of lyrics", 5000)
+ *     ).toByteArray();
  * ```
  *
  * @see Id3AudioWriter
@@ -306,55 +316,53 @@ class Id3WriterBuilder {
             value?.let { values += WCOP to TextFrame(it) }
         }
 
+    var userUrl: UserDefinedText? = null
+        set(value) {
+            field = value
+            value?.let { values += WXXX to it }
+        }
+
     // ---- Builder style ----
 
     // --- Strings ---
-    fun title(title: String) = apply { values += TIT2 to TextFrame(title) }
-    fun album(album: String) = apply { values += TALB to TextFrame(album) }
-    fun subtitle(subtitle: String) = apply { values += TIT3 to TextFrame(subtitle) }
-    fun albumArtist(albumArtist: String) = apply { values += TPE2 to TextFrame(albumArtist) }
-    fun mediaType(mediaType: String) = apply { values += TMED to TextFrame(mediaType) }
-    fun label(label: String) = apply { values += TPUB to TextFrame(label) }
-    fun copyright(copyright: String) = apply { values += TCOP to TextFrame(copyright) }
-    fun isrc(isrc: String) = apply { values += TSRC to TextFrame(isrc) }
-    fun key(key: String) = apply { values += TKEY to TextFrame(key) }
-    fun language(language: String) = apply { values += TLAN to TextFrame(language) }
-    fun contentGroup(group: String) = apply { values += TIT1 to TextFrame(group) }
-    fun conductor(name: String) = apply { values += TPE3 to TextFrame(name) }
-    fun remixer(name: String) = apply { values += TPE4 to TextFrame(name) }
-    fun track(number: String) = apply { values += TRCK to TextFrame(number) }
-    fun disc(number: String) = apply { values += TPOS to TextFrame(number) }
-    fun lyricist(name: String) = apply { values += TEXT to TextFrame(name) }
-    fun releaseDate(date: String) = apply { values += TDAT to TextFrame(date) }
-
-    fun isCompilation(flag: Boolean = true) = apply {
-        if (flag) values += TCMP to TextFrame("1")
-    }
-
-    fun encoderSoftware(name: String) = apply { values += TSSE to TextFrame(name) }
+    fun title(title: String) = apply { this.title = title }
+    fun album(album: String) = apply { this.album = album }
+    fun subtitle(subtitle: String) = apply { this.subtitle = subtitle }
+    fun albumArtist(albumArtist: String) = apply { this.albumArtist = albumArtist }
+    fun mediaType(mediaType: String) = apply { this.mediaType = mediaType }
+    fun label(label: String) = apply { this.label = label }
+    fun copyright(copyright: String) = apply { this.copyright = copyright }
+    fun isrc(isrc: String) = apply { this.isrc = isrc }
+    fun key(key: String) = apply { this.key = key }
+    fun language(language: String) = apply { this.language = language }
+    fun contentGroup(group: String) = apply { this.contentGroup = group }
+    fun conductor(name: String) = apply { this.conductor = name }
+    fun remixer(name: String) = apply { this.remixer = name }
+    fun track(number: String) = apply { this.track = number }
+    fun disc(number: String) = apply { this.disc = number }
+    fun lyricist(name: String) = apply { this.lyricist = name }
+    fun releaseDate(date: String) = apply { this.releaseDate = date }
+    fun isCompilation(flag: Boolean = true) = apply { this.isCompilation = flag }
+    fun encoderSoftware(name: String) = apply { this.encoderSoftware = name }
 
     // --- Integers ---
-    fun bpm(bpm: Int) = apply { values += TBPM to IntegerFrame(bpm) }
-    fun length(length: Int) = apply { values += TLEN to IntegerFrame(length) }
-    fun year(year: Int) = apply { values += TYER to IntegerFrame(year) }
+    fun bpm(bpm: Int) = apply { this.bpm = bpm }
+    fun length(length: Int) = apply { this.length = length }
+    fun year(year: Int) = apply { this.year = year }
 
     // -- List of strings --
-    fun artist(name: String, vararg names: String) = apply {
-        values += TPE1 to StringListFrame(listOf(name, *names))
-    }
-
-    fun genre(genre: String, vararg genres: String) = apply { values += TCON to StringListFrame(genre, *genres) }
-
-    fun composer(composer: String, vararg composers: String) = apply {
-        values += TCOM to StringListFrame(composer, *composers)
-    }
+    fun artist(name: String, vararg names: String) = apply { this.artists = listOf(name, *names) }
+    fun genre(genre: String, vararg genres: String) = apply { this.genres = listOf(genre, *genres) }
+    fun composer(composer: String, vararg composers: String) = apply { this.composer = listOf(composer, *composers) }
 
     // --- Pairs ---
-    fun involvedPeople(people: Map<String, String>) = apply { values += IPLS to PairedTextFrame(people) }
+    fun involvedPeople(people: Map<String, String>) = apply {
+        involvedPeople = people.entries.map { it.key to it.value }
+    }
 
     @JvmSynthetic
     fun involvedPeople(people: Pair<String, String>, vararg peoples: Pair<String, String>) = apply {
-        values += IPLS to PairedTextFrame(people, *peoples)
+        involvedPeople = listOf(people, *peoples)
     }
 
     // --- Lyrics ---
@@ -362,67 +370,56 @@ class Id3WriterBuilder {
     /** Need [UnsynchronisedLyricsBuilder.lyrics] */
     @JvmSynthetic
     fun lyrics(block: UnsynchronisedLyricsBuilder.() -> Unit) = apply {
-        val builder = UnsynchronisedLyricsBuilder().apply(block)
-        values += USLT to builder.build()
+        lyrics = UnsynchronisedLyricsBuilder().apply(block).build()
     }
 
-    /** Need [UnsynchronisedLyricsBuilder.lyrics] */
-    fun lyrics(builder: UnsynchronisedLyricsBuilder) = apply { values += USLT to builder.build() }
-
-    fun lyrics(unsynchronisedLyrics: UnsynchronisedLyrics) = apply { values += USLT to unsynchronisedLyrics }
+    fun lyrics(builder: UnsynchronisedLyricsBuilder) = apply { lyrics = builder.build() }
+    fun lyrics(unsynchronisedLyrics: UnsynchronisedLyrics) = apply { lyrics = unsynchronisedLyrics }
 
     @JvmSynthetic
     fun syncLyrics(block: SynchronizedLyricsBuilder.() -> Unit) = apply {
-        val builder = SynchronizedLyricsBuilder().apply(block)
-        values += SYLT to builder.build()
+        syncLyrics = SynchronizedLyricsBuilder().apply(block).build()
     }
 
-    fun syncLyrics(builder: SynchronizedLyricsBuilder) = apply { values += SYLT to builder.build() }
-
-    fun syncLyrics(synchronizedLyrics: SynchronizedLyrics) = apply { values += SYLT to synchronizedLyrics }
+    fun syncLyrics(builder: SynchronizedLyricsBuilder) = apply { syncLyrics = builder.build() }
+    fun syncLyrics(synchronizedLyrics: SynchronizedLyrics) = apply { syncLyrics = synchronizedLyrics }
 
     // --- Picture ---
     @JvmSynthetic
     fun picture(block: AttachedPictureBuilder.() -> Unit) = apply {
-        val builder = AttachedPictureBuilder().apply(block)
-        values += APIC to builder.build()
+        this.picture = AttachedPictureBuilder().apply(block).build()
     }
 
-    fun picture(builder: AttachedPictureBuilder) = apply { values += APIC to builder.build() }
-
-    fun picture(attachedPicture: AttachedPicture) = apply { values += APIC to attachedPicture }
+    fun picture(builder: AttachedPictureBuilder) = apply { picture = builder.build() }
+    fun picture(attachedPicture: AttachedPicture) = apply { picture = attachedPicture }
 
     // --- Comment ---
     @JvmOverloads
     fun comment(text: String, lang: String = "eng", description: String = "") = apply {
-        values += COMM to CommentFrame(language = lang, description = description, text = text)
+        this.comment = CommentFrame(language = lang, description = description, text = text)
     }
 
-    fun comment(comment: CommentFrame) = apply { values += COMM to comment }
+    fun comment(comment: CommentFrame) = apply { this.comment = comment }
 
     // --- Private ---
-    fun privateFrame(id: String, data: ByteArray) = apply {
-        values += PRIV to PrivateFrame(id, data)
-    }
-
-    fun privateFrame(privateFrame: PrivateFrame) = apply { values += PRIV to privateFrame }
+    fun privateFrame(id: String, data: ByteArray) = apply { privateFrame = PrivateFrame(id, data) }
+    fun privateFrame(privateFrame: PrivateFrame) = apply { this.privateFrame = privateFrame }
 
     // --- User defined ---
-    fun userText(description: String, value: String) = apply {
-        values += TXXX to UserDefinedText(description, value)
-    }
-
-    fun userText(user: UserDefinedText) = apply { values += TXXX to user }
+    fun userText(description: String, value: String) = apply { userText = UserDefinedText(description, value) }
+    fun userText(user: UserDefinedText) = apply { userText = user }
 
     // --- Web URLs ---
-    fun artistWeb(url: String) = apply { values += WOAR to TextFrame(url) }
-    fun fileWeb(url: String) = apply { values += WOAF to TextFrame(url) }
-    fun sourceWeb(url: String) = apply { values += WOAS to TextFrame(url) }
-    fun radioWeb(url: String) = apply { values += WORS to TextFrame(url) }
-    fun payWeb(url: String) = apply { values += WPAY to TextFrame(url) }
-    fun publisherWeb(url: String) = apply { values += WPUB to TextFrame(url) }
-    fun commercialWeb(url: String) = apply { values += WCOM to TextFrame(url) }
-    fun copyrightWeb(url: String) = apply { values += WCOP to TextFrame(url) }
+    fun artistWeb(url: String) = apply { this.artistWeb = url }
+    fun fileWeb(url: String) = apply { this.fileWeb = url }
+    fun sourceWeb(url: String) = apply { this.sourceWeb = url }
+    fun radioWeb(url: String) = apply { this.radioWeb = url }
+    fun payWeb(url: String) = apply { this.payWeb = url }
+    fun publisherWeb(url: String) = apply { this.publisherWeb = url }
+    fun commercialWeb(url: String) = apply { this.commercialWeb = url }
+    fun copyrightWeb(url: String) = apply { this.copyrightWeb = url }
+    fun userUrl(userUrl: UserDefinedText) = apply { this.userUrl = userUrl }
+    fun userUrl(description: String, url: String) = apply { this.userUrl = UserDefinedText(description, url) }
 
     /**
      * Build the [Id3AudioWriter] instance and set all the tags.
@@ -456,7 +453,7 @@ class Id3WriterBuilder {
     }
 
     @KoverIgnore
-    override fun toString(): String = "Id3WriterBuilder()"
+    override fun toString(): String = "Id3WriterBuilder($values)"
 
     /**
      * Generate a copy of this builder.

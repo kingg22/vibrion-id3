@@ -8,10 +8,10 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class PairedTextFrameEncoder internal constructor(
-    @get:JvmSynthetic override val name: String,
-    @get:JvmSynthetic val value: List<Pair<String, String>>,
-    @get:JvmSynthetic override val size: Int,
+internal data class PairedTextFrameEncoder private constructor(
+    @get:JvmSynthetic @field:JvmSynthetic override val name: String,
+    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
+    private val value: List<Pair<String, String>>,
 ) : FrameEncoder(name, size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
@@ -49,5 +49,11 @@ internal data class PairedTextFrameEncoder internal constructor(
         }
 
         return HEADER + contentSize
+    }
+
+    internal companion object {
+        @JvmSynthetic
+        internal fun PairedTextFrameEncoder(name: String, value: List<Pair<String, String>>, size: Int) =
+            PairedTextFrameEncoder(name, size, value)
     }
 }

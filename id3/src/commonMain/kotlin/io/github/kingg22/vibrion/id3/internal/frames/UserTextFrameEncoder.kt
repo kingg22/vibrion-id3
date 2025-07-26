@@ -12,12 +12,11 @@ import kotlin.jvm.JvmSynthetic
  * @see io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.TXXX
  */
 @ConsistentCopyVisibility
-internal data class UserTextFrameEncoder internal constructor(
-    @get:JvmSynthetic override val name: String,
-    @get:JvmSynthetic val description: String,
-    @get:JvmSynthetic val value: String,
-    @get:JvmSynthetic override val size: Int,
-) : FrameEncoder(name, size) {
+internal data class UserTextFrameEncoder private constructor(
+    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
+    private val description: String,
+    private val value: String,
+) : FrameEncoder("TXXX", size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         val descriptionBytes = encodeUtf16LE(description)
@@ -45,5 +44,11 @@ internal data class UserTextFrameEncoder internal constructor(
         valueBytes.copyInto(buffer, currentOffset)
 
         return HEADER + contentSize
+    }
+
+    internal companion object {
+        @JvmSynthetic
+        internal fun UserTextFrameEncoder(description: String, value: String, size: Int) =
+            UserTextFrameEncoder(size, description, value)
     }
 }

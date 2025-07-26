@@ -8,13 +8,11 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class NumericFrameEncoder internal constructor(
-    @get:JvmSynthetic override val name: String,
-    @get:JvmSynthetic val value: String,
-    @get:JvmSynthetic override val size: Int,
+internal data class NumericFrameEncoder private constructor(
+    @get:JvmSynthetic @field:JvmSynthetic override val name: String,
+    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
+    private val value: String,
 ) : FrameEncoder(name, size) {
-    internal constructor(name: String, value: Int, size: Int) : this(name, value.toString(), size)
-
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         // Escribir header del frame (10 bytes)
@@ -40,5 +38,15 @@ internal data class NumericFrameEncoder internal constructor(
         encoded.copyInto(buffer, offset + 11)
 
         return HEADER + contentSize // Tamaño total del frame
+    }
+
+    internal companion object {
+        @JvmSynthetic
+        internal fun NumericFrameEncoder(name: String, value: Int, size: Int) =
+            NumericFrameEncoder(name, size, value.toString())
+
+        @JvmSynthetic
+        internal fun NumericFrameEncoder(name: String, value: String, size: Int) =
+            NumericFrameEncoder(name, size, value)
     }
 }

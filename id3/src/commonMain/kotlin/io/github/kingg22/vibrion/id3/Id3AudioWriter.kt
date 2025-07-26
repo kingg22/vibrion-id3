@@ -158,6 +158,11 @@ data class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
                 frames += setUserStringFrame(value.description, value.value)
             }
 
+            is UserDefinedUrlTagFrame -> {
+                require(value is UserDefinedText)
+                frames += setUserUrlFrame(value.description, value.value)
+            }
+
             is CommentTagFrame -> {
                 require(value is CommentFrame)
                 frames += setCommentFrame(value.language, value.description, value.text)
@@ -282,6 +287,15 @@ data class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
     }
 
     /**
+     * _implies_ ([id] == [WXXX]) where [UserDefinedText.value] is a link.
+     * @see Id3v2v3TagFrame
+     * @see UserDefinedUrlTagFrame
+     */
+    operator fun set(id: UserDefinedUrlTagFrame, value: UserDefinedText) {
+        set(id, value as FrameValue)
+    }
+
+    /**
      * _implies_ ([id] == [COMM])
      * @see Id3v2v3TagFrame
      * @see CommentTagFrame
@@ -353,6 +367,35 @@ data class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
      * @see UserDefinedText
      */
     operator fun set(id: UserDefinedTextTagFrame, description: String, value: String) {
+        set(id, UserDefinedText(description, value))
+    }
+
+    /**
+     * _implies_ ([id] == [WXXX])
+     * @see Id3v2v3TagFrame
+     * @see UserDefinedUrlTagFrame
+     * @see UserDefinedText
+     */
+    @JvmSynthetic
+    operator fun set(id: UserDefinedUrlTagFrame, value: Pair<String, String>) {
+        set(id, UserDefinedText(value.first, value.second))
+    }
+
+    /**
+     * _implies_ ([id] == [WXXX])
+     *
+     * Example Kotlin:
+     * ```kotlin
+     * id3AudioWriter {
+     *     this[WXXX, "description"] = "value"
+     * }
+     * ```
+     *
+     * @see Id3v2v3TagFrame
+     * @see UserDefinedUrlTagFrame
+     * @see UserDefinedText
+     */
+    operator fun set(id: UserDefinedUrlTagFrame, description: String, value: String) {
         set(id, UserDefinedText(description, value))
     }
 

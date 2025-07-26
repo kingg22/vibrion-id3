@@ -10,15 +10,14 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class PictureFrameEncoder internal constructor(
-    @get:JvmSynthetic override val name: String,
-    @get:JvmSynthetic val value: ByteArray,
-    @get:JvmSynthetic val pictureType: Int,
-    @get:JvmSynthetic val mimeType: String,
-    @get:JvmSynthetic val description: String,
-    @get:JvmSynthetic val useUnicode: Boolean,
-    @get:JvmSynthetic override val size: Int,
-) : FrameEncoder(name, size) {
+internal data class PictureFrameEncoder private constructor(
+    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
+    private val value: ByteArray,
+    private val pictureType: Int,
+    private val mimeType: String,
+    private val description: String,
+    private val useUnicode: Boolean,
+) : FrameEncoder("APIC", size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         val descriptionBytes = if (useUnicode) {
@@ -92,5 +91,17 @@ internal data class PictureFrameEncoder internal constructor(
         result = 31 * result + mimeType.hashCode()
         result = 31 * result + description.hashCode()
         return result
+    }
+
+    internal companion object {
+        @JvmSynthetic
+        internal fun PictureFrameEncoder(
+            value: ByteArray,
+            mimeType: String,
+            pictureType: Int,
+            description: String,
+            useUnicode: Boolean,
+            size: Int,
+        ) = PictureFrameEncoder(size, value, pictureType, mimeType, description, useUnicode)
     }
 }
