@@ -11,6 +11,6 @@ class ID3FrameTypeTest {
 
     @Test
     fun tagsFramesSupported() {
-        assertEquals(40, Id3v2v3TagFrame.allFrames.size)
+        assertEquals(41, Id3v2v3TagFrame.allFrames.size)
     }
 }

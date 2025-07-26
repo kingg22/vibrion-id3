@@ -306,6 +306,12 @@ class Id3WriterBuilder {
             value?.let { values += WCOP to TextFrame(it) }
         }
 
+    var userUrl: UserDefinedText? = null
+        set(value) {
+            field = value
+            value?.let { values += WXXX to it }
+        }
+
     // ---- Builder style ----
 
     // --- Strings ---
@@ -423,6 +429,11 @@ class Id3WriterBuilder {
     fun publisherWeb(url: String) = apply { values += WPUB to TextFrame(url) }
     fun commercialWeb(url: String) = apply { values += WCOM to TextFrame(url) }
     fun copyrightWeb(url: String) = apply { values += WCOP to TextFrame(url) }
+    fun userUrl(userUrl: UserDefinedText) = apply { values += WXXX to userUrl }
+
+    fun userUrl(description: String, url: String) = apply {
+        values += WXXX to UserDefinedText(description, url)
+    }
 
     /**
      * Build the [Id3AudioWriter] instance and set all the tags.

@@ -146,6 +146,7 @@ class Id3WriterBuilderTest {
             publisherWeb("https://pub.com")
             commercialWeb("https://buy.com")
             copyrightWeb("https://rights.com")
+            userUrl("MyDesc", "https://owned.com")
         }
 
         val generatedTags = builder.valuesForTest.keys.toSet()

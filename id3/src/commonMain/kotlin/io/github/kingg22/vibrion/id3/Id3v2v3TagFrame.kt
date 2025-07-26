@@ -260,7 +260,7 @@ sealed interface Id3v2v3TagFrame : Id3TagFrame {
         val urlFrames = listOf(WCOM, WCOP, WOAF, WOAR, WOAS, WORS, WPAY, WPUB)
 
         @JvmStatic
-        val objectFrames = listOf(USLT, SYLT, APIC, TXXX, COMM, PRIV)
+        val objectFrames = listOf(USLT, SYLT, APIC, TXXX, COMM, PRIV, WXXX)
 
         @JvmStatic
         val stringAndUrlFrames = stringFrames + urlFrames
