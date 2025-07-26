@@ -876,6 +876,9 @@ final class io.github.kingg22.vibrion.id3/Id3WriterBuilder { // io.github.kingg2
     final var userText // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userText|{}userText[0]
         final fun <get-userText>(): io.github.kingg22.vibrion.id3.model/UserDefinedText? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userText.<get-userText>|<get-userText>(){}[0]
         final fun <set-userText>(io.github.kingg22.vibrion.id3.model/UserDefinedText?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userText.<set-userText>|<set-userText>(io.github.kingg22.vibrion.id3.model.UserDefinedText?){}[0]
+    final var userUrl // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userUrl|{}userUrl[0]
+        final fun <get-userUrl>(): io.github.kingg22.vibrion.id3.model/UserDefinedText? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userUrl.<get-userUrl>|<get-userUrl>(){}[0]
+        final fun <set-userUrl>(io.github.kingg22.vibrion.id3.model/UserDefinedText?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userUrl.<set-userUrl>|<set-userUrl>(io.github.kingg22.vibrion.id3.model.UserDefinedText?){}[0]
     final var year // io.github.kingg22.vibrion.id3/Id3WriterBuilder.year|{}year[0]
         final fun <get-year>(): kotlin/Int? // io.github.kingg22.vibrion.id3/Id3WriterBuilder.year.<get-year>|<get-year>(){}[0]
         final fun <set-year>(kotlin/Int?) // io.github.kingg22.vibrion.id3/Id3WriterBuilder.year.<set-year>|<set-year>(kotlin.Int?){}[0]
@@ -935,6 +938,8 @@ final class io.github.kingg22.vibrion.id3/Id3WriterBuilder { // io.github.kingg2
     final fun track(kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.track|track(kotlin.String){}[0]
     final fun userText(io.github.kingg22.vibrion.id3.model/UserDefinedText): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userText|userText(io.github.kingg22.vibrion.id3.model.UserDefinedText){}[0]
     final fun userText(kotlin/String, kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userText|userText(kotlin.String;kotlin.String){}[0]
+    final fun userUrl(io.github.kingg22.vibrion.id3.model/UserDefinedText): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userUrl|userUrl(io.github.kingg22.vibrion.id3.model.UserDefinedText){}[0]
+    final fun userUrl(kotlin/String, kotlin/String): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.userUrl|userUrl(kotlin.String;kotlin.String){}[0]
     final fun year(kotlin/Int): io.github.kingg22.vibrion.id3/Id3WriterBuilder // io.github.kingg22.vibrion.id3/Id3WriterBuilder.year|year(kotlin.Int){}[0]
 
     final object Companion { // io.github.kingg22.vibrion.id3/Id3WriterBuilder.Companion|null[0]

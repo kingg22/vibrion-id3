@@ -149,6 +149,7 @@ public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder {
 	public final fun getTitle ()Ljava/lang/String;
 	public final fun getTrack ()Ljava/lang/String;
 	public final fun getUserText ()Lio/github/kingg22/vibrion/id3/model/UserDefinedText;
+	public final fun getUserUrl ()Lio/github/kingg22/vibrion/id3/model/UserDefinedText;
 	public final fun getYear ()Ljava/lang/Integer;
 	public fun hashCode ()I
 	public static final fun id3Writer ()Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
@@ -216,6 +217,7 @@ public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder {
 	public final fun setTitle (Ljava/lang/String;)V
 	public final fun setTrack (Ljava/lang/String;)V
 	public final fun setUserText (Lio/github/kingg22/vibrion/id3/model/UserDefinedText;)V
+	public final fun setUserUrl (Lio/github/kingg22/vibrion/id3/model/UserDefinedText;)V
 	public final fun setYear (Ljava/lang/Integer;)V
 	public final fun sourceWeb (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun subtitle (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
@@ -230,6 +232,8 @@ public final class io/github/kingg22/vibrion/id3/Id3WriterBuilder {
 	public final fun track (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun userText (Lio/github/kingg22/vibrion/id3/model/UserDefinedText;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun userText (Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun userUrl (Lio/github/kingg22/vibrion/id3/model/UserDefinedText;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
+	public final fun userUrl (Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 	public final fun year (I)Lio/github/kingg22/vibrion/id3/Id3WriterBuilder;
 }
 
