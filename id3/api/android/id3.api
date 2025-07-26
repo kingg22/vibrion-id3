@@ -51,6 +51,7 @@ public final class io/github/kingg22/vibrion/id3/Id3AudioWriter {
 	public final fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$CommentTagFrame;Lio/github/kingg22/vibrion/id3/model/CommentFrame;)V
 	public final fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$IntegerTagFrame;I)V
 	public final fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$ListStringTagFrame;Ljava/util/List;)V
+	public final fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$PairedTextTagFrame;Lio/github/kingg22/vibrion/id3/model/PairedTextFrame;)V
 	public final synthetic fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$PairedTextTagFrame;Ljava/util/List;)V
 	public final fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$PairedTextTagFrame;Ljava/util/Map;)V
 	public final fun set (Lio/github/kingg22/vibrion/id3/Id3v2v3TagFrame$PrivateTagFrame;Lio/github/kingg22/vibrion/id3/model/PrivateFrame;)V
