@@ -92,7 +92,8 @@ class Id3BuilderJavaTests {
             .payWeb("https://google.com")
             .publisherWeb("https://google.com")
             .commercialWeb("https://google.com")
-            .copyrightWeb("https://google.com");
+            .copyrightWeb("https://google.com")
+            .userUrl("Description", "https://google.com");
 
         final var generatedTags = builder.getValuesForTest().keySet();
         final var expectedTags = new HashSet<>(Id3v2v3TagFrame.getAllFrames());
