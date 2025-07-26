@@ -5,12 +5,11 @@ import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class UserUrlFrameEncoder internal constructor(
-    @get:JvmSynthetic private val description: String,
-    @get:JvmSynthetic private val url: String,
-    @get:JvmSynthetic override val size: Int,
+internal data class UserUrlFrameEncoder private constructor(
+    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
+    private val description: String,
+    private val url: String,
 ) : FrameEncoder("WXXX", size) {
-
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         var currentOffset = writeFrameHeader(buffer, offset)
@@ -38,5 +37,11 @@ internal data class UserUrlFrameEncoder internal constructor(
         currentOffset += encodedUrl.size
 
         return currentOffset
+    }
+
+    internal companion object {
+        @JvmSynthetic
+        internal fun UserUrlFrameEncoder(description: String, url: String, size: Int) =
+            UserUrlFrameEncoder(size, description, url)
     }
 }

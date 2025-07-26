@@ -8,11 +8,11 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @ConsistentCopyVisibility
-internal data class UnsynchronisedLyricsFrameEncoder internal constructor(
-    @get:JvmSynthetic val language: List<Byte>,
-    @get:JvmSynthetic val description: String,
-    @get:JvmSynthetic val value: String,
-    @get:JvmSynthetic override val size: Int,
+internal data class UnsynchronisedLyricsFrameEncoder private constructor(
+    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
+    private val language: List<Byte>,
+    private val description: String,
+    private val value: String,
 ) : FrameEncoder("USLT", size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
@@ -42,5 +42,15 @@ internal data class UnsynchronisedLyricsFrameEncoder internal constructor(
         valueBytes.copyInto(buffer, currentOffset)
 
         return HEADER + contentSize
+    }
+
+    internal companion object {
+        @JvmSynthetic
+        internal fun UnsynchronisedLyricsFrameEncoder(
+            language: List<Byte>,
+            description: String,
+            value: String,
+            size: Int,
+        ) = UnsynchronisedLyricsFrameEncoder(size, language, description, value)
     }
 }

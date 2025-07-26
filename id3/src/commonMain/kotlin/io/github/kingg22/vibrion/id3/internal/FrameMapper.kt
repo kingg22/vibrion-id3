@@ -4,6 +4,17 @@
 package io.github.kingg22.vibrion.id3.internal
 
 import io.github.kingg22.vibrion.id3.internal.frames.*
+import io.github.kingg22.vibrion.id3.internal.frames.CommentFrameEncoder.Companion.CommentFrameEncoder
+import io.github.kingg22.vibrion.id3.internal.frames.NumericFrameEncoder.Companion.NumericFrameEncoder
+import io.github.kingg22.vibrion.id3.internal.frames.PairedTextFrameEncoder.Companion.PairedTextFrameEncoder
+import io.github.kingg22.vibrion.id3.internal.frames.PictureFrameEncoder.Companion.PictureFrameEncoder
+import io.github.kingg22.vibrion.id3.internal.frames.PrivateFrameEncoder.Companion.PrivateFrameEncoder
+import io.github.kingg22.vibrion.id3.internal.frames.SynchronisedLyricsFrameEncoder.Companion.SynchronisedLyricsFrameEncoder
+import io.github.kingg22.vibrion.id3.internal.frames.TextFrameEncoder.Companion.TextFrameEncoder
+import io.github.kingg22.vibrion.id3.internal.frames.UnsynchronisedLyricsFrameEncoder.Companion.UnsynchronisedLyricsFrameEncoder
+import io.github.kingg22.vibrion.id3.internal.frames.UrlFrameEncoder.Companion.UrlFrameEncoder
+import io.github.kingg22.vibrion.id3.internal.frames.UserTextFrameEncoder.Companion.UserTextFrameEncoder
+import io.github.kingg22.vibrion.id3.internal.frames.UserUrlFrameEncoder.Companion.UserUrlFrameEncoder
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
