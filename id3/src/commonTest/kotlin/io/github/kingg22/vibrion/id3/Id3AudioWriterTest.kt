@@ -4,7 +4,7 @@ import io.github.kingg22.vibrion.id3.Id3AudioWriter.Companion.id3AudioWriter
 import io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.*
 import io.github.kingg22.vibrion.id3.model.*
 import kotlin.test.Test
-import kotlin.test.assertFails
+import kotlin.test.assertFailsWith
 
 class Id3AudioWriterTest {
     @Test
@@ -105,7 +105,7 @@ class Id3AudioWriterTest {
 
     @Test
     fun testSetFrameValueWithStringIdThatMapsToUnknown() {
-        assertFails {
+        assertFailsWith<IllegalArgumentException> {
             id3AudioWriter {
                 this["ZZZZ"] = TextFrame("should fail")
             }
