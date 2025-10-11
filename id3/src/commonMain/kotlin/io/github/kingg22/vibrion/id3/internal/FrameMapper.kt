@@ -10,14 +10,7 @@ import kotlin.jvm.JvmSynthetic
 
 // Inspired on https://github.com/egoroof/browser-id3-writer
 
-@JvmSynthetic
-internal fun setIntegerFrame(name: String, value: Int) = NumericFrameEncoder(
-    name = name,
-    value = value,
-    size = getNumericFrameSize(value.toString().length),
-)
-
-/** Only for TDAT, special string trat as NumericFrameEncoder to write */
+/** Only for TDAT, special string trat as NumericFrameEncoder to write. IntegerTagFrame the rest of valid tags. */
 @JvmSynthetic
 internal fun setIntegerFrame(name: String, value: String) = NumericFrameEncoder(
     name = name,

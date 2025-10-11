@@ -9,11 +9,6 @@ import kotlin.jvm.JvmSynthetic
 
 @Suppress("ktlint:standard:function-naming", "FunctionName")
 @JvmSynthetic
-internal fun NumericFrameEncoder(name: String, value: Int, size: Int): FrameEncoder =
-    NumericFrameEncoder(name, size, value.toString())
-
-@Suppress("ktlint:standard:function-naming", "FunctionName")
-@JvmSynthetic
 internal fun NumericFrameEncoder(name: String, value: String, size: Int): FrameEncoder =
     NumericFrameEncoder(name, size, value)
 
