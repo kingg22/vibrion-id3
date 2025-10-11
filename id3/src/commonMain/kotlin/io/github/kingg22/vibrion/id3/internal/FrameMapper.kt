@@ -4,6 +4,7 @@
 package io.github.kingg22.vibrion.id3.internal
 
 import io.github.kingg22.vibrion.id3.internal.frames.*
+import io.github.kingg22.vibrion.id3.model.*
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
@@ -32,32 +33,27 @@ internal fun setStringFrame(name: String, value: String) = TextFrameEncoder(
 )
 
 @JvmSynthetic
-internal fun setPictureFrame(
-    pictureType: Int,
-    data: ByteArray,
-    description: String,
-    useUnicodeEncoding: Boolean,
-): FrameEncoder {
-    val mimeType = getMimeType(data)
-    val actualUseUnicode = description.isNotEmpty() && useUnicodeEncoding
+internal fun AttachedPicture.setPictureFrame(): FrameEncoder {
+    val mimeType = getMimeType(this.data)
+    val actualUseUnicode = this.description.isNotEmpty() && this.useUnicodeEncoding
 
     return PictureFrameEncoder(
-        value = data,
-        pictureType = pictureType,
+        value = this.data,
+        pictureType = this.type,
         mimeType = mimeType,
-        description = description,
+        description = this.description,
         useUnicode = actualUseUnicode,
         size = getPictureFrameSize(
-            pictureSize = data.size,
+            pictureSize = this.data.size,
             mimeTypeSize = mimeType.length,
-            descriptionSize = description.length,
+            descriptionSize = this.description.length,
             useUnicodeEncoding = actualUseUnicode,
         ),
     )
 }
 
 @JvmSynthetic
-internal fun setLyricsFrame(language: String, description: String, lyrics: String) = UnsynchronisedLyricsFrameEncoder(
+internal fun UnsynchronisedLyrics.setLyricsFrame() = UnsynchronisedLyricsFrameEncoder(
     language = strToCodePointsByte(language),
     description = description,
     value = lyrics,
@@ -65,7 +61,7 @@ internal fun setLyricsFrame(language: String, description: String, lyrics: Strin
 )
 
 @JvmSynthetic
-internal fun setCommentFrame(language: String, description: String, text: String) = CommentFrameEncoder(
+internal fun CommentFrame.setCommentFrame() = CommentFrameEncoder(
     language = strToCodePointsByte(language),
     description = description,
     value = text,
@@ -73,21 +69,21 @@ internal fun setCommentFrame(language: String, description: String, text: String
 )
 
 @JvmSynthetic
-internal fun setPrivateFrame(id: String, data: ByteArray) = PrivateFrameEncoder(
+internal fun PrivateFrame.setPrivateFrame() = PrivateFrameEncoder(
     id = id,
     value = data,
     size = getPrivateFrameSize(id.length, data.size),
 )
 
 @JvmSynthetic
-internal fun setUserStringFrame(description: String, value: String) = UserTextFrameEncoder(
+internal fun UserDefinedText.setUserStringFrame() = UserTextFrameEncoder(
     description = description,
     value = value,
     size = getUserStringFrameSize(description.length, value.length),
 )
 
 @JvmSynthetic
-internal fun setUserUrlFrame(description: String, value: String) = UserUrlFrameEncoder(
+internal fun UserDefinedText.setUserUrlFrame() = UserUrlFrameEncoder(
     description = description,
     url = value,
     size = getUserUrlFrameSize(description.length, value.length),
@@ -108,13 +104,7 @@ internal fun setPairedTextFrame(name: String, list: List<Pair<String, String>>) 
 )
 
 @JvmSynthetic
-internal fun setSynchronisedLyricsFrame(
-    type: Int,
-    text: List<Pair<String, Int>>,
-    timestampFormat: Int,
-    language: String,
-    description: String,
-) = SynchronisedLyricsFrameEncoder(
+internal fun SynchronizedLyrics.setSynchronisedLyricsFrame() = SynchronisedLyricsFrameEncoder(
     value = text,
     language = strToCodePointsByte(language),
     description = description,
