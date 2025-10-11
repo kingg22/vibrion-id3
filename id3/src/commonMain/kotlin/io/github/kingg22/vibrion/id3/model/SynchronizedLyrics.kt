@@ -12,13 +12,13 @@ import kotlin.jvm.JvmOverloads
  *
  * @see io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.SYLT
  */
-data class SynchronizedLyrics @JvmOverloads constructor(
+class SynchronizedLyrics @JvmOverloads constructor(
     val type: Int,
     val text: List<Pair<String, Int>>,
     val timestampFormat: Int,
     val language: String = "eng",
     val description: String = "",
-) : FrameValue() {
+) : FrameValue {
     @JvmOverloads
     constructor(
         type: Int,
@@ -85,6 +85,33 @@ data class SynchronizedLyrics @JvmOverloads constructor(
     init {
         require(type in 0..6) { "Incorrect synchronised lyrics content type" }
         require(timestampFormat in 1..2) { "Incorrect synchronised lyrics timestamp format" }
-        languageFormat(language)
+        FrameValue.languageFormat(language)
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+
+        other as SynchronizedLyrics
+
+        if (type != other.type) return false
+        if (timestampFormat != other.timestampFormat) return false
+        if (text != other.text) return false
+        if (language != other.language) return false
+        if (description != other.description) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = type
+        result = 31 * result + timestampFormat
+        result = 31 * result + text.hashCode()
+        result = 31 * result + language.hashCode()
+        result = 31 * result + description.hashCode()
+        return result
+    }
+
+    override fun toString(): String =
+        "SynchronizedLyrics(type=$type, text=$text, timestampFormat=$timestampFormat, language='$language', description='$description')"
 }

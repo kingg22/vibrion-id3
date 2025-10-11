@@ -19,7 +19,7 @@ class AttachedPicture @JvmOverloads constructor(
     val description: String = "",
     val useUnicodeEncoding: Boolean = true,
     val mimeType: String = getMimeType(data),
-) : FrameValue() {
+) : FrameValue {
     @JvmOverloads
     constructor(
         type: AttachedPictureType,
