@@ -1,7 +1,7 @@
-@file:OptIn(ExperimentalAbiValidation::class)
-
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
+import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
@@ -15,12 +15,17 @@ plugins {
 
 group = "io.github.kingg22"
 version = "0.6.0"
+description = "A lightweight Kotlin Multiplatform library to write ID3v2 tags in MP3 audio files."
 
 kotlin {
     compilerOptions {
+        languageVersion.set(KotlinVersion.KOTLIN_2_0)
+        apiVersion.set(KotlinVersion.KOTLIN_2_0)
         extraWarnings.set(true)
         allWarningsAsErrors.set(true)
     }
+
+    @OptIn(ExperimentalAbiValidation::class)
     abiValidation {
         enabled.set(true)
         filters {
@@ -30,14 +35,21 @@ kotlin {
         }
     }
 
+    applyDefaultHierarchyTemplate()
+
     androidTarget {
         publishLibraryVariants("release")
         compilerOptions {
+            jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
             jvmTarget.set(JvmTarget.JVM_1_8)
         }
     }
 
     jvm {
+        compilerOptions {
+            jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
+            jvmTarget.set(JvmTarget.JVM_1_8)
+        }
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
         }
@@ -53,10 +65,8 @@ kotlin {
     androidNativeX64()
     androidNativeX86()
 
-    sourceSets {
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
-        }
+    sourceSets.commonTest.dependencies {
+        implementation(libs.kotlin.test)
     }
 }
 
@@ -77,13 +87,12 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            excludes += "**/test/**"
-            excludes += "**/commonTest/**"
+            excludes.addAll(arrayOf("/META-INF/{AL2.0,LGPL2.1}", "**/test/**", "**/commonTest/**"))
         }
     }
     buildFeatures {
-        buildConfig = true
+        shaders = false
+        buildConfig = false
     }
 }
 
@@ -99,20 +108,18 @@ dokka.dokkaSourceSets.configureEach {
     enableKotlinStdLibDocumentationLink = true
 }
 
-kover {
-    reports.total {
-        verify {
-            rule("Basic Line Coverage") {
-                minBound(60, CoverageUnit.LINE)
-            }
+kover.reports.total {
+    verify {
+        rule("Basic Line Coverage") {
+            minBound(60, CoverageUnit.LINE)
+        }
 
-            rule("Basic Branch Coverage") {
-                minBound(20, CoverageUnit.BRANCH)
-            }
+        rule("Basic Branch Coverage") {
+            minBound(20, CoverageUnit.BRANCH)
         }
-        filters.excludes {
-            annotatedBy("$group.vibrion.id3.internal.KoverIgnore")
-        }
+    }
+    filters.excludes {
+        annotatedBy("$group.vibrion.id3.internal.KoverIgnore")
     }
 }
 
@@ -124,28 +131,28 @@ mavenPublishing {
     coordinates(group.toString(), "vibrion-id3", version.toString())
 
     pom {
-        name = "Vibrion ID3 – Kotlin Multiplatform ID3 Tag Writer"
-        description = "A lightweight Kotlin Multiplatform library to write ID3v2 tags in MP3 audio files."
-        inceptionYear = "2025"
-        url = "https://github.com/kingg22/vibrion-id3"
+        name.set("Vibrion ID3 – Kotlin Multiplatform ID3 Tag Writer")
+        description.set(project.description)
+        inceptionYear.set("2025")
+        url.set("https://github.com/kingg22/vibrion-id3")
         licenses {
             license {
-                name = "The MIT License"
-                url = "https://opensource.org/license/MIT"
-                distribution = "repo"
+                name.set("The MIT License")
+                url.set("https://opensource.org/license/MIT")
+                distribution.set("repo")
             }
         }
         developers {
             developer {
-                id = "kingg22"
-                name = "Rey Acosta (Kingg22)"
-                url = "https://github.com/kingg22"
+                id.set("kingg22")
+                name.set("Rey Acosta (Kingg22)")
+                url.set("https://github.com/kingg22")
             }
         }
         scm {
-            url = "https://github.com/kingg22/vibrion-id3"
-            connection = "scm:git:git://github.com/kingg22/vibrion-id3.git"
-            developerConnection = "scm:git:ssh://git@github.com/kingg22/vibrion-id3.git"
+            url.set("https://github.com/kingg22/vibrion-id3")
+            connection.set("scm:git:git://github.com/kingg22/vibrion-id3.git")
+            developerConnection.set("scm:git:ssh://git@github.com/kingg22/vibrion-id3.git")
         }
     }
 }
