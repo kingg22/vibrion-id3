@@ -8,6 +8,7 @@ import kotlin.jvm.JvmSynthetic
  *
  * **Is required** [UnsynchronisedLyricsBuilder.lyrics]
  */
+@Id3Dsl
 class UnsynchronisedLyricsBuilder {
     lateinit var lyrics: String
     var description: String = ""

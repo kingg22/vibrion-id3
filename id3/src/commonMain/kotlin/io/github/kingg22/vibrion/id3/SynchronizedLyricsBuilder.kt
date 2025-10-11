@@ -6,6 +6,7 @@ import io.github.kingg22.vibrion.id3.model.SynchronizedLyricsType
 import kotlin.jvm.JvmSynthetic
 
 /** Builder for [SynchronizedLyrics] */
+@Id3Dsl
 class SynchronizedLyricsBuilder {
     var type = SynchronizedLyricsType.Lyrics
     var timestampFormat = SynchronizedLyricsTimestampFormat.Milliseconds
