@@ -6,10 +6,13 @@ public final class io/github/kingg22/vibrion/id3/AttachedPictureBuilder {
 	public final fun description (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/AttachedPictureBuilder;
 	public final fun getData ()[B
 	public final fun getDescription ()Ljava/lang/String;
+	public final fun getMimeType ()Ljava/lang/String;
 	public final fun getType ()Lio/github/kingg22/vibrion/id3/model/AttachedPictureType;
 	public final fun getUseUnicodeEncoding ()Z
+	public final fun mimeType (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/AttachedPictureBuilder;
 	public final fun setData ([B)V
 	public final fun setDescription (Ljava/lang/String;)V
+	public final fun setMimeType (Ljava/lang/String;)V
 	public final fun setType (Lio/github/kingg22/vibrion/id3/model/AttachedPictureType;)V
 	public final fun setUseUnicodeEncoding (Z)V
 	public final fun type (Lio/github/kingg22/vibrion/id3/model/AttachedPictureType;)Lio/github/kingg22/vibrion/id3/AttachedPictureBuilder;

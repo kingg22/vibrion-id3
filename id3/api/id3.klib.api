@@ -669,6 +669,9 @@ final class io.github.kingg22.vibrion.id3/AttachedPictureBuilder { // io.github.
     final var description // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.description|{}description[0]
         final fun <get-description>(): kotlin/String // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.description.<get-description>|<get-description>(){}[0]
         final fun <set-description>(kotlin/String) // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.description.<set-description>|<set-description>(kotlin.String){}[0]
+    final var mimeType // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.mimeType|{}mimeType[0]
+        final fun <get-mimeType>(): kotlin/String? // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.mimeType.<get-mimeType>|<get-mimeType>(){}[0]
+        final fun <set-mimeType>(kotlin/String?) // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.mimeType.<set-mimeType>|<set-mimeType>(kotlin.String?){}[0]
     final var type // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.type|{}type[0]
         final fun <get-type>(): io.github.kingg22.vibrion.id3.model/AttachedPictureType // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.type.<get-type>|<get-type>(){}[0]
         final fun <set-type>(io.github.kingg22.vibrion.id3.model/AttachedPictureType) // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.type.<set-type>|<set-type>(io.github.kingg22.vibrion.id3.model.AttachedPictureType){}[0]
@@ -679,6 +682,7 @@ final class io.github.kingg22.vibrion.id3/AttachedPictureBuilder { // io.github.
     final fun build(): io.github.kingg22.vibrion.id3.model/AttachedPicture // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.build|build(){}[0]
     final fun data(kotlin/ByteArray): io.github.kingg22.vibrion.id3/AttachedPictureBuilder // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.data|data(kotlin.ByteArray){}[0]
     final fun description(kotlin/String): io.github.kingg22.vibrion.id3/AttachedPictureBuilder // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.description|description(kotlin.String){}[0]
+    final fun mimeType(kotlin/String?): io.github.kingg22.vibrion.id3/AttachedPictureBuilder // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.mimeType|mimeType(kotlin.String?){}[0]
     final fun type(io.github.kingg22.vibrion.id3.model/AttachedPictureType): io.github.kingg22.vibrion.id3/AttachedPictureBuilder // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.type|type(io.github.kingg22.vibrion.id3.model.AttachedPictureType){}[0]
     final fun useUnicodeEncoding(kotlin/Boolean): io.github.kingg22.vibrion.id3/AttachedPictureBuilder // io.github.kingg22.vibrion.id3/AttachedPictureBuilder.useUnicodeEncoding|useUnicodeEncoding(kotlin.Boolean){}[0]
 
