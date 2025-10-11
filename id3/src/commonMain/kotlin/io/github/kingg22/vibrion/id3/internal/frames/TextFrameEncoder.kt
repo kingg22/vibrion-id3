@@ -1,9 +1,11 @@
+@file:JvmMultifileClass
 @file:JvmSynthetic
 @file:JvmName("-TextFrameEncoder")
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
+import kotlin.jvm.JvmMultifileClass
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
@@ -12,10 +14,12 @@ import kotlin.jvm.JvmSynthetic
 internal fun TextFrameEncoder(name: String, value: String, size: Int): FrameEncoder =
     TextFrameEncoder(name, size, value)
 
-private class TextFrameEncoder(name: String, size: Int, private val value: String) : FrameEncoder(name, size) {
-    @JvmSynthetic
-    override fun writeTo(buffer: ByteArray, offset: Int): Int {
-        var currentOffset = writeFrameHeader(buffer, offset)
+private class TextFrameEncoder(name: String, size: Int, value: String) : FrameEncoder(name, size) {
+    override val encodedFrame: ByteArray by lazy {
+        val encoded = encodeUtf16LE(value)
+
+        val buffer = ByteArray(HEADER + 1 + BOM.size + encoded.size)
+        var currentOffset = writeFrameHeader(buffer)
 
         // Encoding (UTF-16 with BOM)
         buffer[currentOffset++] = 1
@@ -23,9 +27,6 @@ private class TextFrameEncoder(name: String, size: Int, private val value: Strin
         currentOffset += BOM.size
 
         // Value (UTF-16LE)
-        val encoded = encodeUtf16LE(value)
         encoded.copyInto(buffer, currentOffset)
-
-        return HEADER + 1 + BOM.size + encoded.size
     }
 }
