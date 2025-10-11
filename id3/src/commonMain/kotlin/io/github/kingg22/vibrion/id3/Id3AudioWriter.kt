@@ -157,7 +157,7 @@ class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
 
             is IntegerTagFrame -> {
                 require(value is IntegerFrame)
-                frames += setIntegerFrame(type.name, value.value)
+                frames += setIntegerFrame(type.name, value.value.toString())
             }
 
             is UnsynchronisedLyricsTagFrame -> {
