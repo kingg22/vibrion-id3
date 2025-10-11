@@ -77,6 +77,12 @@ final enum class io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType : ko
     final fun values(): kotlin/Array<io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType> // io.github.kingg22.vibrion.id3.model/SynchronizedLyricsType.values|values#static(){}[0]
 }
 
+abstract interface io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/FrameValue|null[0]
+    final object Companion { // io.github.kingg22.vibrion.id3.model/FrameValue.Companion|null[0]
+        final fun languageFormat(kotlin/String) // io.github.kingg22.vibrion.id3.model/FrameValue.Companion.languageFormat|languageFormat(kotlin.String){}[0]
+    }
+}
+
 sealed interface io.github.kingg22.vibrion.id3/Id3TagFrame { // io.github.kingg22.vibrion.id3/Id3TagFrame|null[0]
     abstract val name // io.github.kingg22.vibrion.id3/Id3TagFrame.name|{}name[0]
         abstract fun <get-name>(): kotlin/String // io.github.kingg22.vibrion.id3/Id3TagFrame.name.<get-name>|<get-name>(){}[0]
@@ -508,23 +514,20 @@ sealed interface io.github.kingg22.vibrion.id3/Id3v2v3TagFrame : io.github.kingg
 }
 
 final class io.github.kingg22.vibrion.id3.model/AttachedPicture : io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/AttachedPicture|null[0]
-    constructor <init>(io.github.kingg22.vibrion.id3.model/AttachedPictureType, kotlin/ByteArray, kotlin/String = ..., kotlin/Boolean = ...) // io.github.kingg22.vibrion.id3.model/AttachedPicture.<init>|<init>(io.github.kingg22.vibrion.id3.model.AttachedPictureType;kotlin.ByteArray;kotlin.String;kotlin.Boolean){}[0]
-    constructor <init>(kotlin/Int, kotlin/ByteArray, kotlin/String = ..., kotlin/Boolean = ...) // io.github.kingg22.vibrion.id3.model/AttachedPicture.<init>|<init>(kotlin.Int;kotlin.ByteArray;kotlin.String;kotlin.Boolean){}[0]
+    constructor <init>(io.github.kingg22.vibrion.id3.model/AttachedPictureType, kotlin/ByteArray, kotlin/String = ..., kotlin/Boolean = ..., kotlin/String = ...) // io.github.kingg22.vibrion.id3.model/AttachedPicture.<init>|<init>(io.github.kingg22.vibrion.id3.model.AttachedPictureType;kotlin.ByteArray;kotlin.String;kotlin.Boolean;kotlin.String){}[0]
+    constructor <init>(kotlin/Int, kotlin/ByteArray, kotlin/String = ..., kotlin/Boolean = ..., kotlin/String = ...) // io.github.kingg22.vibrion.id3.model/AttachedPicture.<init>|<init>(kotlin.Int;kotlin.ByteArray;kotlin.String;kotlin.Boolean;kotlin.String){}[0]
 
     final val data // io.github.kingg22.vibrion.id3.model/AttachedPicture.data|{}data[0]
         final fun <get-data>(): kotlin/ByteArray // io.github.kingg22.vibrion.id3.model/AttachedPicture.data.<get-data>|<get-data>(){}[0]
     final val description // io.github.kingg22.vibrion.id3.model/AttachedPicture.description|{}description[0]
         final fun <get-description>(): kotlin/String // io.github.kingg22.vibrion.id3.model/AttachedPicture.description.<get-description>|<get-description>(){}[0]
+    final val mimeType // io.github.kingg22.vibrion.id3.model/AttachedPicture.mimeType|{}mimeType[0]
+        final fun <get-mimeType>(): kotlin/String // io.github.kingg22.vibrion.id3.model/AttachedPicture.mimeType.<get-mimeType>|<get-mimeType>(){}[0]
     final val type // io.github.kingg22.vibrion.id3.model/AttachedPicture.type|{}type[0]
         final fun <get-type>(): kotlin/Int // io.github.kingg22.vibrion.id3.model/AttachedPicture.type.<get-type>|<get-type>(){}[0]
     final val useUnicodeEncoding // io.github.kingg22.vibrion.id3.model/AttachedPicture.useUnicodeEncoding|{}useUnicodeEncoding[0]
         final fun <get-useUnicodeEncoding>(): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/AttachedPicture.useUnicodeEncoding.<get-useUnicodeEncoding>|<get-useUnicodeEncoding>(){}[0]
 
-    final fun component1(): kotlin/Int // io.github.kingg22.vibrion.id3.model/AttachedPicture.component1|component1(){}[0]
-    final fun component2(): kotlin/ByteArray // io.github.kingg22.vibrion.id3.model/AttachedPicture.component2|component2(){}[0]
-    final fun component3(): kotlin/String // io.github.kingg22.vibrion.id3.model/AttachedPicture.component3|component3(){}[0]
-    final fun component4(): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/AttachedPicture.component4|component4(){}[0]
-    final fun copy(kotlin/Int = ..., kotlin/ByteArray = ..., kotlin/String = ..., kotlin/Boolean = ...): io.github.kingg22.vibrion.id3.model/AttachedPicture // io.github.kingg22.vibrion.id3.model/AttachedPicture.copy|copy(kotlin.Int;kotlin.ByteArray;kotlin.String;kotlin.Boolean){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/AttachedPicture.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/AttachedPicture.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/AttachedPicture.toString|toString(){}[0]
@@ -540,10 +543,6 @@ final class io.github.kingg22.vibrion.id3.model/CommentFrame : io.github.kingg22
     final val text // io.github.kingg22.vibrion.id3.model/CommentFrame.text|{}text[0]
         final fun <get-text>(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.text.<get-text>|<get-text>(){}[0]
 
-    final fun component1(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.component1|component1(){}[0]
-    final fun component2(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.component2|component2(){}[0]
-    final fun component3(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.component3|component3(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ...): io.github.kingg22.vibrion.id3.model/CommentFrame // io.github.kingg22.vibrion.id3.model/CommentFrame.copy|copy(kotlin.String;kotlin.String;kotlin.String){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/CommentFrame.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/CommentFrame.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/CommentFrame.toString|toString(){}[0]
@@ -555,8 +554,6 @@ final class io.github.kingg22.vibrion.id3.model/IntegerFrame : io.github.kingg22
     final val value // io.github.kingg22.vibrion.id3.model/IntegerFrame.value|{}value[0]
         final fun <get-value>(): kotlin/Int // io.github.kingg22.vibrion.id3.model/IntegerFrame.value.<get-value>|<get-value>(){}[0]
 
-    final fun component1(): kotlin/Int // io.github.kingg22.vibrion.id3.model/IntegerFrame.component1|component1(){}[0]
-    final fun copy(kotlin/Int = ...): io.github.kingg22.vibrion.id3.model/IntegerFrame // io.github.kingg22.vibrion.id3.model/IntegerFrame.copy|copy(kotlin.Int){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/IntegerFrame.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/IntegerFrame.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/IntegerFrame.toString|toString(){}[0]
@@ -570,8 +567,6 @@ final class io.github.kingg22.vibrion.id3.model/PairedTextFrame : io.github.king
     final val pairs // io.github.kingg22.vibrion.id3.model/PairedTextFrame.pairs|{}pairs[0]
         final fun <get-pairs>(): kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/String>> // io.github.kingg22.vibrion.id3.model/PairedTextFrame.pairs.<get-pairs>|<get-pairs>(){}[0]
 
-    final fun component1(): kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/String>> // io.github.kingg22.vibrion.id3.model/PairedTextFrame.component1|component1(){}[0]
-    final fun copy(kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/String>> = ...): io.github.kingg22.vibrion.id3.model/PairedTextFrame // io.github.kingg22.vibrion.id3.model/PairedTextFrame.copy|copy(kotlin.collections.List<kotlin.Pair<kotlin.String,kotlin.String>>){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/PairedTextFrame.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/PairedTextFrame.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/PairedTextFrame.toString|toString(){}[0]
@@ -585,9 +580,6 @@ final class io.github.kingg22.vibrion.id3.model/PrivateFrame : io.github.kingg22
     final val id // io.github.kingg22.vibrion.id3.model/PrivateFrame.id|{}id[0]
         final fun <get-id>(): kotlin/String // io.github.kingg22.vibrion.id3.model/PrivateFrame.id.<get-id>|<get-id>(){}[0]
 
-    final fun component1(): kotlin/String // io.github.kingg22.vibrion.id3.model/PrivateFrame.component1|component1(){}[0]
-    final fun component2(): kotlin/ByteArray // io.github.kingg22.vibrion.id3.model/PrivateFrame.component2|component2(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/ByteArray = ...): io.github.kingg22.vibrion.id3.model/PrivateFrame // io.github.kingg22.vibrion.id3.model/PrivateFrame.copy|copy(kotlin.String;kotlin.ByteArray){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/PrivateFrame.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/PrivateFrame.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/PrivateFrame.toString|toString(){}[0]
@@ -600,8 +592,6 @@ final class io.github.kingg22.vibrion.id3.model/StringListFrame : io.github.king
     final val values // io.github.kingg22.vibrion.id3.model/StringListFrame.values|{}values[0]
         final fun <get-values>(): kotlin.collections/List<kotlin/String> // io.github.kingg22.vibrion.id3.model/StringListFrame.values.<get-values>|<get-values>(){}[0]
 
-    final fun component1(): kotlin.collections/List<kotlin/String> // io.github.kingg22.vibrion.id3.model/StringListFrame.component1|component1(){}[0]
-    final fun copy(kotlin.collections/List<kotlin/String> = ...): io.github.kingg22.vibrion.id3.model/StringListFrame // io.github.kingg22.vibrion.id3.model/StringListFrame.copy|copy(kotlin.collections.List<kotlin.String>){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/StringListFrame.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/StringListFrame.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/StringListFrame.toString|toString(){}[0]
@@ -626,12 +616,6 @@ final class io.github.kingg22.vibrion.id3.model/SynchronizedLyrics : io.github.k
     final val type // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.type|{}type[0]
         final fun <get-type>(): kotlin/Int // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.type.<get-type>|<get-type>(){}[0]
 
-    final fun component1(): kotlin/Int // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.component1|component1(){}[0]
-    final fun component2(): kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/Int>> // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.component2|component2(){}[0]
-    final fun component3(): kotlin/Int // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.component3|component3(){}[0]
-    final fun component4(): kotlin/String // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.component4|component4(){}[0]
-    final fun component5(): kotlin/String // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.component5|component5(){}[0]
-    final fun copy(kotlin/Int = ..., kotlin.collections/List<kotlin/Pair<kotlin/String, kotlin/Int>> = ..., kotlin/Int = ..., kotlin/String = ..., kotlin/String = ...): io.github.kingg22.vibrion.id3.model/SynchronizedLyrics // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.copy|copy(kotlin.Int;kotlin.collections.List<kotlin.Pair<kotlin.String,kotlin.Int>>;kotlin.Int;kotlin.String;kotlin.String){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/SynchronizedLyrics.toString|toString(){}[0]
@@ -643,8 +627,6 @@ final class io.github.kingg22.vibrion.id3.model/TextFrame : io.github.kingg22.vi
     final val value // io.github.kingg22.vibrion.id3.model/TextFrame.value|{}value[0]
         final fun <get-value>(): kotlin/String // io.github.kingg22.vibrion.id3.model/TextFrame.value.<get-value>|<get-value>(){}[0]
 
-    final fun component1(): kotlin/String // io.github.kingg22.vibrion.id3.model/TextFrame.component1|component1(){}[0]
-    final fun copy(kotlin/String = ...): io.github.kingg22.vibrion.id3.model/TextFrame // io.github.kingg22.vibrion.id3.model/TextFrame.copy|copy(kotlin.String){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/TextFrame.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/TextFrame.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/TextFrame.toString|toString(){}[0]
@@ -660,10 +642,6 @@ final class io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics : io.github
     final val lyrics // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.lyrics|{}lyrics[0]
         final fun <get-lyrics>(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.lyrics.<get-lyrics>|<get-lyrics>(){}[0]
 
-    final fun component1(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.component1|component1(){}[0]
-    final fun component2(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.component2|component2(){}[0]
-    final fun component3(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.component3|component3(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ...): io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.copy|copy(kotlin.String;kotlin.String;kotlin.String){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics.toString|toString(){}[0]
@@ -677,9 +655,6 @@ final class io.github.kingg22.vibrion.id3.model/UserDefinedText : io.github.king
     final val value // io.github.kingg22.vibrion.id3.model/UserDefinedText.value|{}value[0]
         final fun <get-value>(): kotlin/String // io.github.kingg22.vibrion.id3.model/UserDefinedText.value.<get-value>|<get-value>(){}[0]
 
-    final fun component1(): kotlin/String // io.github.kingg22.vibrion.id3.model/UserDefinedText.component1|component1(){}[0]
-    final fun component2(): kotlin/String // io.github.kingg22.vibrion.id3.model/UserDefinedText.component2|component2(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/String = ...): io.github.kingg22.vibrion.id3.model/UserDefinedText // io.github.kingg22.vibrion.id3.model/UserDefinedText.copy|copy(kotlin.String;kotlin.String){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.vibrion.id3.model/UserDefinedText.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.vibrion.id3.model/UserDefinedText.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.vibrion.id3.model/UserDefinedText.toString|toString(){}[0]
@@ -998,8 +973,4 @@ final class io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder { // io.gi
     final object Companion { // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.Companion|null[0]
         final fun builder(kotlin/Function1<io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder, kotlin/Unit>): io.github.kingg22.vibrion.id3.model/UnsynchronisedLyrics // io.github.kingg22.vibrion.id3/UnsynchronisedLyricsBuilder.Companion.builder|builder(kotlin.Function1<io.github.kingg22.vibrion.id3.UnsynchronisedLyricsBuilder,kotlin.Unit>){}[0]
     }
-}
-
-sealed class io.github.kingg22.vibrion.id3.model/FrameValue { // io.github.kingg22.vibrion.id3.model/FrameValue|null[0]
-    final fun languageFormat(kotlin/String) // io.github.kingg22.vibrion.id3.model/FrameValue.languageFormat|languageFormat(kotlin.String){}[0]
 }
