@@ -1,11 +1,9 @@
-@file:JvmMultifileClass
 @file:JvmSynthetic
 @file:JvmName("-UrlFrameEncoder")
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
 import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
-import kotlin.jvm.JvmMultifileClass
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
@@ -15,12 +13,11 @@ internal fun UrlFrameEncoder(name: String, value: String, size: Int): FrameEncod
 
 private class UrlFrameEncoder(name: String, size: Int, value: String) : FrameEncoder(name, size) {
     override val encodedFrame: ByteArray by lazy {
-        val encoded = encodeWindows1252(value)
-
-        val buffer = ByteArray(HEADER + encoded.size)
+        val buffer = ByteArray(size)
         val currentOffset = writeFrameHeader(buffer)
 
         // Value (Windows-1252)
+        val encoded = encodeWindows1252(value)
         encoded.copyInto(buffer, currentOffset)
     }
 }
