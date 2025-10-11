@@ -31,6 +31,7 @@ public final class io/github/kingg22/vibrion/id3/Id3AudioWriter {
 	public final fun addTag ()[B
 	public final fun build ()[B
 	public final fun component1 ()I
+	public final fun copy ()Lio/github/kingg22/vibrion/id3/Id3AudioWriter;
 	public final fun copy (I)Lio/github/kingg22/vibrion/id3/Id3AudioWriter;
 	public static synthetic fun copy$default (Lio/github/kingg22/vibrion/id3/Id3AudioWriter;IILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/Id3AudioWriter;
 	public final fun deepCopy ()Lio/github/kingg22/vibrion/id3/Id3AudioWriter;
