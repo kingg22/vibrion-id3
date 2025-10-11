@@ -5,6 +5,7 @@ import io.github.kingg22.vibrion.id3.model.AttachedPictureType
 import kotlin.jvm.JvmSynthetic
 
 /** Builder for [AttachedPicture] */
+@Id3Dsl
 class AttachedPictureBuilder {
     var type: AttachedPictureType = AttachedPictureType.CoverFront
     var data: ByteArray = byteArrayOf()

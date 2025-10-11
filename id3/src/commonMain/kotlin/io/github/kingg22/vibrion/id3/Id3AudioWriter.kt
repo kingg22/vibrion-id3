@@ -185,7 +185,7 @@ class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
                 frames += value.setSynchronisedLyricsFrame()
             }
 
-            UNKNOWN -> throw IllegalArgumentException("Unsupported frame ${type.name}")
+            UNKNOWN -> throw IllegalArgumentException("Unsupported frame ${type.name}, value: $value")
         }
     }
 
