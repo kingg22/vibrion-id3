@@ -16,7 +16,7 @@ kover = "0.9.2"
 # https://github.com/pinterest/ktlint/releases
 ktlint-pinterest = "1.6.0"
 # https://github.com/jlleitschuh/ktlint-gradle/releases
-ktlint-plugin = "13.0.0"
+ktlint-plugin = "13.1.0"
 # https://github.com/vanniktech/gradle-maven-publish-plugin/releases
 maven-publish = "0.34.0"
 # https://junit.org/
