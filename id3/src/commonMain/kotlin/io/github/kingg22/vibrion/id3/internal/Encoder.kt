@@ -1,10 +1,8 @@
 @file:JvmSynthetic
 @file:JvmName("-Encoder")
-@file:JvmMultifileClass
 
 package io.github.kingg22.vibrion.id3.internal
 
-import kotlin.jvm.JvmMultifileClass
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
