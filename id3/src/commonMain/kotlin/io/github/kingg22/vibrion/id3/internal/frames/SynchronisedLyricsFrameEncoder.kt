@@ -1,4 +1,3 @@
-@file:JvmMultifileClass
 @file:JvmSynthetic
 @file:JvmName("-SynchronisedLyricsFrameEncoder")
 
@@ -7,7 +6,6 @@ package io.github.kingg22.vibrion.id3.internal.frames
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
 import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
 import io.github.kingg22.vibrion.id3.internal.uint32ToUint8Array
-import kotlin.jvm.JvmMultifileClass
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
@@ -31,20 +29,13 @@ private class SynchronisedLyricsFrameEncoder(
     timestampFormat: Int,
 ) : FrameEncoder("SYLT", size) {
     override val encodedFrame: ByteArray by lazy {
-        val descriptionBytes = encodeUtf16LE(description)
-        val languageBytes = encodeWindows1252(language)
-
-        val linesSize = value.sumOf {
-            2 + encodeUtf16LE(it.first).size + 2 + 4 // BOM + text + separator + timestamp
-        }
-        val contentSize = 1 + languageBytes.size + 1 + 1 + BOM.size + descriptionBytes.size + 2 + linesSize
-
-        val buffer = ByteArray(HEADER + contentSize)
+        val buffer = ByteArray(size)
         var currentOffset = writeFrameHeader(buffer)
 
         // Encoding + language + timestamp format + content type
         buffer[currentOffset++] = 1
 
+        val languageBytes = encodeWindows1252(language)
         languageBytes.copyInto(buffer, currentOffset)
         currentOffset += languageBytes.size
 
@@ -55,6 +46,8 @@ private class SynchronisedLyricsFrameEncoder(
         // BOM + description
         BOM.copyInto(buffer, currentOffset)
         currentOffset += BOM.size
+
+        val descriptionBytes = encodeUtf16LE(description)
         descriptionBytes.copyInto(buffer, currentOffset)
         currentOffset += descriptionBytes.size
 

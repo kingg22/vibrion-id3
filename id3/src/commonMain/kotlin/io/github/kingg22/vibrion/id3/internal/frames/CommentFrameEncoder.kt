@@ -1,4 +1,3 @@
-@file:JvmMultifileClass
 @file:JvmSynthetic
 @file:JvmName("-CommentFrameEncoder")
 
@@ -6,7 +5,6 @@ package io.github.kingg22.vibrion.id3.internal.frames
 
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
 import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
-import kotlin.jvm.JvmMultifileClass
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
@@ -19,17 +17,13 @@ private class CommentFrameEncoder(size: Int, language: String, description: Stri
     FrameEncoder("COMM", size) {
 
     override val encodedFrame: ByteArray by lazy {
-        val descriptionBytes = encodeUtf16LE(description)
-        val valueBytes = encodeUtf16LE(value)
-        val languageBytes = encodeWindows1252(language)
-        val contentSize = 1 + languageBytes.size + BOM.size + descriptionBytes.size + 2 + BOM.size + valueBytes.size
-
-        val buffer = ByteArray(HEADER + contentSize)
+        val buffer = ByteArray(size)
         var currentOffset = writeFrameHeader(buffer)
 
         // Encoding + language + BOM
         buffer[currentOffset++] = 1
 
+        val languageBytes = encodeWindows1252(language)
         languageBytes.copyInto(buffer, currentOffset)
         currentOffset += languageBytes.size
 
@@ -37,6 +31,7 @@ private class CommentFrameEncoder(size: Int, language: String, description: Stri
         currentOffset += BOM.size
 
         // Description
+        val descriptionBytes = encodeUtf16LE(description)
         descriptionBytes.copyInto(buffer, currentOffset)
         currentOffset += descriptionBytes.size
 
@@ -47,6 +42,7 @@ private class CommentFrameEncoder(size: Int, language: String, description: Stri
         currentOffset += BOM.size
 
         // Value
+        val valueBytes = encodeUtf16LE(value)
         valueBytes.copyInto(buffer, currentOffset)
     }
 }

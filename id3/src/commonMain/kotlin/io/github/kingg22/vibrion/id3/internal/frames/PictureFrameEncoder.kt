@@ -1,4 +1,3 @@
-@file:JvmMultifileClass
 @file:JvmSynthetic
 @file:JvmName("-PictureFrameEncoder")
 
@@ -6,7 +5,6 @@ package io.github.kingg22.vibrion.id3.internal.frames
 
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
 import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
-import kotlin.jvm.JvmMultifileClass
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
@@ -30,25 +28,16 @@ private class PictureFrameEncoder(
     useUnicode: Boolean,
 ) : FrameEncoder("APIC", size) {
     override val encodedFrame: ByteArray by lazy {
-        val encodingByte = if (useUnicode) 1 else 0
-        val mimeBytes = encodeWindows1252(mimeType)
-        val descriptionBytes = if (useUnicode) encodeUtf16LE(description) else encodeWindows1252(description)
-        val terminatorSize = if (useUnicode) 2 else 1
 
-        val contentSize = 1 + // encoding
-            mimeBytes.size + 1 + // MIME + null
-            1 + // picture type
-            (if (useUnicode) BOM.size else 0) +
-            descriptionBytes.size + terminatorSize +
-            imageData.size
-
-        val buffer = ByteArray(HEADER + contentSize)
+        val buffer = ByteArray(size)
         var offset = writeFrameHeader(buffer)
 
         // Encoding
+        val encodingByte = if (useUnicode) 1 else 0
         buffer[offset++] = encodingByte.toByte()
 
         // MIME
+        val mimeBytes = encodeWindows1252(mimeType)
         mimeBytes.copyInto(buffer, offset)
         offset += mimeBytes.size
         buffer[offset++] = 0
@@ -61,10 +50,13 @@ private class PictureFrameEncoder(
             BOM.copyInto(buffer, offset)
             offset += BOM.size
         }
+
+        val descriptionBytes = if (useUnicode) encodeUtf16LE(description) else encodeWindows1252(description)
         descriptionBytes.copyInto(buffer, offset)
         offset += descriptionBytes.size
 
         // Null terminator
+        val terminatorSize = if (useUnicode) 2 else 1
         repeat(terminatorSize) { buffer[offset++] = 0 }
 
         // Image data
