@@ -10,7 +10,11 @@ import kotlin.jvm.JvmSynthetic
 
 // Inspired on https://github.com/egoroof/browser-id3-writer
 
-/** Only for TDAT, special string trat as NumericFrameEncoder to write. IntegerTagFrame the rest of valid tags. */
+/**
+ * Only for [io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.TDAT], special string trat as NumericFrameEncoder to write.
+ *
+ * [io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.IntegerTagFrame] are valid tags.
+ */
 @JvmSynthetic
 internal fun setIntegerFrame(name: String, value: String) = NumericFrameEncoder(
     name = name,
