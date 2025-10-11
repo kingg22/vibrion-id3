@@ -2,26 +2,10 @@ package io.github.kingg22.vibrion.id3
 
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
 import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
-import io.github.kingg22.vibrion.id3.internal.strToCodePoints
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
 class EncoderTest {
-
-    @Test
-    fun testStringToCodePointsLatin() {
-        val actual = strToCodePoints("Hello")
-        val expected = listOf(72, 101, 108, 108, 111)
-        assertContentEquals(expected, actual)
-    }
-
-    @Test
-    fun testStringToCodePointsCyrillic() {
-        val actual = strToCodePoints("Привет")
-        val expected = listOf(1055, 1088, 1080, 1074, 1077, 1090)
-        assertContentEquals(expected, actual)
-    }
-
     @Test
     fun testEncodeWindows1252Latin() {
         val actual = encodeWindows1252("Hello")

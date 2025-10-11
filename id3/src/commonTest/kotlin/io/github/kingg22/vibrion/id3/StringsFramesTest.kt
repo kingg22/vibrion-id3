@@ -339,8 +339,8 @@ class StringsFramesTest {
             116, 116, 112, 115, 58, 47, 47, 103, 111, 111, 103, 108,
             101, 46, 99, 111, 109,
         )
-        val encodedDescription = description.encodeUtf16LE()
-        val encodedUrl = url.encodeWindows1252()
+        val encodedDescription = encodeUtf16LE(description)
+        val encodedUrl = encodeWindows1252(url)
 
         val contentSize = 1 + bom.size + encodedDescription.size + 2 + encodedUrl.size
         val totalTagSize = 10 + contentSize
@@ -350,7 +350,7 @@ class StringsFramesTest {
             *encodeSynchsafeInt(totalTagSize), // Size of tag (syncsafe)
 
             // Frame Header "WXXX"
-            *"WXXX".encodeWindows1252(), // Frame ID
+            *encodeWindows1252("WXXX"), // Frame ID
             *uint32ToUint8Array(contentSize.toUInt()), // Frame size
             0x00, 0x00, // Flags
 

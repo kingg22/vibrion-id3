@@ -55,6 +55,16 @@ class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
     companion object {
         private const val HEADER_SIZE = 10
 
+        @JvmStatic
+        private val HEADER = byteArrayOf(
+            0x49,
+            0x44,
+            0x33,
+            3,
+            0, // version
+            0, // flags
+        )
+
         /**
          * DSL for [Id3AudioWriter].
          *
@@ -91,6 +101,11 @@ class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
 
             return arrayBuffer.sliceArray(tagSize until arrayBuffer.size)
         }
+
+        private fun isId3v2(buf: ByteArray) = buf.size >= 3 &&
+            buf[0] == 0x49.toByte() &&
+            buf[1] == 0x44.toByte() &&
+            buf[2] == 0x33.toByte()
     }
 
     /**
@@ -445,16 +460,8 @@ class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
         var offset = 0
 
         // Header
-        val header = byteArrayOf(
-            0x49,
-            0x44,
-            0x33,
-            3,
-            0, // version
-            0, // flags
-        )
-        header.copyInto(newBuffer, offset)
-        offset += header.size
+        HEADER.copyInto(newBuffer, offset)
+        offset += HEADER.size
 
         // Escribir tamaño del tag (synchsafe)
         val tagSizeBytes = encodeSynchsafeInt(totalTagSize - HEADER_SIZE)
