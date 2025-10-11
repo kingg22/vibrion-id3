@@ -28,10 +28,10 @@ class IplsFrameTest {
         val encodedPairs = pairs.flatMap { (role, name) ->
             listOf(
                 bom.toList(),
-                role.encodeUtf16LE().toList(),
+                encodeUtf16LE(role).toList(),
                 listOf<Byte>(0x00, 0x00), // separator
                 bom.toList(),
-                name.encodeUtf16LE().toList(),
+                encodeUtf16LE(name).toList(),
                 listOf<Byte>(0x00, 0x00), // separator after value
             ).flatten()
         }
@@ -42,7 +42,7 @@ class IplsFrameTest {
         val expected = byteArrayOf(
             *id3Header,
             *encodeSynchsafeInt(totalTagSize),
-            *Id3v2v3TagFrame.IPLS.name.encodeWindows1252(),
+            *encodeWindows1252(Id3v2v3TagFrame.IPLS.name),
             *uint32ToUint8Array(contentSize.toUInt()),
             0x00,
             0x00, // Frame flags

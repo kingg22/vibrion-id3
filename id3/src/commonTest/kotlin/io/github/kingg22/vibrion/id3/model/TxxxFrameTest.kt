@@ -27,8 +27,8 @@ class TxxxFrameTest {
         )
 
         // 1. Encode parts
-        val encodedDescription = description.encodeUtf16LE() // f 0x66 0x00, o 0x6F 0x00, o 0x6F 0x00
-        val encodedValue = value.encodeUtf16LE() // b 0x62 0x00, a 0x61 0x00, r 0x72 0x00
+        val encodedDescription = encodeUtf16LE(description) // f 0x66 0x00, o 0x6F 0x00, o 0x6F 0x00
+        val encodedValue = encodeUtf16LE(value) // b 0x62 0x00, a 0x61 0x00, r 0x72 0x00
 
         // 2. Calculate size
         val contentSize = 1 + bom.size + encodedDescription.size + 2 + bom.size + encodedValue.size
@@ -39,7 +39,7 @@ class TxxxFrameTest {
             *encodeSynchsafeInt(totalTagSize), // tag size
 
             // --- Frame header ---
-            *"TXXX".encodeWindows1252(), // Frame ID
+            *encodeWindows1252("TXXX"), // Frame ID
             *uint32ToUint8Array(contentSize.toUInt()), // Frame content size
             0x00, 0x00, // Flags
 
