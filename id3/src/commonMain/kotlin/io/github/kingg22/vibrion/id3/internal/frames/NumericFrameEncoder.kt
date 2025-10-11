@@ -7,12 +7,17 @@ import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
-@ConsistentCopyVisibility
-internal data class NumericFrameEncoder private constructor(
-    @get:JvmSynthetic @field:JvmSynthetic override val name: String,
-    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
-    private val value: String,
-) : FrameEncoder(name, size) {
+@Suppress("ktlint:standard:function-naming", "FunctionName")
+@JvmSynthetic
+internal fun NumericFrameEncoder(name: String, value: Int, size: Int): FrameEncoder =
+    NumericFrameEncoder(name, size, value.toString())
+
+@Suppress("ktlint:standard:function-naming", "FunctionName")
+@JvmSynthetic
+internal fun NumericFrameEncoder(name: String, value: String, size: Int): FrameEncoder =
+    NumericFrameEncoder(name, size, value)
+
+private class NumericFrameEncoder(name: String, size: Int, private val value: String) : FrameEncoder(name, size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         // Escribir header del frame (10 bytes)
@@ -38,15 +43,5 @@ internal data class NumericFrameEncoder private constructor(
         encoded.copyInto(buffer, offset + 11)
 
         return HEADER + contentSize // Tamaño total del frame
-    }
-
-    internal companion object {
-        @JvmSynthetic
-        internal fun NumericFrameEncoder(name: String, value: Int, size: Int) =
-            NumericFrameEncoder(name, size, value.toString())
-
-        @JvmSynthetic
-        internal fun NumericFrameEncoder(name: String, value: String, size: Int) =
-            NumericFrameEncoder(name, size, value)
     }
 }

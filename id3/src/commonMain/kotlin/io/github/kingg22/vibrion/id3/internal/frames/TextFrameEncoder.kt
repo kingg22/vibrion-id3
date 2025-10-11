@@ -7,12 +7,12 @@ import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
-@ConsistentCopyVisibility
-internal data class TextFrameEncoder private constructor(
-    @get:JvmSynthetic @field:JvmSynthetic override val name: String,
-    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
-    private val value: String,
-) : FrameEncoder(name, size) {
+@Suppress("ktlint:standard:function-naming", "FunctionName")
+@JvmSynthetic
+internal fun TextFrameEncoder(name: String, value: String, size: Int): FrameEncoder =
+    TextFrameEncoder(name, size, value)
+
+private class TextFrameEncoder(name: String, size: Int, private val value: String) : FrameEncoder(name, size) {
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         var currentOffset = writeFrameHeader(buffer, offset)
@@ -27,10 +27,5 @@ internal data class TextFrameEncoder private constructor(
         encoded.copyInto(buffer, currentOffset)
 
         return HEADER + 1 + BOM.size + encoded.size
-    }
-
-    internal companion object {
-        @JvmSynthetic
-        internal fun TextFrameEncoder(name: String, value: String, size: Int) = TextFrameEncoder(name, size, value)
     }
 }
