@@ -11,12 +11,17 @@ class AttachedPictureBuilder {
     var data: ByteArray = byteArrayOf()
     var description: String = ""
     var useUnicodeEncoding: Boolean = true
+    var mimeType: String? = null
 
     fun type(type: AttachedPictureType) = apply { this.type = type }
     fun data(data: ByteArray) = apply { this.data = data }
     fun description(description: String) = apply { this.description = description }
     fun useUnicodeEncoding(useUnicodeEncoding: Boolean) = apply { this.useUnicodeEncoding = useUnicodeEncoding }
-    fun build() = AttachedPicture(type, data, description, useUnicodeEncoding)
+    fun mimeType(type: String?) = apply { this.mimeType = type }
+
+    fun build() = mimeType?.let { mime ->
+        AttachedPicture(type, data, description, useUnicodeEncoding, mime)
+    } ?: AttachedPicture(type, data, description, useUnicodeEncoding)
 
     companion object {
         /** DSL builder for [AttachedPicture] */
