@@ -1,33 +1,37 @@
 package io.github.kingg22.vibrion.id3.model
 
 import io.github.kingg22.vibrion.id3.internal.KoverIgnore
+import io.github.kingg22.vibrion.id3.internal.getMimeType
 import kotlin.jvm.JvmOverloads
 
 /**
  * Attached picture.
  *
  * _Requirements:_
- * - [type] **must be between 0 and 20**. [AttachedPictureType]
+ * - [type] **must be between 0 and 20**. See [AttachedPictureType]
  *
  * @see io.github.kingg22.vibrion.id3.Id3v2v3TagFrame.APIC
  */
-data class AttachedPicture @JvmOverloads constructor(
+class AttachedPicture @JvmOverloads constructor(
     val type: Int,
     val data: ByteArray,
     val description: String = "",
     val useUnicodeEncoding: Boolean = true,
-) : FrameValue() {
+    val mimeType: String = getMimeType(data),
+) : FrameValue {
     @JvmOverloads
     constructor(
         type: AttachedPictureType,
         data: ByteArray,
         description: String = "",
         useUnicodeEncoding: Boolean = true,
+        mimeType: String = getMimeType(data),
     ) : this(
-        type.value,
-        data,
-        description,
-        useUnicodeEncoding,
+        type = type.value,
+        data = data,
+        description = description,
+        useUnicodeEncoding = useUnicodeEncoding,
+        mimeType = mimeType,
     )
 
     init {
@@ -45,6 +49,7 @@ data class AttachedPicture @JvmOverloads constructor(
         if (useUnicodeEncoding != other.useUnicodeEncoding) return false
         if (!data.contentEquals(other.data)) return false
         if (description != other.description) return false
+        if (mimeType != other.mimeType) return false
 
         return true
     }
@@ -55,6 +60,11 @@ data class AttachedPicture @JvmOverloads constructor(
         result = 31 * result + useUnicodeEncoding.hashCode()
         result = 31 * result + data.contentHashCode()
         result = 31 * result + description.hashCode()
+        result = 31 * result + mimeType.hashCode()
         return result
     }
+
+    @KoverIgnore
+    override fun toString() =
+        "AttachedPicture(type=$type, description='$description', useUnicodeEncoding=$useUnicodeEncoding, mimeType='$mimeType', data=${data.contentToString()})"
 }
