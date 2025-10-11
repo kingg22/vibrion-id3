@@ -1,9 +1,11 @@
+@file:JvmMultifileClass
 @file:JvmSynthetic
 @file:JvmName("-PairedTextFrameEncoder")
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
+import kotlin.jvm.JvmMultifileClass
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
@@ -12,17 +14,16 @@ import kotlin.jvm.JvmSynthetic
 internal fun PairedTextFrameEncoder(name: String, value: List<Pair<String, String>>, size: Int): FrameEncoder =
     PairedTextFrameEncoder(name, size, value)
 
-private class PairedTextFrameEncoder(name: String, size: Int, private val value: List<Pair<String, String>>) :
+private class PairedTextFrameEncoder(name: String, size: Int, value: List<Pair<String, String>>) :
     FrameEncoder(name, size) {
 
-    @JvmSynthetic
-    override fun writeTo(buffer: ByteArray, offset: Int): Int {
-        val pairsSize = value.sumOf { (first, second) ->
+    override val encodedFrame: ByteArray by lazy {
+        val contentSize = 1 + value.sumOf { (first, second) ->
             2 + encodeUtf16LE(first).size + 2 + 2 + encodeUtf16LE(second).size + 2
         }
-        val contentSize = 1 + pairsSize
+        val buffer = ByteArray(HEADER + contentSize)
 
-        var currentOffset = writeFrameHeader(buffer, offset)
+        var currentOffset = writeFrameHeader(buffer)
 
         // Encoding
         buffer[currentOffset++] = 1
@@ -50,6 +51,6 @@ private class PairedTextFrameEncoder(name: String, size: Int, private val value:
             buffer[currentOffset++] = 0
         }
 
-        return HEADER + contentSize
+        buffer
     }
 }

@@ -1,34 +1,38 @@
+@file:JvmMultifileClass
 @file:JvmSynthetic
 @file:JvmName("-CommentFrameEncoder")
 
 package io.github.kingg22.vibrion.id3.internal.frames
 
 import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
+import io.github.kingg22.vibrion.id3.internal.encodeWindows1252
+import kotlin.jvm.JvmMultifileClass
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
 @Suppress("ktlint:standard:function-naming", "FunctionName")
 @JvmSynthetic
-internal fun CommentFrameEncoder(language: List<Byte>, description: String, value: String, size: Int): FrameEncoder =
+internal fun CommentFrameEncoder(language: String, description: String, value: String, size: Int): FrameEncoder =
     CommentFrameEncoder(size, language, description, value)
 
-private class CommentFrameEncoder(
-    size: Int,
-    private val language: List<Byte>,
-    private val description: String,
-    private val value: String,
-) : FrameEncoder("COMM", size) {
-    @JvmSynthetic
-    override fun writeTo(buffer: ByteArray, offset: Int): Int {
+private class CommentFrameEncoder(size: Int, language: String, description: String, value: String) :
+    FrameEncoder("COMM", size) {
+
+    override val encodedFrame: ByteArray by lazy {
         val descriptionBytes = encodeUtf16LE(description)
         val valueBytes = encodeUtf16LE(value)
-        val contentSize = 1 + 3 + BOM.size + descriptionBytes.size + 2 + BOM.size + valueBytes.size
+        val languageBytes = encodeWindows1252(language)
+        val contentSize = 1 + languageBytes.size + BOM.size + descriptionBytes.size + 2 + BOM.size + valueBytes.size
 
-        var currentOffset = writeFrameHeader(buffer, offset)
+        val buffer = ByteArray(HEADER + contentSize)
+        var currentOffset = writeFrameHeader(buffer)
 
         // Encoding + language + BOM
         buffer[currentOffset++] = 1
-        language.forEach { byte -> buffer[currentOffset++] = byte }
+
+        languageBytes.copyInto(buffer, currentOffset)
+        currentOffset += languageBytes.size
+
         BOM.copyInto(buffer, currentOffset)
         currentOffset += BOM.size
 
@@ -44,7 +48,5 @@ private class CommentFrameEncoder(
 
         // Value
         valueBytes.copyInto(buffer, currentOffset)
-
-        return HEADER + contentSize
     }
 }

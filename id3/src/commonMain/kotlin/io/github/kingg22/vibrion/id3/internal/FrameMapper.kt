@@ -20,25 +20,24 @@ internal fun setIntegerFrame(name: String, value: String) = NumericFrameEncoder(
 
 @JvmSynthetic
 internal fun setStringFrame(name: String, value: String) = TextFrameEncoder(
-    name,
-    value,
-    getStringFrameSize(value.length),
+    name = name,
+    value = value,
+    size = getStringFrameSize(value.length),
 )
 
 @JvmSynthetic
 internal fun AttachedPicture.setPictureFrame(): FrameEncoder {
-    val mimeType = getMimeType(this.data)
     val actualUseUnicode = this.description.isNotEmpty() && this.useUnicodeEncoding
 
     return PictureFrameEncoder(
         value = this.data,
         pictureType = this.type,
-        mimeType = mimeType,
+        mimeType = this.mimeType,
         description = this.description,
         useUnicode = actualUseUnicode,
         size = getPictureFrameSize(
             pictureSize = this.data.size,
-            mimeTypeSize = mimeType.length,
+            mimeTypeSize = this.mimeType.length,
             descriptionSize = this.description.length,
             useUnicodeEncoding = actualUseUnicode,
         ),
@@ -47,7 +46,7 @@ internal fun AttachedPicture.setPictureFrame(): FrameEncoder {
 
 @JvmSynthetic
 internal fun UnsynchronisedLyrics.setLyricsFrame() = UnsynchronisedLyricsFrameEncoder(
-    language = strToCodePointsByte(language),
+    language = language,
     description = description,
     value = lyrics,
     size = getLyricsFrameSize(description.length, lyrics.length),
@@ -55,7 +54,7 @@ internal fun UnsynchronisedLyrics.setLyricsFrame() = UnsynchronisedLyricsFrameEn
 
 @JvmSynthetic
 internal fun CommentFrame.setCommentFrame() = CommentFrameEncoder(
-    language = strToCodePointsByte(language),
+    language = language,
     description = description,
     value = text,
     size = getCommentFrameSize(description.length, text.length),
@@ -99,7 +98,7 @@ internal fun setPairedTextFrame(name: String, list: List<Pair<String, String>>) 
 @JvmSynthetic
 internal fun SynchronizedLyrics.setSynchronisedLyricsFrame() = SynchronisedLyricsFrameEncoder(
     value = text,
-    language = strToCodePointsByte(language),
+    language = language,
     description = description,
     type = type,
     timestampFormat = timestampFormat,
