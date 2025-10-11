@@ -20,13 +20,6 @@ public final class io/github/kingg22/vibrion/id3/AttachedPictureBuilder$Companio
 	public final synthetic fun builder (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/vibrion/id3/model/AttachedPicture;
 }
 
-public final class io/github/kingg22/vibrion/id3/BuildConfig {
-	public static final field BUILD_TYPE Ljava/lang/String;
-	public static final field DEBUG Z
-	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
-	public fun <init> ()V
-}
-
 public abstract interface annotation class io/github/kingg22/vibrion/id3/ExperimentalVibrionId3 : java/lang/annotation/Annotation {
 }
 
