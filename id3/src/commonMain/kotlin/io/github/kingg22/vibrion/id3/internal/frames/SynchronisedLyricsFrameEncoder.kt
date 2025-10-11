@@ -8,9 +8,19 @@ import io.github.kingg22.vibrion.id3.internal.uint32ToUint8Array
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
-@ConsistentCopyVisibility
-internal data class SynchronisedLyricsFrameEncoder private constructor(
-    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
+@Suppress("ktlint:standard:function-naming", "FunctionName")
+@JvmSynthetic
+internal fun SynchronisedLyricsFrameEncoder(
+    value: List<Pair<String, Int>>,
+    language: List<Byte>,
+    description: String,
+    type: Int,
+    timestampFormat: Int,
+    size: Int,
+): FrameEncoder = SynchronisedLyricsFrameEncoder(size, value, language, description, type, timestampFormat)
+
+private class SynchronisedLyricsFrameEncoder(
+    size: Int,
     private val value: List<Pair<String, Int>>,
     private val language: List<Byte>,
     private val description: String,
@@ -63,17 +73,5 @@ internal data class SynchronisedLyricsFrameEncoder private constructor(
         }
 
         return HEADER + contentSize
-    }
-
-    internal companion object {
-        @JvmSynthetic
-        internal fun SynchronisedLyricsFrameEncoder(
-            value: List<Pair<String, Int>>,
-            language: List<Byte>,
-            description: String,
-            type: Int,
-            timestampFormat: Int,
-            size: Int,
-        ) = SynchronisedLyricsFrameEncoder(size, value, language, description, type, timestampFormat)
     }
 }

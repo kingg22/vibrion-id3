@@ -7,12 +7,14 @@ import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
-@ConsistentCopyVisibility
-internal data class PairedTextFrameEncoder private constructor(
-    @get:JvmSynthetic @field:JvmSynthetic override val name: String,
-    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
-    private val value: List<Pair<String, String>>,
-) : FrameEncoder(name, size) {
+@Suppress("ktlint:standard:function-naming", "FunctionName")
+@JvmSynthetic
+internal fun PairedTextFrameEncoder(name: String, value: List<Pair<String, String>>, size: Int): FrameEncoder =
+    PairedTextFrameEncoder(name, size, value)
+
+private class PairedTextFrameEncoder(name: String, size: Int, private val value: List<Pair<String, String>>) :
+    FrameEncoder(name, size) {
+
     @JvmSynthetic
     override fun writeTo(buffer: ByteArray, offset: Int): Int {
         val pairsSize = value.sumOf { (first, second) ->
@@ -49,11 +51,5 @@ internal data class PairedTextFrameEncoder private constructor(
         }
 
         return HEADER + contentSize
-    }
-
-    internal companion object {
-        @JvmSynthetic
-        internal fun PairedTextFrameEncoder(name: String, value: List<Pair<String, String>>, size: Int) =
-            PairedTextFrameEncoder(name, size, value)
     }
 }

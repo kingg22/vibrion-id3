@@ -7,9 +7,17 @@ import io.github.kingg22.vibrion.id3.internal.encodeUtf16LE
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 
-@ConsistentCopyVisibility
-internal data class UnsynchronisedLyricsFrameEncoder private constructor(
-    @get:JvmSynthetic @field:JvmSynthetic override val size: Int,
+@Suppress("ktlint:standard:function-naming", "FunctionName")
+@JvmSynthetic
+internal fun UnsynchronisedLyricsFrameEncoder(
+    language: List<Byte>,
+    description: String,
+    value: String,
+    size: Int,
+): FrameEncoder = UnsynchronisedLyricsFrameEncoder(size, language, description, value)
+
+private class UnsynchronisedLyricsFrameEncoder(
+    size: Int,
     private val language: List<Byte>,
     private val description: String,
     private val value: String,
@@ -42,15 +50,5 @@ internal data class UnsynchronisedLyricsFrameEncoder private constructor(
         valueBytes.copyInto(buffer, currentOffset)
 
         return HEADER + contentSize
-    }
-
-    internal companion object {
-        @JvmSynthetic
-        internal fun UnsynchronisedLyricsFrameEncoder(
-            language: List<Byte>,
-            description: String,
-            value: String,
-            size: Int,
-        ) = UnsynchronisedLyricsFrameEncoder(size, language, description, value)
     }
 }
