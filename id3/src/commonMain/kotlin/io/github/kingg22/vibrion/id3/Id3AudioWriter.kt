@@ -12,7 +12,7 @@ import kotlin.jvm.JvmSynthetic
  * Builder for ID3 v2.3 tags.
  *
  * _Note_: Current is impossible to delete a tag frame after set it.
- * If you need to do that, create a [Id3AudioWriter.deepCopy] before and modify it, or only don't set the value.
+ * If you need to do that, create a [Id3AudioWriter.copy] before and modify it, or only don't set the value.
  *
  * **Don't recommend to call [Id3AudioWriter.addTag] or [Id3AudioWriter.toByteArray] or [Id3AudioWriter.build] repeated.**
  *
@@ -36,7 +36,8 @@ import kotlin.jvm.JvmSynthetic
  * }
  * ```
  *
- * @property padding Padding to add to the end of the file.
+ * @property padding Padding to add to the end of the bytearray. Default is 4096.
+ * @constructor Create empty Id3 audio writer with optional padding.
  *
  * @see Id3AudioWriter.set
  * @see Id3AudioWriter.addTag
@@ -48,7 +49,7 @@ import kotlin.jvm.JvmSynthetic
  * @see <a href="https://github.com/egoroof/browser-id3-writer">Inspired on 'egoroof/browser-id3-writer' on JavaScript / Typescript</a>
  */
 @Id3Dsl
-data class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
+class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
     private val frames = mutableListOf<FrameEncoder>()
 
     companion object {
@@ -119,6 +120,7 @@ data class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
         when (type) {
             is ListStringTagFrame -> {
                 require(value is StringListFrame)
+                // FIXME separator is not correct
                 val joined = value.values.joinToString(if (type is TCON) ";" else "/")
                 frames += setStringFrame(type.name, joined)
             }
@@ -145,32 +147,32 @@ data class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
 
             is UnsynchronisedLyricsTagFrame -> {
                 require(value is UnsynchronisedLyrics)
-                frames += setLyricsFrame(value.language, value.description, value.lyrics)
+                frames += value.setLyricsFrame()
             }
 
             is AttachedPictureTagFrame -> {
                 require(value is AttachedPicture)
-                frames += setPictureFrame(value.type, value.data, value.description, value.useUnicodeEncoding)
+                frames += value.setPictureFrame()
             }
 
             is UserDefinedTextTagFrame -> {
                 require(value is UserDefinedText)
-                frames += setUserStringFrame(value.description, value.value)
+                frames += value.setUserStringFrame()
             }
 
             is UserDefinedUrlTagFrame -> {
                 require(value is UserDefinedText)
-                frames += setUserUrlFrame(value.description, value.value)
+                frames += value.setUserUrlFrame()
             }
 
             is CommentTagFrame -> {
                 require(value is CommentFrame)
-                frames += setCommentFrame(value.language, value.description, value.text)
+                frames += value.setCommentFrame()
             }
 
             is PrivateTagFrame -> {
                 require(value is PrivateFrame)
-                frames += setPrivateFrame(value.id, value.data)
+                frames += value.setPrivateFrame()
             }
 
             is PairedTextTagFrame -> {
@@ -180,13 +182,7 @@ data class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
 
             is SynchronizedLyricsTagFrame -> {
                 require(value is SynchronizedLyrics)
-                frames += setSynchronisedLyricsFrame(
-                    value.type,
-                    value.text,
-                    value.timestampFormat,
-                    value.language,
-                    value.description,
-                )
+                frames += value.setSynchronisedLyricsFrame()
             }
 
             UNKNOWN -> throw IllegalArgumentException("Unsupported frame ${type.name}")
@@ -496,11 +492,56 @@ data class Id3AudioWriter @JvmOverloads constructor(var padding: Int = 4096) {
     fun toByteArray() = addTag()
 
     /**
-     * Deep copy of the current [Id3AudioWriter].
+     * Copy of the current [Id3AudioWriter].
      * Include all frames previously added with [Id3AudioWriter.set]
      */
     @JvmOverloads
-    fun deepCopy(padding: Int = this.padding) = Id3AudioWriter(padding).apply {
+    fun copy(padding: Int = this.padding) = Id3AudioWriter(padding).apply {
         this.frames.addAll(this@Id3AudioWriter.frames)
     }
+
+    @KoverIgnore
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+
+        other as Id3AudioWriter
+
+        if (padding != other.padding) return false
+        if (frames != other.frames) return false
+
+        return true
+    }
+
+    @KoverIgnore
+    override fun hashCode(): Int {
+        var result = padding
+        result = 31 * result + frames.hashCode()
+        return result
+    }
+
+    // TODO toString can print all frames, but need to be careful with internal state
+    @KoverIgnore
+    override fun toString() = "Id3AudioWriter(padding=$padding)"
+
+    /**
+     * Deep copy of the current [Id3AudioWriter].
+     * Include all frames previously added with [Id3AudioWriter.set]
+     */
+    @Deprecated(
+        message = "Use copy instead",
+        replaceWith = ReplaceWith("copy(padding)"),
+        level = DeprecationLevel.ERROR,
+    )
+    @JvmOverloads
+    @KoverIgnore
+    fun deepCopy(padding: Int = this.padding) = copy(padding)
+
+    @Deprecated(
+        message = "Don't use destructuring with Id3AudioWriter, use the property padding instead",
+        replaceWith = ReplaceWith("padding"),
+        level = DeprecationLevel.ERROR,
+    )
+    @KoverIgnore
+    operator fun component1() = padding
 }
