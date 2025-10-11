@@ -21,7 +21,7 @@ ktlint-plugin = "13.1.0"
 maven-publish = "0.34.0"
 # https://junit.org/
 # https://central.sonatype.com/artifact/org.junit/junit-bom
-junit = "5.13.4"
+junit = "6.0.0"
 
 [libraries]
 # Kotlin - Kotlinx essentials
