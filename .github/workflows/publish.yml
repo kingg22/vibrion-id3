@@ -38,10 +38,10 @@ jobs:
         with:
           gradle-version: '8.13'
           cache-read-only: false
-          validate-wrappers: true
+          validate-wrappers: false
 
       - name: Publish and release to Maven Central
-        run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
+        run: ./gradlew publishAndReleaseToMavenCentral
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
@@ -68,6 +68,7 @@ jobs:
           body: "¡Hey! A new version of Vibrion ID3 Tag writer was released"
           append_body: true
           prerelease: false
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -80,5 +81,6 @@ jobs:
           body: "Pre release of Vibrion ID3 Tag Writer was released"
           append_body: true
           prerelease: true
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
