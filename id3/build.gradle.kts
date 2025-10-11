@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlinxKover)
     alias(libs.plugins.kotlinMultiplatform)
@@ -37,8 +37,17 @@ kotlin {
 
     applyDefaultHierarchyTemplate()
 
-    androidTarget {
-        publishLibraryVariants("release")
+    androidLibrary {
+        namespace = "$group.vibrion.id3"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
+
+        packaging {
+            resources {
+                excludes.addAll(arrayOf("/META-INF/{AL2.0,LGPL2.1}", "**/test/**", "**/commonTest/**"))
+            }
+        }
+
         compilerOptions {
             jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
             jvmTarget.set(JvmTarget.JVM_1_8)
@@ -67,32 +76,6 @@ kotlin {
 
     sourceSets.commonTest.dependencies {
         implementation(libs.kotlin.test)
-    }
-}
-
-android {
-    namespace = "$group.vibrion.id3"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
-    testOptions {
-        unitTests.all {
-            it.useJUnitPlatform()
-        }
-    }
-    packaging {
-        resources {
-            excludes.addAll(arrayOf("/META-INF/{AL2.0,LGPL2.1}", "**/test/**", "**/commonTest/**"))
-        }
-    }
-    buildFeatures {
-        shaders = false
-        buildConfig = false
     }
 }
 
