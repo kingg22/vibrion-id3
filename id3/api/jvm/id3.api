@@ -681,20 +681,17 @@ public final class io/github/kingg22/vibrion/id3/model/AttachedPicture : io/gith
 	public fun <init> (I[B)V
 	public fun <init> (I[BLjava/lang/String;)V
 	public fun <init> (I[BLjava/lang/String;Z)V
-	public synthetic fun <init> (I[BLjava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (I[BLjava/lang/String;ZLjava/lang/String;)V
+	public synthetic fun <init> (I[BLjava/lang/String;ZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Lio/github/kingg22/vibrion/id3/model/AttachedPictureType;[B)V
 	public fun <init> (Lio/github/kingg22/vibrion/id3/model/AttachedPictureType;[BLjava/lang/String;)V
 	public fun <init> (Lio/github/kingg22/vibrion/id3/model/AttachedPictureType;[BLjava/lang/String;Z)V
-	public synthetic fun <init> (Lio/github/kingg22/vibrion/id3/model/AttachedPictureType;[BLjava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()I
-	public final fun component2 ()[B
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Z
-	public final fun copy (I[BLjava/lang/String;Z)Lio/github/kingg22/vibrion/id3/model/AttachedPicture;
-	public static synthetic fun copy$default (Lio/github/kingg22/vibrion/id3/model/AttachedPicture;I[BLjava/lang/String;ZILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/model/AttachedPicture;
+	public fun <init> (Lio/github/kingg22/vibrion/id3/model/AttachedPictureType;[BLjava/lang/String;ZLjava/lang/String;)V
+	public synthetic fun <init> (Lio/github/kingg22/vibrion/id3/model/AttachedPictureType;[BLjava/lang/String;ZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getData ()[B
 	public final fun getDescription ()Ljava/lang/String;
+	public final fun getMimeType ()Ljava/lang/String;
 	public final fun getType ()I
 	public final fun getUseUnicodeEncoding ()Z
 	public fun hashCode ()I
@@ -733,11 +730,6 @@ public final class io/github/kingg22/vibrion/id3/model/CommentFrame : io/github/
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/model/CommentFrame;
-	public static synthetic fun copy$default (Lio/github/kingg22/vibrion/id3/model/CommentFrame;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/model/CommentFrame;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDescription ()Ljava/lang/String;
 	public final fun getLanguage ()Ljava/lang/String;
@@ -746,15 +738,17 @@ public final class io/github/kingg22/vibrion/id3/model/CommentFrame : io/github/
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract class io/github/kingg22/vibrion/id3/model/FrameValue {
-	protected final fun languageFormat (Ljava/lang/String;)V
+public abstract interface class io/github/kingg22/vibrion/id3/model/FrameValue {
+	public static final field Companion Lio/github/kingg22/vibrion/id3/model/FrameValue$Companion;
+	public static fun languageFormat (Ljava/lang/String;)V
+}
+
+public final class io/github/kingg22/vibrion/id3/model/FrameValue$Companion {
+	public final fun languageFormat (Ljava/lang/String;)V
 }
 
 public final class io/github/kingg22/vibrion/id3/model/IntegerFrame : io/github/kingg22/vibrion/id3/model/FrameValue {
 	public fun <init> (I)V
-	public final fun component1 ()I
-	public final fun copy (I)Lio/github/kingg22/vibrion/id3/model/IntegerFrame;
-	public static synthetic fun copy$default (Lio/github/kingg22/vibrion/id3/model/IntegerFrame;IILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/model/IntegerFrame;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getValue ()I
 	public fun hashCode ()I
@@ -765,9 +759,6 @@ public final class io/github/kingg22/vibrion/id3/model/PairedTextFrame : io/gith
 	public fun <init> (Ljava/util/List;)V
 	public fun <init> (Ljava/util/Map;)V
 	public fun <init> ([Lkotlin/Pair;)V
-	public final fun component1 ()Ljava/util/List;
-	public final fun copy (Ljava/util/List;)Lio/github/kingg22/vibrion/id3/model/PairedTextFrame;
-	public static synthetic fun copy$default (Lio/github/kingg22/vibrion/id3/model/PairedTextFrame;Ljava/util/List;ILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/model/PairedTextFrame;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getPairs ()Ljava/util/List;
 	public fun hashCode ()I
@@ -776,10 +767,6 @@ public final class io/github/kingg22/vibrion/id3/model/PairedTextFrame : io/gith
 
 public final class io/github/kingg22/vibrion/id3/model/PrivateFrame : io/github/kingg22/vibrion/id3/model/FrameValue {
 	public fun <init> (Ljava/lang/String;[B)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()[B
-	public final fun copy (Ljava/lang/String;[B)Lio/github/kingg22/vibrion/id3/model/PrivateFrame;
-	public static synthetic fun copy$default (Lio/github/kingg22/vibrion/id3/model/PrivateFrame;Ljava/lang/String;[BILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/model/PrivateFrame;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getData ()[B
 	public final fun getId ()Ljava/lang/String;
@@ -790,9 +777,6 @@ public final class io/github/kingg22/vibrion/id3/model/PrivateFrame : io/github/
 public final class io/github/kingg22/vibrion/id3/model/StringListFrame : io/github/kingg22/vibrion/id3/model/FrameValue {
 	public fun <init> (Ljava/util/List;)V
 	public fun <init> ([Ljava/lang/String;)V
-	public final fun component1 ()Ljava/util/List;
-	public final fun copy (Ljava/util/List;)Lio/github/kingg22/vibrion/id3/model/StringListFrame;
-	public static synthetic fun copy$default (Lio/github/kingg22/vibrion/id3/model/StringListFrame;Ljava/util/List;ILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/model/StringListFrame;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getValues ()Ljava/util/List;
 	public fun hashCode ()I
@@ -824,13 +808,6 @@ public final class io/github/kingg22/vibrion/id3/model/SynchronizedLyrics : io/g
 	public fun <init> (Lio/github/kingg22/vibrion/id3/model/SynchronizedLyricsType;Lio/github/kingg22/vibrion/id3/model/SynchronizedLyricsTimestampFormat;[Lkotlin/Pair;Ljava/lang/String;)V
 	public fun <init> (Lio/github/kingg22/vibrion/id3/model/SynchronizedLyricsType;Lio/github/kingg22/vibrion/id3/model/SynchronizedLyricsTimestampFormat;[Lkotlin/Pair;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (Lio/github/kingg22/vibrion/id3/model/SynchronizedLyricsType;Lio/github/kingg22/vibrion/id3/model/SynchronizedLyricsTimestampFormat;[Lkotlin/Pair;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()I
-	public final fun component2 ()Ljava/util/List;
-	public final fun component3 ()I
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun copy (ILjava/util/List;ILjava/lang/String;Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/model/SynchronizedLyrics;
-	public static synthetic fun copy$default (Lio/github/kingg22/vibrion/id3/model/SynchronizedLyrics;ILjava/util/List;ILjava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/model/SynchronizedLyrics;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDescription ()Ljava/lang/String;
 	public final fun getLanguage ()Ljava/lang/String;
@@ -866,9 +843,6 @@ public final class io/github/kingg22/vibrion/id3/model/SynchronizedLyricsType : 
 
 public final class io/github/kingg22/vibrion/id3/model/TextFrame : io/github/kingg22/vibrion/id3/model/FrameValue {
 	public fun <init> (Ljava/lang/String;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/model/TextFrame;
-	public static synthetic fun copy$default (Lio/github/kingg22/vibrion/id3/model/TextFrame;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/model/TextFrame;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -880,11 +854,6 @@ public final class io/github/kingg22/vibrion/id3/model/UnsynchronisedLyrics : io
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/model/UnsynchronisedLyrics;
-	public static synthetic fun copy$default (Lio/github/kingg22/vibrion/id3/model/UnsynchronisedLyrics;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/model/UnsynchronisedLyrics;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDescription ()Ljava/lang/String;
 	public final fun getLanguage ()Ljava/lang/String;
@@ -895,10 +864,6 @@ public final class io/github/kingg22/vibrion/id3/model/UnsynchronisedLyrics : io
 
 public final class io/github/kingg22/vibrion/id3/model/UserDefinedText : io/github/kingg22/vibrion/id3/model/FrameValue {
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/vibrion/id3/model/UserDefinedText;
-	public static synthetic fun copy$default (Lio/github/kingg22/vibrion/id3/model/UserDefinedText;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/vibrion/id3/model/UserDefinedText;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDescription ()Ljava/lang/String;
 	public final fun getValue ()Ljava/lang/String;
