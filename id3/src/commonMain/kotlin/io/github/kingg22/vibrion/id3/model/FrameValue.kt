@@ -10,14 +10,17 @@ import kotlin.jvm.JvmStatic
 interface FrameValue {
     /** Utilities for [FrameValue] implementations */
     companion object {
-        /** Check if language is in ISO 639-2 format.
+        private val languageRegex = Regex("[a-zA-Z]{3}")
+
+        /**
+         * Check if language is in ISO 639-2 format.
          * @throws IllegalArgumentException if language is not in ISO 639-2 format
          * @see <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes">List of ISO 639-2 codes</a>
          * @see <a href="https://id3.org/id3v2.3.0#ID3v2_frame_overview">ID3v2 Frame Overview</a>
          */
         @JvmStatic
-        fun languageFormat(language: String) = require(language matches Regex("[a-zA-Z]{3}")) {
-            "Language must follow ISO 639-2"
+        fun languageFormat(language: String) {
+            require(language matches languageRegex) { "Language must follow ISO 639-2" }
         }
     }
 }
