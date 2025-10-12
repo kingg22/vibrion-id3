@@ -14,7 +14,7 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "0.7.0-SNAPSHOT"
+version = "0.7.0"
 description = "A lightweight Kotlin Multiplatform library to write ID3v2 tags in MP3 audio files."
 
 kotlin {
