@@ -39,7 +39,7 @@ jobs:
     # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
     # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v4
+      uses: gradle/actions/setup-gradle@v5
       with:
           gradle-version: '8.13'
           cache-read-only: false
@@ -83,7 +83,7 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v4
+      uses: gradle/actions/setup-gradle@v5
       with:
           gradle-version: '8.13'
           validate-wrappers: true
@@ -92,4 +92,4 @@ jobs:
     # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
     - name: Generate and submit dependency graph
-      uses: gradle/actions/dependency-submission@v4
+      uses: gradle/actions/dependency-submission@v5
