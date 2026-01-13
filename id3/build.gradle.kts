@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.androidMultiplatformLibrary)
@@ -17,6 +18,11 @@ group = "io.github.kingg22"
 version = "0.7.0"
 description = "A lightweight Kotlin Multiplatform library to write ID3v2 tags in MP3 audio files."
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 kotlin {
     compilerOptions {
         languageVersion.set(KotlinVersion.KOTLIN_2_1)
@@ -28,11 +34,8 @@ kotlin {
     @OptIn(ExperimentalAbiValidation::class)
     abiValidation {
         enabled.set(true)
-        filters {
-            excluded {
-                annotatedWith.add("$group.vibrion.id3.ExperimentalVibrionId3")
-            }
-        }
+        klib.enabled.set(true)
+        filters.excluded.annotatedWith.add("$group.vibrion.id3.ExperimentalVibrionId3")
     }
 
     applyDefaultHierarchyTemplate()
@@ -103,6 +106,21 @@ kover.reports.total {
     }
     filters.excludes {
         annotatedBy("$group.vibrion.id3.internal.KoverIgnore")
+    }
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    if (name.contains("TestJava")) {
+        sourceCompatibility = "11"
+        targetCompatibility = "11"
+    }
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    if (name.contains("TestKotlin")) {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
     }
 }
 
