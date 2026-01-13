@@ -18,7 +18,7 @@ ktlint-pinterest = "1.6.0"
 # https://github.com/jlleitschuh/ktlint-gradle/releases
 ktlint-plugin = "14.0.1"
 # https://github.com/vanniktech/gradle-maven-publish-plugin/releases
-maven-publish = "0.34.0"
+maven-publish = "0.35.0"
 # https://junit.org/
 # https://central.sonatype.com/artifact/org.junit/junit-bom
 junit = "6.0.0"
