@@ -8,29 +8,26 @@ android-minSdk = "21"
 
 # https://github.com/Kotlin/dokka/releases
 dokka = "2.1.0"
+
 # https://github.com/JetBrains/kotlin/releases
 # match according to androidx https://github.com/androidx/androidx/blob/androidx-main/gradle/libs.versions.toml#L55
 kotlin = "2.2.0"
+
 # https://github.com/Kotlin/kotlinx-kover/releases
 kover = "0.9.4"
+
 # https://github.com/pinterest/ktlint/releases
 ktlint-pinterest = "1.6.0"
+
 # https://github.com/jlleitschuh/ktlint-gradle/releases
 ktlint-plugin = "14.0.1"
+
 # https://github.com/vanniktech/gradle-maven-publish-plugin/releases
 maven-publish = "0.35.0"
-# https://junit.org/
-# https://central.sonatype.com/artifact/org.junit/junit-bom
-junit = "6.0.2"
 
 [libraries]
 # Kotlin - Kotlinx essentials
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
-
-# junit
-junit-bom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
-junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter" }
-junit-platform = { group = "org.junit.platform", name = "junit-platform-launcher" }
 
 # Libraries can be bundled together for easier import
 [bundles]

@@ -1,8 +1,6 @@
-rootProject.name = "vibrion-id3"
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
 pluginManagement {
     repositories {
+        mavenCentral()
         google {
             content {
                 includeGroupByRegex("com\\.android.*")
@@ -10,7 +8,6 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
-        mavenCentral()
         gradlePluginPortal()
     }
 }
@@ -23,6 +20,7 @@ plugins {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        mavenCentral()
         google {
             mavenContent {
                 includeGroupAndSubgroups("androidx")
@@ -30,9 +28,10 @@ dependencyResolutionManagement {
                 includeGroupAndSubgroups("com.google")
             }
         }
-        mavenCentral()
     }
 }
 
+rootProject.name = "vibrion-id3"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include(":id3")
-include("id3-java-test")
