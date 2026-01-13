@@ -1,22 +1,18 @@
-package io.github.kingg22.vibrion.id3.interoperability;
+package io.github.kingg22.vibrion.id3;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import io.github.kingg22.vibrion.id3.AttachedPictureBuilder;
-import io.github.kingg22.vibrion.id3.Id3WriterBuilder;
-import io.github.kingg22.vibrion.id3.Id3v2v3TagFrame;
-import io.github.kingg22.vibrion.id3.Id3AudioWriter;
-import io.github.kingg22.vibrion.id3.SynchronizedLyricsBuilder;
-import io.github.kingg22.vibrion.id3.UnsynchronisedLyricsBuilder;
 import io.github.kingg22.vibrion.id3.model.AttachedPictureType;
 
-class Id3BuilderJavaTests {
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class Id3BuilderJavaTest {
     @Test
     void testId3Writer() {
         final var writer = new Id3AudioWriter();
@@ -24,7 +20,7 @@ class Id3BuilderJavaTests {
         writer.set(Id3v2v3TagFrame.TIT2.INSTANCE, "Título");
         writer.set(Id3v2v3TagFrame.TPE1.INSTANCE, List.of("Eminem", "50 Cent"));
         writer.set(Id3v2v3TagFrame.IPLS.INSTANCE, Map.of("Guitar", "Eminem", "Vocals", "50 Cent"));
-        Assertions.assertNotEquals(0, writer.build().length);
+        assertNotEquals(0, writer.build().length);
     }
 
     @Test
@@ -95,16 +91,20 @@ class Id3BuilderJavaTests {
             .copyrightWeb("https://google.com")
             .userUrl("Description", "https://google.com");
 
-        final var generatedTags = builder.getValuesForTest().keySet();
-        final var expectedTags = new HashSet<>(Id3v2v3TagFrame.getAllFrames());
-        final var missing = expectedTags.parallelStream().filter( i -> !generatedTags.contains(i)).collect(Collectors.toUnmodifiableSet());
-        final var unexpected = generatedTags.parallelStream().filter(i -> !expectedTags.contains(i)).collect(Collectors.toUnmodifiableSet());
+        final Set<Id3v2v3TagFrame> generatedTags = builder.getValuesForTest().keySet();
+        final Set<Id3v2v3TagFrame> expectedTags = Set.copyOf(Id3v2v3TagFrame.getAllFrames());
+        final var missing = expectedTags.stream()
+            .filter( i -> !generatedTags.contains(i))
+            .collect(Collectors.toUnmodifiableSet());
+        final var unexpected = generatedTags.stream()
+            .filter(i -> !expectedTags.contains(i))
+            .collect(Collectors.toUnmodifiableSet());
 
-        Assertions.assertTrue(missing.isEmpty(), "Missing frames: " + missing);
-        Assertions.assertTrue(unexpected.isEmpty(), "Unexpected frames: " + unexpected);
+        assertTrue(missing.isEmpty(), "Missing frames: " + missing);
+        assertTrue(unexpected.isEmpty(), "Unexpected frames: " + unexpected);
 
         final var writer = builder.build();
         writer.setPadding(0);
-        Assertions.assertNotEquals(0, writer.toByteArray().length);
+        assertNotEquals(0, writer.toByteArray().length);
     }
 }
