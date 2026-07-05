@@ -51,17 +51,7 @@ vibrion-id3 = { group = "io.github.kingg22", name = "vibrion-id3", version.ref =
 ## Supported targets:
 - Android ![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)
 - JVM (**[Java compatible](https://kotlinlang.org/docs/java-to-kotlin-interop.html)**)
-- Linux X64
-- Linux Arm 64
-- Mingw X64
-- Android Native Arm 32
-- Android Native Arm 64
-- Android Native X64
-- Android Native X86
-
-_You required targets are not available?_ Please make a PR to add it or create an issue.
-
-_You need an `Export` annotation for specific target?_ Please make a PR to add it or create an issue.
+- Others... (see [build gradle](./id3/build.gradle.kts))
 
 _Java inaccessible?_ Please create an issue with demonstration of the code. I try to make java-friendly.
 
@@ -237,7 +227,7 @@ _Grouped by type, where (`name`) is the type in code_
 
 ## Roadmap
 
-- [ ] Kotlin JS / iOS / WASM / WASI target
+- [X] Kotlin JS / iOS / WASM / WASI target
 - [ ] Document all the API
 - [ ] Use of contract API, still waiting [enable contract for operator set issue](https://youtrack.jetbrains.com/issue/KT-77175/Enable-contracts-for-operators-participating-in-augmented-assignment-desugaring).
 - [ ] All frames of Id3 v2.3
