@@ -1,4 +1,6 @@
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
@@ -15,7 +17,7 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "0.7.0"
+version = "0.8.0"
 description = "A lightweight Kotlin Multiplatform library to write ID3v2 tags in MP3 audio files."
 
 java {
@@ -25,22 +27,20 @@ java {
 
 kotlin {
     compilerOptions {
-        languageVersion.set(KotlinVersion.KOTLIN_2_1)
-        apiVersion.set(KotlinVersion.KOTLIN_2_1)
+        languageVersion.set(KotlinVersion.KOTLIN_2_2)
+        apiVersion.set(languageVersion)
         extraWarnings.set(true)
         allWarningsAsErrors.set(true)
     }
 
     @OptIn(ExperimentalAbiValidation::class)
     abiValidation {
-        enabled.set(true)
-        klib.enabled.set(true)
-        filters.excluded.annotatedWith.add("$group.vibrion.id3.ExperimentalVibrionId3")
+        filters.exclude.annotatedWith.add("$group.vibrion.id3.ExperimentalVibrionId3")
     }
 
     applyDefaultHierarchyTemplate()
 
-    androidLibrary {
+    android {
         namespace = "$group.vibrion.id3"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -55,6 +55,8 @@ kotlin {
             jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
             jvmTarget.set(JvmTarget.JVM_1_8)
         }
+
+        withHostTest {}
     }
 
     jvm {
@@ -67,23 +69,63 @@ kotlin {
         }
     }
 
-    // tier 2
+    js {
+        browser()
+        nodejs()
+        binaries.library()
+    }
+
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+        nodejs()
+        binaries.library()
+    }
+
+    // Tiers are in accordance with <https://kotlinlang.org/docs/native-target-support.html>
+    // Tier 1
+    // iOS
+    listOf(
+        iosArm64(),
+        iosX64(),
+        iosSimulatorArm64(),
+        // macOs
+        macosArm64(),
+        // Tier 2
+        // watchOS
+        watchosArm32(),
+        watchosArm64(),
+        watchosSimulatorArm64(),
+        // tvOS
+        tvosArm64(),
+        tvosSimulatorArm64(),
+        watchosDeviceArm64(), // from tier 3
+    ).forEach { appleTarget ->
+        appleTarget.binaries.framework {
+            baseName = "ktorgen-annotations"
+            isStatic = true
+        }
+    }
+    // linux
     linuxX64()
     linuxArm64()
-    // tier 3
-    mingwX64()
+    // Tier 3
+    // android native
     androidNativeArm32()
     androidNativeArm64()
-    androidNativeX64()
     androidNativeX86()
+    androidNativeX64()
+    // windows
+    mingwX64()
 
-    sourceSets.commonTest.dependencies {
-        implementation(libs.kotlin.test)
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    dependencies {
+        testImplementation(libs.kotlin.test)
     }
 }
 
 ktlint {
-    version.set(libs.versions.ktlint.pinterest.get())
+    version.set(libs.versions.ktlint.pinterest)
 }
 
 dokka.dokkaSourceSets.configureEach {
