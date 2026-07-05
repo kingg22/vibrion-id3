@@ -79,14 +79,20 @@ class AttachedPicture @JvmOverloads constructor(
 
             return when {
                 b(0) == 0xFF && b(1) == 0xD8 && b(2) == 0xFF -> "image/jpeg"
+
                 b(0) == 0x89 && b(1) == 0x50 && b(2) == 0x4E && b(3) == 0x47 -> "image/png"
+
                 b(0) == 0x47 && b(1) == 0x49 && b(2) == 0x46 -> "image/gif"
+
                 b(8) == 0x57 && b(9) == 0x45 && b(10) == 0x42 && b(11) == 0x50 -> "image/webp"
+
                 (b(0) == 0x49 && b(1) == 0x49 && b(2) == 0x2A && b(3) == 0x00) ||
                     (b(0) == 0x4D && b(1) == 0x4D && b(2) == 0x00 && b(3) == 0x2A) -> "image/tiff"
 
                 b(0) == 0x42 && b(1) == 0x4D -> "image/bmp"
+
                 b(0) == 0x00 && b(1) == 0x00 && b(2) == 0x01 && b(3) == 0x00 -> "image/x-icon"
+
                 else -> "image/"
             }
         }
