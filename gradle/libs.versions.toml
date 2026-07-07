@@ -11,7 +11,7 @@ dokka = "2.2.0"
 
 # https://github.com/JetBrains/kotlin/releases
 # match according to androidx https://github.com/androidx/androidx/blob/androidx-main/gradle/libs.versions.toml#L55
-kotlin = "2.3.20"
+kotlin = "2.4.0"
 
 # https://github.com/Kotlin/kotlinx-kover/releases
 kover = "0.9.8"
